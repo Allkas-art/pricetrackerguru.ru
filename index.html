@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#06080F">
+<title>Трекер Цен PRO — умный трекер цен Ozon. Сирена, график за 3 месяца, 50 слотов</title>
+<meta name="description" content="Независимый трекер цен Ozon: спеццены Ozon Карты, история за 3 месяца, громкая Сирена при достижении цели. 50 слотов, проверка каждый час — бесплатно в RuStore.">
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="apple-touch-icon" href="logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ТРЕКЕР ЦЕН PRO — OLED Dark Spatial Theme
+   ============================================================ */
+
+:root{
+  --bg:#06080F;
+  --glass:rgba(14,18,30,.75);
+  --elev:#141A2E;
+  --primary:#005BFF;
+  --primary-glow:rgba(0,91,255,.4);
+  --ruby:linear-gradient(90deg,#FF1744 0%,#D50000 100%);
+  --ruby-solid:#FF1744;
+  --emerald:#00E676;
+  --gold:linear-gradient(135deg,#FFB300 0%,#FF8F00 100%);
+  --gold-solid:#FFB300;
+  --text:#F8FAFC;
+  --muted:#8E9BAE;
+  --stroke:rgba(255,255,255,.08);
+  --stroke-strong:rgba(255,255,255,.14);
+  --r-lg:26px;
+  --r-md:18px;
+  --r-sm:12px;
+  --ease-spring:cubic-bezier(.22,1,.36,1);
+  --shadow-card:0 30px 70px -34px rgba(0,0,0,.95);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  scroll-padding-top:92px;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+img{max-width:100%;display:block;border:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+svg{display:block;flex:none}
+
+h1,h2,h3,h4{margin:0;line-height:1.12;letter-spacing:-.02em;font-weight:800}
+p{margin:0}
+
+::selection{background:rgba(0,91,255,.4);color:#fff}
+
+/* ---------- Ambient lighting ---------- */
+.ambient{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.ambient i{
+  position:absolute;display:block;border-radius:50%;
+  filter:blur(140px);will-change:transform;opacity:.55;
+}
+.ambient .a1{width:640px;height:640px;top:-200px;left:-160px;
+  background:radial-gradient(circle,rgba(0,91,255,.62),transparent 68%)}
+.ambient .a2{width:560px;height:560px;top:36%;right:-220px;
+  background:radial-gradient(circle,rgba(213,0,0,.34),transparent 68%)}
+.ambient .a3{width:680px;height:680px;bottom:-260px;left:16%;
+  background:radial-gradient(circle,rgba(0,230,118,.2),transparent 68%)}
+
+.page{position:relative;z-index:1}
+
+/* ---------- Layout ---------- */
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+.section{padding:96px 0;position:relative}
+.section--tight{padding:72px 0}
+
+.tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  color:#9FC0FF;background:rgba(0,91,255,.12);
+  border:1px solid rgba(0,91,255,.3);
+  padding:7px 14px;border-radius:999px;
+}
+.section-head{max-width:720px;margin-bottom:44px}
+.section-head h2{font-size:clamp(28px,4.4vw,46px);margin:18px 0 14px}
+.section-head p{color:var(--muted);font-size:clamp(15px,1.6vw,17px)}
+.grad-text{
+  background:linear-gradient(90deg,#005BFF 0%,#00E676 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.grad-gold{
+  background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* ---------- Reveal ---------- */
+[data-reveal]{
+  opacity:0;transform:translateY(26px);
+  transition:opacity .8s var(--ease-spring),transform .8s var(--ease-spring);
+}
+[data-reveal].is-visible{opacity:1;transform:none}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:54px;padding:0 24px;border-radius:16px;
+  font-size:15px;font-weight:800;letter-spacing:-.2px;white-space:nowrap;
+  transition:transform .18s var(--ease-spring),box-shadow .3s ease,background .3s ease,border-color .3s ease;
+  position:relative;overflow:hidden;
+}
+.btn:active{transform:scale(.965)}
+.btn svg{width:20px;height:20px}
+.btn__arrow{width:16px;height:16px;transition:transform .3s var(--ease-spring)}
+.btn:hover .btn__arrow{transform:translate(3px,-3px)}
+
+.btn--primary{
+  background:linear-gradient(180deg,#FFFFFF 0%,#E2E9F7 100%);
+  color:#06080F;
+  box-shadow:0 14px 38px -14px rgba(255,255,255,.55),inset 0 1px 0 #fff;
+}
+.btn--primary:hover{box-shadow:0 20px 52px -14px rgba(255,255,255,.72)}
+
+.btn--ghost{
+  background:rgba(0,91,255,.14);
+  border:1px solid rgba(0,91,255,.45);
+  color:#DCE8FF;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+.btn--ghost:hover{background:rgba(0,91,255,.26);border-color:rgba(0,91,255,.7)}
+
+.btn--gold{
+  background:var(--gold);color:#1A1206;
+  box-shadow:0 14px 38px -16px rgba(255,179,0,.8);
+}
+
+/* ---------- Header ---------- */
+.header{
+  position:sticky;top:0;z-index:80;
+  background:rgba(6,8,15,.66);
+  -webkit-backdrop-filter:blur(24px) saturate(170%);
+  backdrop-filter:blur(24px) saturate(170%);
+  border-bottom:1px solid var(--stroke);
+  transition:background .35s ease,box-shadow .35s ease;
+}
+.header.is-scrolled{
+  background:rgba(6,8,15,.9);
+  box-shadow:0 18px 40px -30px #000;
+}
+.header__inner{
+  display:flex;align-items:center;gap:18px;height:74px;
+}
+.brand{display:flex;align-items:center;gap:12px;flex:none}
+.brand__logo{
+  width:44px;height:44px;border-radius:13px;overflow:hidden;flex:none;
+  background:#0A0E1A;border:1px solid var(--stroke-strong);
+  box-shadow:0 0 26px -4px rgba(0,91,255,.7),0 0 44px -12px rgba(255,23,68,.55);
+}
+.brand__logo img{width:100%;height:100%;object-fit:cover}
+.brand__text{display:flex;flex-direction:column;gap:2px;min-width:0}
+.brand__name{font-size:16px;font-weight:800;letter-spacing:-.4px;line-height:1}
+.brand__badge{
+  font-size:9px;font-weight:800;letter-spacing:.14em;
+  background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;
+  line-height:1;
+}
+
+.nav{display:flex;align-items:center;gap:4px;margin:0 auto}
+.nav a{
+  padding:9px 14px;border-radius:11px;font-size:14px;font-weight:600;color:var(--muted);
+  transition:color .25s ease,background .25s ease;
+}
+.nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+
+.header .btn{min-height:46px;padding:0 18px;font-size:14px;border-radius:14px}
+.header .btn svg{width:18px;height:18px}
+
+/* ---------- Hero ---------- */
+.hero{padding:64px 0 84px;position:relative}
+.hero__grid{
+  display:grid;grid-template-columns:1.04fr .96fr;gap:56px;align-items:center;
+}
+.hero__badge{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:9px 16px;border-radius:999px;
+  background:linear-gradient(135deg,rgba(255,179,0,.16),rgba(255,143,0,.08));
+  border:1px solid rgba(255,179,0,.42);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  font-size:11.5px;font-weight:800;letter-spacing:.08em;
+  color:#FFD166;text-transform:uppercase;
+  box-shadow:0 0 34px -10px rgba(255,179,0,.6);
+}
+.hero__badge svg{width:14px;height:14px;color:#FFB300}
+
+.hero h1{
+  font-size:clamp(32px,5.4vw,62px);
+  letter-spacing:-1.4px;line-height:1.05;
+  margin:24px 0 20px;
+}
+.hero__sub{
+  color:var(--muted);font-size:clamp(15px,1.7vw,18px);max-width:560px;line-height:1.62;
+}
+.hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin:34px 0 0}
+
+.metrics{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:44px;
+  padding:20px;border-radius:22px;
+  background:var(--glass);
+  border:1px solid var(--stroke);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+}
+.metric{display:flex;flex-direction:column;gap:4px;padding:0 6px}
+.metric b{
+  font-size:clamp(20px,2.6vw,28px);font-weight:800;letter-spacing:-1px;
+  background:linear-gradient(180deg,#fff,#9FB6DA);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  line-height:1.1;
+}
+.metric span{font-size:11.5px;color:var(--muted);font-weight:600;line-height:1.35}
+
+/* ---------- Phone mockup ---------- */
+.hero__visual{position:relative;display:flex;justify-content:center;align-items:center}
+.phone{position:relative;width:min(330px,80vw);z-index:2}
+.phone__frame{
+  position:relative;border-radius:48px;padding:11px;
+  background:linear-gradient(155deg,#39415C 0%,#0C1020 38%,#242C42 72%,#0A0E1A 100%);
+  box-shadow:
+    0 50px 100px -30px rgba(0,0,0,.95),
+    0 0 0 1px rgba(255,255,255,.09),
+    0 0 90px -18px rgba(0,91,255,.6);
+}
+.phone__frame::after{
+  content:'';position:absolute;inset:6px;border-radius:43px;
+  border:1px solid rgba(255,255,255,.07);pointer-events:none;
+}
+.phone__screen{
+  position:relative;border-radius:38px;overflow:hidden;background:#000;
+  aspect-ratio:9/19.4;
+}
+.phone__screen img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+}
+.phone__glow{
+  position:absolute;inset:-14% -18%;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,91,255,.34),transparent 66%);
+  filter:blur(60px);z-index:0;
+}
+
+.float-badge{
+  position:absolute;z-index:3;
+  display:flex;align-items:center;gap:10px;
+  padding:13px 17px;border-radius:17px;
+  background:rgba(20,26,46,.7);
+  border:1px solid var(--stroke-strong);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  box-shadow:0 26px 50px -26px #000;
+  font-size:13px;font-weight:700;white-space:nowrap;
+  animation:float 7s ease-in-out infinite;
+}
+.float-badge svg{width:20px;height:20px}
+.float-badge--a{top:12%;left:-13%}
+.float-badge--b{bottom:15%;right:-11%;animation-delay:-3.5s}
+.float-badge--a svg{color:var(--emerald)}
+.float-badge--b svg{color:var(--ruby-solid);animation:pulseIcon 1.4s ease-in-out infinite}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-13px)}
+}
+@keyframes pulseIcon{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.45;transform:scale(.88)}
+}
+
+/* ---------- Steps ---------- */
+.steps{
+  position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:52px;
+}
+.steps::before{
+  content:'';position:absolute;top:31px;left:9%;right:9%;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(0,91,255,.75) 15%,rgba(0,230,118,.75) 85%,transparent);
+  opacity:.75;
+}
+.step{position:relative;z-index:1}
+.step__num{
+  width:62px;height:62px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:800;letter-spacing:-.5px;
+  color:#BFD4FF;
+  background:linear-gradient(180deg,#161D33,#0B1020);
+  border:1px solid rgba(0,91,255,.5);
+  box-shadow:0 0 0 8px rgba(6,8,15,1),0 0 34px -6px rgba(0,91,255,.85);
+}
+.step h3{font-size:18px;margin:20px 0 8px}
+.step p{color:var(--muted);font-size:14.5px;line-height:1.6}
+
+/* ---------- Bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.card{
+  position:relative;overflow:hidden;
+  border-radius:var(--r-lg);padding:28px;
+  background:linear-gradient(180deg,rgba(20,26,46,.92) 0%,rgba(14,18,30,.72) 100%);
+  border:1px solid var(--stroke);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  box-shadow:var(--shadow-card);
+  transition:transform .4s var(--ease-spring),border-color .4s ease,box-shadow .4s ease;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:14%;right:14%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(0,91,255,.36);
+  box-shadow:0 40px 80px -40px rgba(0,91,255,.85);
+}
+.card__icon{
+  width:46px;height:46px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,91,255,.14);
+  border:1px solid rgba(0,91,255,.32);
+  color:#7FB0FF;margin-bottom:18px;
+}
+.card__icon svg{width:23px;height:23px}
+.card__icon--ruby{background:rgba(255,23,68,.13);border-color:rgba(255,23,68,.34);color:#FF7A8E}
+.card__icon--emerald{background:rgba(0,230,118,.12);border-color:rgba(0,230,118,.32);color:var(--emerald)}
+.card__icon--gold{background:rgba(255,179,0,.13);border-color:rgba(255,179,0,.34);color:var(--gold-solid)}
+.card h3{font-size:20px;margin-bottom:10px;letter-spacing:-.5px}
+.card p{color:var(--muted);font-size:14.5px;line-height:1.62}
+
+.card--wide{grid-column:span 8}
+.card--half{grid-column:span 4}
+.card--third{grid-column:span 4}
+.card--full{grid-column:span 12}
+
+/* chart card */
+.chart-host{
+  position:relative;width:100%;height:266px;margin-top:24px;
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(6,8,15,.6),rgba(6,8,15,.15));
+  border:1px solid rgba(255,255,255,.05);
+  overflow:hidden;
+}
+.chart-host canvas{display:block;width:100%;height:100%;touch-action:pan-y}
+
+/* ozon card visual */
+.paycard{
+  margin-top:22px;height:132px;border-radius:18px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#005BFF 0%,#003FC7 55%,#001E6E 100%);
+  box-shadow:0 24px 50px -24px rgba(0,91,255,.95),inset 0 1px 0 rgba(255,255,255,.3);
+}
+.paycard::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 82% 12%,rgba(255,255,255,.28),transparent 46%);
+}
+.paycard__chip{
+  position:absolute;top:34px;left:22px;width:40px;height:30px;border-radius:7px;
+  background:linear-gradient(135deg,#FFD87A,#C9962E);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.28);
+}
+.paycard__chip::before,.paycard__chip::after{
+  content:'';position:absolute;left:0;right:0;height:1px;background:rgba(0,0,0,.3);
+}
+.paycard__chip::before{top:10px}
+.paycard__chip::after{top:19px}
+.paycard__label{
+  position:absolute;left:22px;bottom:20px;font-size:13px;font-weight:800;letter-spacing:.14em;
+  color:rgba(255,255,255,.92);
+}
+.paycard__pulse{
+  position:absolute;right:20px;top:22px;display:flex;align-items:center;gap:7px;
+  font-size:11px;font-weight:800;color:#B9FFD9;letter-spacing:.08em;
+}
+.dot-live{
+  width:8px;height:8px;border-radius:50%;background:var(--emerald);
+  box-shadow:0 0 0 0 rgba(0,230,118,.7);
+  animation:livePulse 2s infinite;
+}
+@keyframes livePulse{
+  0%{box-shadow:0 0 0 0 rgba(0,230,118,.7)}
+  70%{box-shadow:0 0 0 12px rgba(0,230,118,0)}
+  100%{box-shadow:0 0 0 0 rgba(0,230,118,0)}
+}
+
+/* siren waves */
+.waves{display:flex;align-items:flex-end;gap:5px;height:56px;margin-top:20px}
+.waves i{
+  display:block;width:6px;border-radius:99px;
+  background:linear-gradient(180deg,#FF5A78,#D50000);
+  animation:wave 1.15s ease-in-out infinite;
+}
+.waves i:nth-child(1){height:16px;animation-delay:0s}
+.waves i:nth-child(2){height:30px;animation-delay:.1s}
+.waves i:nth-child(3){height:46px;animation-delay:.2s}
+.waves i:nth-child(4){height:34px;animation-delay:.3s}
+.waves i:nth-child(5){height:52px;animation-delay:.4s}
+.waves i:nth-child(6){height:26px;animation-delay:.5s}
+.waves i:nth-child(7){height:40px;animation-delay:.6s}
+.waves i:nth-child(8){height:18px;animation-delay:.7s}
+@keyframes wave{
+  0%,100%{transform:scaleY(.42);opacity:.55}
+  50%{transform:scaleY(1);opacity:1}
+}
+
+/* widgets */
+.widgets{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+.widget{
+  border-radius:16px;padding:16px 14px;min-height:104px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--stroke);
+  display:flex;flex-direction:column;justify-content:space-between;gap:10px;
+  transition:background .3s ease,border-color .3s ease,transform .3s var(--ease-spring);
+}
+.widget:hover{background:rgba(0,91,255,.11);border-color:rgba(0,91,255,.36);transform:translateY(-3px)}
+.widget svg{width:19px;height:19px;color:#7FB0FF}
+.widget b{font-size:13.5px;font-weight:800;letter-spacing:-.2px;line-height:1.25}
+.widget span{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.06em}
+
+/* ---------- Gallery ---------- */
+.gallery{
+  --gal-text:#F8FAFC;
+  --gal-muted:#8E9BAE;
+  --gal-frame:linear-gradient(155deg,#39415C 0%,#0C1020 38%,#242C42 72%,#0A0E1A 100%);
+  --gal-shadow:0 44px 80px -34px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.08);
+  --gal-border:rgba(255,255,255,.08);
+  --gal-bg:transparent;
+  border-radius:36px;
+  transition:background .55s ease;
+}
+.gallery.light{
+  --gal-text:#0B1224;
+  --gal-muted:#4C5B7C;
+  --gal-frame:linear-gradient(155deg,#FFFFFF 0%,#DDE5F6 46%,#B8C7E6 100%);
+  --gal-shadow:0 40px 76px -34px rgba(20,40,90,.5),0 0 0 1px rgba(15,30,70,.1);
+  --gal-border:rgba(15,30,70,.12);
+  --gal-bg:linear-gradient(180deg,rgba(255,255,255,.9),rgba(226,235,255,.92));
+  background:var(--gal-bg);
+  padding:56px 0;
+}
+.gallery.light .section-head h2,
+.gallery.light .gallery__caption b{color:#0B1224}
+.gallery.light .section-head p,
+.gallery.light .gallery__caption span{color:#4C5B7C}
+
+.gallery__top{
+  display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;
+  margin-bottom:38px;
+}
+.theme-toggle{
+  display:inline-flex;padding:5px;gap:4px;border-radius:16px;
+  background:rgba(14,18,30,.8);
+  border:1px solid var(--stroke);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+}
+.gallery.light .theme-toggle{background:rgba(255,255,255,.9);border-color:rgba(15,30,70,.14)}
+.theme-toggle button{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 18px;border-radius:12px;
+  font-size:13.5px;font-weight:700;color:var(--muted);
+  transition:background .3s ease,color .3s ease,box-shadow .3s ease;
+}
+.theme-toggle button svg{width:16px;height:16px}
+.theme-toggle button.is-active{
+  background:rgba(0,91,255,.24);color:#DCE8FF;
+  box-shadow:0 0 26px -8px rgba(0,91,255,.9);
+}
+.gallery.light .theme-toggle button{color:#66759A}
+.gallery.light .theme-toggle button.is-active{
+  background:linear-gradient(135deg,#005BFF,#0047C9);color:#fff;
+}
+
+.gallery__strip{
+  display:flex;gap:22px;overflow-x:auto;padding:10px 4px 26px;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:thin;
+  -webkit-overflow-scrolling:touch;
+}
+.gallery__strip::-webkit-scrollbar{height:6px}
+.gallery__strip::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:99px}
+.gallery__strip::-webkit-scrollbar-thumb{background:rgba(0,91,255,.55);border-radius:99px}
+
+.gallery__item{
+  flex:0 0 auto;width:258px;scroll-snap-align:center;
+}
+.gallery__shot{
+  border-radius:34px;padding:8px;
+  background:var(--gal-frame);
+  box-shadow:var(--gal-shadow);
+  transition:transform .45s var(--ease-spring),box-shadow .45s ease;
+}
+.gallery__item:hover .gallery__shot{transform:translateY(-8px)}
+.gallery__shot .screen{
+  border-radius:27px;overflow:hidden;aspect-ratio:9/19.4;background:#000;
+}
+.gallery__shot img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.gallery__caption{margin-top:16px;padding:0 4px}
+.gallery__caption b{
+  display:block;font-size:14.5px;font-weight:800;color:var(--gal-text);letter-spacing:-.3px;
+}
+.gallery__caption span{
+  display:block;font-size:12.5px;color:var(--gal-muted);margin-top:5px;line-height:1.5;
+}
+
+/* ---------- Calculator ---------- */
+.calc{
+  position:relative;overflow:hidden;
+  border-radius:34px;padding:clamp(28px,4.4vw,56px);
+  background:
+    radial-gradient(circle at 88% 6%,rgba(0,230,118,.16),transparent 52%),
+    radial-gradient(circle at 4% 96%,rgba(0,91,255,.24),transparent 56%),
+    linear-gradient(180deg,rgba(20,26,46,.94),rgba(10,14,26,.86));
+  border:1px solid var(--stroke-strong);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  box-shadow:0 50px 100px -50px rgba(0,91,255,.9);
+}
+.calc__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.calc h2{font-size:clamp(26px,3.8vw,42px);margin-bottom:16px}
+.calc__desc{color:var(--muted);font-size:15.5px;max-width:460px}
+
+.range-wrap{margin-top:38px}
+.range-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:16px;
+}
+.range-head span{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.range-head b{
+  font-size:clamp(22px,2.8vw,30px);font-weight:800;letter-spacing:-1px;
+  background:linear-gradient(180deg,#fff,#A9C0E4);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.range{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:10px;border-radius:99px;outline:none;
+  background:linear-gradient(90deg,#005BFF 0%,#005BFF 20%,rgba(255,255,255,.1) 20%);
+  transition:background .1s linear;
+  cursor:pointer;
+}
+.range::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:32px;height:32px;border-radius:50%;
+  background:radial-gradient(circle at 34% 28%,#FFFFFF,#8FBEFF 42%,#005BFF 78%);
+  box-shadow:0 0 0 7px rgba(0,91,255,.16),0 0 32px rgba(0,91,255,.95);
+  transition:transform .16s var(--ease-spring);
+}
+.range::-webkit-slider-thumb:active{transform:scale(1.14)}
+.range::-moz-range-thumb{
+  width:28px;height:28px;border-radius:50%;border:0;
+  background:radial-gradient(circle at 34% 28%,#FFFFFF,#8FBEFF 42%,#005BFF 78%);
+  box-shadow:0 0 0 7px rgba(0,91,255,.16),0 0 32px rgba(0,91,255,.95);
+}
+.range-scale{
+  display:flex;justify-content:space-between;margin-top:12px;
+  font-size:11.5px;color:var(--muted);font-weight:600;
+}
+
+.calc__result{
+  border-radius:26px;padding:34px;
+  background:rgba(6,8,15,.6);
+  border:1px solid rgba(0,230,118,.28);
+  box-shadow:inset 0 0 60px -30px rgba(0,230,118,.7);
+  text-align:center;
+}
+.calc__result small{
+  display:block;font-size:11.5px;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase;color:#7CFFB9;margin-bottom:14px;
+}
+.calc__sum{
+  font-size:clamp(38px,6vw,60px);font-weight:800;letter-spacing:-2px;line-height:1;
+  background:linear-gradient(135deg,#00E676 0%,#7CFFB9 55%,#FFFFFF 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 60px rgba(0,230,118,.4);
+}
+.calc__sub{color:var(--muted);font-size:13.5px;margin-top:16px;line-height:1.6}
+.calc__year{
+  margin-top:22px;padding-top:20px;border-top:1px dashed rgba(255,255,255,.12);
+  font-size:14px;color:var(--muted);font-weight:600;
+}
+.calc__year b{color:var(--text);font-weight:800}
+
+/* ---------- FAQ ---------- */
+.faq{display:flex;flex-direction:column;gap:14px;max-width:900px;margin:0 auto}
+.faq__item{
+  border-radius:22px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(20,26,46,.86),rgba(14,18,30,.7));
+  border:1px solid var(--stroke);
+  -webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);
+  transition:border-color .35s ease,box-shadow .35s ease;
+}
+.faq__item.open{
+  border-color:rgba(0,91,255,.42);
+  box-shadow:0 28px 60px -38px rgba(0,91,255,.9);
+}
+.faq__q{
+  width:100%;display:flex;align-items:center;gap:18px;
+  padding:24px 26px;text-align:left;
+}
+.faq__q span{flex:1;font-size:16.5px;font-weight:700;letter-spacing:-.3px;line-height:1.4}
+.faq__sign{
+  width:34px;height:34px;border-radius:11px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,91,255,.14);border:1px solid rgba(0,91,255,.32);
+  transition:transform .4s var(--ease-spring),background .3s ease;
+}
+.faq__sign svg{width:16px;height:16px;color:#7FB0FF}
+.faq__item.open .faq__sign{transform:rotate(45deg);background:rgba(0,91,255,.3)}
+.faq__a{
+  max-height:0;overflow:hidden;
+  transition:max-height .5s var(--ease-spring);
+}
+.faq__a-inner{
+  padding:0 26px 26px 78px;
+  color:var(--muted);font-size:15px;line-height:1.68;
+}
+
+/* ---------- Footer ---------- */
+.footer{
+  border-top:1px solid var(--stroke);
+  background:linear-gradient(180deg,rgba(6,8,15,0),rgba(10,14,26,.9));
+  padding:70px 0 40px;margin-top:40px;
+}
+.footer__grid{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:44px;
+}
+.footer__brand{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.footer__brand .logo{
+  width:46px;height:46px;border-radius:14px;overflow:hidden;flex:none;
+  background:#0A0E1A;border:1px solid var(--stroke-strong);
+  box-shadow:0 0 28px -6px rgba(0,91,255,.8),0 0 46px -14px rgba(255,23,68,.6);
+}
+.footer__brand .logo img{width:100%;height:100%;object-fit:cover}
+.footer__brand b{display:block;font-size:16px;font-weight:800;letter-spacing:-.4px}
+.footer__brand em{
+  font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:.14em;
+  background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.footer p.legal{color:var(--muted);font-size:13.5px;line-height:1.7;max-width:400px}
+.footer h4{
+  font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  color:#7E8CA3;margin-bottom:20px;
+}
+.footer__links{display:flex;flex-direction:column;gap:13px}
+.footer__links a{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:14.5px;font-weight:600;color:var(--muted);
+  transition:color .25s ease,transform .25s ease;
+}
+.footer__links a:hover{color:var(--text);transform:translateX(4px)}
+.footer__links a svg{width:17px;height:17px;color:#5C7BB5}
+.footer__links a:hover svg{color:var(--primary)}
+
+.footer__bottom{
+  margin-top:56px;padding-top:26px;border-top:1px solid var(--stroke);
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+  font-size:12.5px;color:#65728A;
+}
+.footer__bottom a{color:#8E9BAE;text-decoration:underline;text-underline-offset:3px}
+.footer__bottom a:hover{color:var(--text)}
+
+/* ---------- Mobile CTA ---------- */
+.mobile-cta{
+  position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  z-index:90;display:none;
+  transform:translateY(160%);
+  transition:transform .5s var(--ease-spring);
+}
+.mobile-cta.is-shown{transform:translateY(0)}
+.mobile-cta .btn{
+  width:100%;min-height:56px;border-radius:18px;
+  box-shadow:0 20px 44px -18px rgba(255,255,255,.55),0 0 0 1px rgba(255,255,255,.2);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1080px){
+  .hero__grid{grid-template-columns:1fr;gap:60px}
+  .hero__visual{order:-1}
+  .hero__sub{max-width:none}
+  .card--wide{grid-column:span 12}
+  .card--half,.card--third{grid-column:span 6}
+  .float-badge--a{left:-2%}
+  .float-badge--b{right:-2%}
+}
+
+@media (max-width:900px){
+  .nav{display:none}
+  .calc__grid{grid-template-columns:1fr;gap:36px}
+  .footer__grid{grid-template-columns:1fr 1fr;gap:36px}
+  .footer__brand-col{grid-column:span 2}
+}
+
+@media (max-width:768px){
+  .section{padding:68px 0}
+  .section--tight{padding:52px 0}
+  .header__inner{height:64px;gap:10px}
+  .brand__logo{width:38px;height:38px;border-radius:11px}
+  .brand__name{font-size:14.5px}
+  .header .btn{min-height:42px;padding:0 14px;font-size:13px;gap:7px}
+  .header .btn .btn-label-long{display:none}
+  .header .btn svg{width:17px;height:17px}
+
+  .hero{padding:36px 0 60px}
+  .hero h1{letter-spacing:-1px}
+  .hero__actions{flex-direction:column;gap:12px}
+  .hero__actions .btn{width:100%}
+
+  .metrics{padding:16px;gap:8px;border-radius:20px}
+  .metric span{font-size:10.5px}
+
+  .phone{width:min(300px,82vw)}
+  .float-badge{padding:11px 14px;font-size:12px;border-radius:15px}
+  .float-badge svg{width:17px;height:17px}
+  .float-badge--a{top:6%;left:-4%}
+  .float-badge--b{bottom:9%;right:-4%}
+
+  .steps{grid-template-columns:1fr;gap:26px}
+  .steps::before{display:none}
+  .step{display:flex;gap:18px;align-items:flex-start}
+  .step__num{box-shadow:0 0 0 0 transparent,0 0 30px -8px rgba(0,91,255,.8);width:54px;height:54px;font-size:14px}
+  .step h3{margin:6px 0 6px}
+
+  .bento{gap:16px}
+  .card{padding:22px;border-radius:22px}
+  .card--half,.card--third,.card--wide,.card--full{grid-column:span 12}
+  .card h3{font-size:18.5px}
+  .chart-host{height:216px}
+
+  .widgets{grid-template-columns:1fr 1fr;gap:12px}
+  .widget{min-height:92px;padding:14px 12px}
+
+  .gallery{border-radius:26px}
+  .gallery.light{padding:40px 0}
+  .gallery__top{flex-direction:column;align-items:flex-start;gap:20px}
+  .theme-toggle{width:100%}
+  .theme-toggle button{flex:1;justify-content:center;padding:12px 10px;font-size:12.5px}
+  .gallery__item{width:224px}
+  .gallery__strip{gap:16px}
+
+  .calc{border-radius:26px}
+  .calc__result{padding:26px 20px}
+
+  .faq__q{padding:20px;gap:14px}
+  .faq__q span{font-size:15px}
+  .faq__a-inner{padding:0 20px 22px 20px}
+
+  .footer{padding:52px 0 34px}
+  .footer__grid{grid-template-columns:1fr;gap:34px}
+  .footer__brand-col{grid-column:span 1}
+  .footer__bottom{flex-direction:column;align-items:flex-start;gap:10px;margin-top:40px}
+
+  .page{padding-bottom:88px}
+  .mobile-cta{display:block}
+}
+
+@media (max-width:380px){
+  .container{padding:0 16px}
+  .hero h1{font-size:31px}
+  .brand__text{display:none}
+  .metrics{gap:6px;padding:14px}
+  .metric b{font-size:19px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- Ambient lighting -->
+<div class="ambient" aria-hidden="true">
+  <i class="a1"></i><i class="a2"></i><i class="a3"></i>
+</div>
+
+<div class="page">
+
+<!-- ============================ HEADER ============================ -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a class="brand" href="#top" aria-label="Трекер Цен PRO — на главную">
+      <span class="brand__logo"><img src="logo.png" alt="Иконка приложения Трекер Цен PRO"></span>
+      <span class="brand__text">
+        <span class="brand__name">Трекер Цен</span>
+        <span class="brand__badge">ВЕРСИЯ PRO</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#features">Возможности</a>
+      <a href="#gallery">Интерфейс</a>
+      <a href="#chart">График цен</a>
+      <a href="#calc">Калькулятор</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <a class="btn btn--primary"
+       href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app"
+       target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="1" y="1" width="22" height="22" rx="7" fill="currentColor" opacity=".14"/>
+        <path d="M9 17.2V6.8h4.3a3.1 3.1 0 0 1 0 6.2H9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12.4 13l3.7 4.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+      </svg>
+      <span>Скачать в RuStore</span>
+      <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 17 17 7M9 7h8v8"/>
+      </svg>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="container hero__grid">
+
+    <div class="hero__copy">
+      <div class="hero__badge" data-reveal>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6 6.1 20.7l1.2-6.6L2.5 9.5l6.6-.9L12 2.5z"/>
+        </svg>
+        <span>PRO бесплатно • 50 слотов • без рекламы</span>
+      </div>
+
+      <h1 data-reveal>
+        Цена меняется.<br>
+        Вы не обязаны <span class="grad-text">угадывать</span>.
+      </h1>
+
+      <p class="hero__sub" data-reveal>
+        Умный независимый трекер цен Ozon. Сканирует спеццены вашей Ozon Карты,
+        историю за 3 месяца и предупреждает громкой Сиреной, когда пора покупать.
+      </p>
+
+      <div class="hero__actions" data-reveal>
+        <a class="btn btn--primary"
+           href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="1" y="1" width="22" height="22" rx="7" fill="currentColor" opacity=".14"/>
+            <path d="M9 17.2V6.8h4.3a3.1 3.1 0 0 1 0 6.2H9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12.4 13l3.7 4.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+          </svg>
+          <span>Скачать в RuStore</span>
+          <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+
+        <a class="btn btn--ghost" href="https://t.me/priceradar_app" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M21.7 4.3 2.9 11.5c-1 .4-1 1.8.1 2.1l4.6 1.5 1.7 5.3c.3.9 1.4 1.1 1.9.3l2.3-3 4.6 3.4c.8.6 1.9.2 2.1-.8l3-14.5c.2-1-.8-1.9-1.5-1.5zM9.3 14.7l8.4-6.2-6.7 7.3-.2 3-1.5-4.1z"/>
+          </svg>
+          <span>Telegram-сообщество</span>
+        </a>
+      </div>
+
+      <div class="metrics" data-reveal>
+        <div class="metric">
+          <b>50</b>
+          <span>Слотов для товаров сразу в тарифе PRO</span>
+        </div>
+        <div class="metric">
+          <b>1 час</b>
+          <span>Минимальный интервал проверки цен</span>
+        </div>
+        <div class="metric">
+          <b>0 ₽</b>
+          <span>Навсегда бесплатно, без подписок</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual" data-reveal>
+      <div class="phone">
+        <div class="phone__glow" aria-hidden="true"></div>
+        <div class="phone__frame">
+          <div class="phone__screen">
+            <img src="screen-grid.png"
+                 alt="Главный экран приложения Трекер Цен PRO: сетка отслеживаемых товаров"
+                 width="828" height="1792" fetchpriority="high" decoding="async">
+          </div>
+        </div>
+
+        <div class="float-badge float-badge--a">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 16.5 9 10l4 3.5 7.5-8"/>
+            <path d="M20.5 5.5v6M20.5 5.5h-6"/>
+          </svg>
+          <span>Скидка до 50%</span>
+        </div>
+
+        <div class="float-badge float-badge--b">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3.5 4.5 7v5.2c0 4.3 3.1 7.6 7.5 9.3 4.4-1.7 7.5-5 7.5-9.3V7L12 3.5z"/>
+            <path d="M12 9v4.2M12 16.2v.1"/>
+          </svg>
+          <span>Оповещение Сиреной</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ WORKFLOW ============================ -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="tag">Как это работает</span>
+      <h2>Не просто следит. <span class="grad-text">Решает.</span></h2>
+      <p>Четыре шага от добавления ссылки до покупки по минимальной цене — всё автоматически, в фоне, без вашего участия.</p>
+    </div>
+
+    <div class="steps">
+      <article class="step" data-reveal>
+        <div class="step__num">01</div>
+        <div>
+          <h3>Наблюдаем</h3>
+          <p>Круглосуточный фоновый чек цен на складах маркетплейса с выбранным интервалом от одного часа.</p>
+        </div>
+      </article>
+      <article class="step" data-reveal>
+        <div class="step__num">02</div>
+        <div>
+          <h3>Находим</h3>
+          <p>Выявляем реальный момент скидки без накруток и фиктивных «зачёркнутых» цен.</p>
+        </div>
+      </article>
+      <article class="step" data-reveal>
+        <div class="step__num">03</div>
+        <div>
+          <h3>Сигнализируем</h3>
+          <p>Мгновенный пуш в шторку или громкая непрерывная Сирена при достижении целевой цены.</p>
+        </div>
+      </article>
+      <article class="step" data-reveal>
+        <div class="step__num">04</div>
+        <div>
+          <h3>Покупаем</h3>
+          <p>Выкуп по минимальной цене с экономией до 50% от стартовой стоимости товара.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BENTO ============================ -->
+<section class="section section--tight" id="features">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="tag">Суперсилы приложения</span>
+      <h2>Всё, чего не хватает <span class="grad-text">обычному вишлисту</span></h2>
+      <p>Шесть технологичных модулей, которые превращают отслеживание цен в точную науку.</p>
+    </div>
+
+    <div class="bento">
+
+      <!-- 1. Живой график -->
+      <article class="card card--wide" id="chart" data-reveal>
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 19V5M4 19h16"/>
+            <path d="M7 15.5 10.5 11l3.5 3 4.5-7"/>
+          </svg>
+        </div>
+        <h3>Честный график за 3 месяца</h3>
+        <p>Полная история цены без скрытых участков. Наведите курсор или проведите пальцем по графику — покажем точную цену в конкретный день.</p>
+        <div class="chart-host">
+          <canvas id="priceChart" role="img" aria-label="График изменения цены за 3 месяца: снижение с 4 990 до 3 490 рублей при цели 3 500 рублей"></canvas>
+        </div>
+      </article>
+
+      <!-- 2. Ozon Карта -->
+      <article class="card card--half" data-reveal>
+        <div class="card__icon card__icon--emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2.5" y="5.5" width="19" height="13" rx="3"/>
+            <path d="M2.5 10h19M6.5 14.5h3"/>
+          </svg>
+        </div>
+        <h3>Цены с Ozon Картой</h3>
+        <p>Трёхуровневая привязка Ozon ID считывает персональные скидки вашего профиля с точностью до одного рубля.</p>
+        <div class="paycard" aria-hidden="true">
+          <div class="paycard__chip"></div>
+          <div class="paycard__pulse"><span class="dot-live"></span> OZON ID</div>
+          <div class="paycard__label">ПЕРСОНАЛЬНАЯ ЦЕНА</div>
+        </div>
+      </article>
+
+      <!-- 3. Сирена -->
+      <article class="card card--third" data-reveal>
+        <div class="card__icon card__icon--ruby">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 15V9.5a6 6 0 0 1 12 0V15l1.5 3H4.5L6 15z"/>
+            <path d="M10 21h4"/>
+          </svg>
+        </div>
+        <h3>Режим тревоги «Сирена»</h3>
+        <p>Громкий непрерывный сигнал при достижении цели. Не проспите ночные распродажи и ошибки продавцов.</p>
+        <div class="waves" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </article>
+
+      <!-- 4. Радар наличия -->
+      <article class="card card--third" data-reveal>
+        <div class="card__icon card__icon--emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 12 18.5 6.5"/>
+          </svg>
+        </div>
+        <h3>Радар наличия</h3>
+        <p>Закончился нужный размер обуви или одежды? Трекер продолжит следить за складом и сразу пришлёт пуш при поступлении.</p>
+      </article>
+
+      <!-- 5. Батарея -->
+      <article class="card card--third" data-reveal>
+        <div class="card__icon card__icon--gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2.5" y="7.5" width="16" height="9" rx="3"/>
+            <path d="M21 10.5v3"/>
+            <path d="M6 10.5v3M9.5 10.5v3"/>
+          </svg>
+        </div>
+        <h3>0% фонового жора батареи</h3>
+        <p>Оптимизирован под HyperOS (Xiaomi), OneUI (Samsung), Honor и Realme. Работает в фоне без выгрузки системой.</p>
+      </article>
+
+      <!-- 6. Виджеты -->
+      <article class="card card--full" data-reveal>
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="8" height="8" rx="2.2"/>
+            <rect x="13" y="3" width="8" height="5" rx="2"/>
+            <rect x="3" y="13" width="8" height="8" rx="2.2"/>
+            <rect x="13" y="10" width="8" height="11" rx="2.2"/>
+          </svg>
+        </div>
+        <h3>4 виджета на рабочий стол Glance</h3>
+        <p>Следите за ценами, не открывая приложение — информация всегда на первом экране смартфона.</p>
+        <div class="widgets">
+          <div class="widget">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 12l6-4"/></svg>
+            <b>Снайпер скидок</b>
+            <span>2 × 2</span>
+          </div>
+          <div class="widget">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+            <b>Лента отслеживания</b>
+            <span>4 × 3</span>
+          </div>
+          <div class="widget">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14.5 9 9l3.5 3L20 5"/></svg>
+            <b>Мини-информер</b>
+            <span>4 × 1</span>
+          </div>
+          <div class="widget">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <b>Персональный пин</b>
+            <span>2 × 1</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GALLERY ============================ -->
+<section class="section" id="gallery">
+  <div class="container">
+    <div class="gallery" id="galleryBox">
+      <div class="gallery__top">
+        <div class="section-head" style="margin-bottom:0" data-reveal>
+          <span class="tag">Интерфейс</span>
+          <h2>Все возможности в вашем телефоне</h2>
+          <p>Реальные экраны приложения: от сетки товаров и графика цен до настроек PRO и добавления ссылки в один клик.</p>
+        </div>
+
+        <div class="theme-toggle" role="group" aria-label="Переключение темы оформления мокапов">
+          <button type="button" class="is-active" data-theme="dark" aria-pressed="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/>
+            </svg>
+            Тёмная тема
+          </button>
+          <button type="button" data-theme="light" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.2"/>
+              <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/>
+            </svg>
+            Светлая тема
+          </button>
+        </div>
+      </div>
+
+      <div class="gallery__strip" id="galleryStrip">
+
+        <figure class="gallery__item" style="margin:0" data-reveal>
+          <div class="gallery__shot">
+            <div class="screen"><img src="screen-grid.png" alt="Главный экран приложения: сетка 2×2 с товарами Adidas Samba, кофе Starbucks, носки Nike, кошелёк BOSS" loading="lazy" decoding="async"></div>
+          </div>
+          <figcaption class="gallery__caption">
+            <b>Главный экран 2×2</b>
+            <span>Adidas Samba, кофе Starbucks, носки Nike, кошелёк BOSS — все цели на одном экране.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item" style="margin:0" data-reveal>
+          <div class="gallery__shot">
+            <div class="screen"><img src="screen-list.png" alt="Список товаров в одну колонку с артикулом, датой и кнопкой экспорта" loading="lazy" decoding="async"></div>
+          </div>
+          <figcaption class="gallery__caption">
+            <b>Список товаров</b>
+            <span>Подробные карточки: артикул, двухстрочная дата проверки, цена и экспорт истории.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item" style="margin:0" data-reveal>
+          <div class="gallery__shot">
+            <div class="screen"><img src="screen-chart.png" alt="График цен за 3 месяца: минимум 389 рублей, максимум 689 рублей, цель 450 рублей" loading="lazy" decoding="async"></div>
+          </div>
+          <figcaption class="gallery__caption">
+            <b>График цен за 3 месяца</b>
+            <span>Аналитическая шторка: минимум 389 ₽, максимум 689 ₽, ваша цель 450 ₽.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item" style="margin:0" data-reveal>
+          <div class="gallery__shot">
+            <div class="screen"><img src="screen-add.png" alt="Добавление товара: вставка ссылки или открытие каталога Ozon через меню Поделиться" loading="lazy" decoding="async"></div>
+          </div>
+          <figcaption class="gallery__caption">
+            <b>Добавление товара</b>
+            <span>Шторка вставки ссылки за один клик через системное меню «Поделиться».</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item" style="margin:0" data-reveal>
+          <div class="gallery__shot">
+            <div class="screen"><img src="screen-welcome.png" alt="Экран приветствия приложения Трекер Цен PRO" loading="lazy" decoding="async"></div>
+          </div>
+          <figcaption class="gallery__caption">
+            <b>Онбординг PRO</b>
+            <span>Короткое знакомство: как добавлять товары и что сервис независим от маркетплейсов.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item" style="margin:0" data-reveal>
+          <div class="gallery__shot">
+            <div class="screen"><img src="screen-howto.png" alt="Инструкция: как добавить товары в трекер цен" loading="lazy" decoding="async"></div>
+          </div>
+          <figcaption class="gallery__caption">
+            <b>Как добавить товары</b>
+            <span>Три шага: открыть магазин, нажать «Поделиться», указать желаемую цену.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item" style="margin:0" data-reveal>
+          <div class="gallery__shot">
+            <div class="screen"><img src="screen-settings-1.png" alt="Настройки PRO: слоты отслеживания, журнал проверок и интервал проверки цен" loading="lazy" decoding="async"></div>
+          </div>
+          <figcaption class="gallery__caption">
+            <b>Настройки PRO: слоты</b>
+            <span>4 из 50 слотов, журнал проверок, сохранение log.txt и выбор интервала.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item" style="margin:0" data-reveal>
+          <div class="gallery__shot">
+            <div class="screen"><img src="screen-settings-2.png" alt="Настройки PRO: громкое оповещение, режим Сирены, тема оформления и резервная копия" loading="lazy" decoding="async"></div>
+          </div>
+          <figcaption class="gallery__caption">
+            <b>Настройки PRO: Сирена</b>
+            <span>Громкое оповещение, режим Сирены, темы «Авто / Светлая / Темная / Ультра» и бэкап базы.</span>
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CALCULATOR ============================ -->
+<section class="section" id="calc">
+  <div class="container">
+    <div class="calc" data-reveal>
+      <div class="calc__grid">
+
+        <div>
+          <span class="tag">Калькулятор выгоды</span>
+          <h2 style="margin-top:18px">Какая экономия с Трекером Цен?</h2>
+          <p class="calc__desc">
+            В среднем регулярные пользователи сервиса выкупают вишлист со скидкой 28%.
+            Двигайте ползунок — посчитаем чистую экономию именно для вашего бюджета.
+          </p>
+
+          <div class="range-wrap">
+            <div class="range-head">
+              <span>Бюджет покупок в месяц</span>
+              <b id="budgetOut">30 000 ₽</b>
+            </div>
+
+            <input class="range" id="budgetRange" type="range"
+                   min="3000" max="150000" step="1000" value="30000"
+                   aria-label="Бюджет покупок в месяц, рублей">
+
+            <div class="range-scale">
+              <span>3 000 ₽</span>
+              <span>75 000 ₽</span>
+              <span>150 000 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc__result">
+          <small>Чистая экономия в месяц</small>
+          <div class="calc__sum" id="savingOut">8 400 ₽</div>
+          <p class="calc__sub">
+            Расчёт при средней скидке 28%. Итоговая выгода зависит от категории товаров
+            и персональных спеццен вашей Ozon Карты.
+          </p>
+          <div class="calc__year">
+            За год это <b id="savingYear">100 800 ₽</b> сэкономленных средств
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head" style="margin:0 auto 44px;text-align:center" data-reveal>
+      <span class="tag">Вопросы и ответы</span>
+      <h2>Коротко о главном</h2>
+    </div>
+
+    <div class="faq">
+
+      <div class="faq__item" data-reveal>
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Как добавить товар в отслеживание?</span>
+          <span class="faq__sign" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            Откройте карточку товара в официальном приложении Ozon, нажмите «Поделиться»
+            и выберите в списке «Трекер Цен». Ссылка подхватится автоматически — останется
+            только указать желаемую цену и сохранить.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal>
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Безопасно ли подключать Ozon ID?</span>
+          <span class="faq__sign" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            Да. Авторизация проходит на 100% локально на вашем смартфоне в системном WebView.
+            Логин, пароль и SMS-код не передаются на сторонние серверы и не сохраняются
+            в открытом виде — приложение использует только локальную сессию для чтения
+            персональных скидок профиля.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal>
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Зачем отключать VPN перед входом?</span>
+          <span class="faq__sign" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            Антифрод системы маркетплейсов блокируют соединения с иностранных IP-адресов.
+            Поэтому перед входом в Ozon ID отключите VPN — иначе цены не будут обновляться в фоне.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal>
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Сколько стоит тариф PRO?</span>
+          <span class="faq__sign" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            Бесплатно навсегда для пользователей RuStore: 50 слотов отслеживания,
+            минимальный интервал проверки — 1 час, полноценный режим Сирены
+            и все четыре виджета. Никаких подписок и скрытых платежей.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+
+      <div class="footer__brand-col">
+        <div class="footer__brand">
+          <span class="logo"><img src="logo.png" alt="Иконка приложения Трекер Цен PRO"></span>
+          <span>
+            <b>Трекер Цен</b>
+            <em>ВЕРСИЯ PRO</em>
+          </span>
+        </div>
+        <p class="legal">
+          Приложение является независимым сервисом для покупателей и не аффилировано
+          с торговыми площадками. Все товарные знаки принадлежат их правообладателям.
+          Цены и скидки отображаются в информационных целях и могут отличаться от итоговых
+          на кассе маркетплейса.
+        </p>
+      </div>
+
+      <div>
+        <h4>Сообщество</h4>
+        <div class="footer__links">
+          <a href="https://t.me/priceradar_app" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M21.7 4.3 2.9 11.5c-1 .4-1 1.8.1 2.1l4.6 1.5 1.7 5.3c.3.9 1.4 1.1 1.9.3l2.3-3 4.6 3.4c.8.6 1.9.2 2.1-.8l3-14.5c.2-1-.8-1.9-1.5-1.5zM9.3 14.7l8.4-6.2-6.7 7.3-.2 3-1.5-4.1z"/>
+            </svg>
+            Telegram-канал
+          </a>
+          <a href="https://max.ru/priceradar" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.5 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 20.5l1.4-4.6A8.5 8.5 0 1 1 20.5 11.5z"/>
+              <path d="M8.5 14.5v-5l3 3 3-3v5"/>
+            </svg>
+            Канал в MAX
+          </a>
+          <a href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18.6l-5.9 3.1 1.2-6.6L2.5 10.5l6.6-.9L12 3.5z"/>
+            </svg>
+            Оценить в RuStore
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Документы</h4>
+        <div class="footer__links">
+          <a href="https://glas.su/s/1fFxbn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3.5 4.5 7v5.2c0 4.3 3.1 7.6 7.5 9.3 4.4-1.7 7.5-5 7.5-9.3V7L12 3.5z"/>
+              <path d="M9.3 12.1l1.9 1.9 3.5-3.7"/>
+            </svg>
+            Политика конфиденциальности
+          </a>
+          <a href="https://glas.su/s/r7DiBx" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5l-5-5z"/>
+              <path d="M14 3.5v5h5"/>
+            </svg>
+            Пользовательское соглашение
+          </a>
+          <a href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 15.5V4.5M8 11.5l4 4 4-4"/>
+              <path d="M4.5 17.5v1.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5v-1.5"/>
+            </svg>
+            Страница в RuStore
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2026 Трекер Цен PRO (pricetrackerguru.ru • трекер-цен.рф). Все права защищены.</span>
+      <span>Обработка данных в соответствии с ФЗ-152</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.page -->
+
+<!-- ============================ MOBILE CTA ============================ -->
+<div class="mobile-cta" id="mobileCta">
+  <a class="btn btn--primary"
+     href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app"
+     target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="1" y="1" width="22" height="22" rx="7" fill="currentColor" opacity=".14"/>
+      <path d="M9 17.2V6.8h4.3a3.1 3.1 0 0 1 0 6.2H9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.4 13l3.7 4.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+    </svg>
+    <span>Установить из RuStore</span>
+    <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M7 17 17 7M9 7h8v8"/>
+    </svg>
+  </a>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ==========================================================
+     1. HEADER / AMBIENT / REVEAL / MOBILE CTA
+     ========================================================== */
+  var header   = document.getElementById('header');
+  var mobileCta = document.getElementById('mobileCta');
+  var blobs    = document.querySelectorAll('.ambient i');
+  var ticking  = false;
+
+  function onScroll(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (header) header.classList.toggle('is-scrolled', y > 12);
+
+    if (mobileCta){
+      mobileCta.classList.toggle('is-shown', y > 480);
+    }
+
+    if (!reduceMotion && blobs.length){
+      var shift = Math.min(y * 0.14, 220);
+      blobs[0].style.transform = 'translate3d(0,' + (shift * 0.55) + 'px,0)';
+      blobs[1].style.transform = 'translate3d(' + (-shift * 0.42) + 'px,' + (shift * 0.3) + 'px,0)';
+      blobs[2].style.transform = 'translate3d(' + (shift * 0.32) + 'px,' + (-shift * 0.4) + 'px,0)';
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function(){
+    if (!ticking){ ticking = true; window.requestAnimationFrame(onScroll); }
+  }, { passive: true });
+
+  onScroll();
+
+  /* Reveal on scroll with stagger */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+
+  if ('IntersectionObserver' in window && !reduceMotion){
+    var groups = new Map();
+    revealEls.forEach(function(el){
+      var parent = el.parentElement;
+      var idx = groups.get(parent) || 0;
+      groups.set(parent, idx + 1);
+      el.style.transitionDelay = Math.min(idx * 70, 420) + 'ms';
+    });
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* ==========================================================
+     2. CANVAS PRICE CHART (High-DPI, интерактивный)
+     ========================================================== */
+  (function initChart(){
+    var canvas = document.getElementById('priceChart');
+    if (!canvas) return;
+
+    var ctx = canvas.getContext('2d');
+    var host = canvas.parentElement;
+
+    var DATA = [
+      { l: '15.05', v: 4990 },
+      { l: '25.05', v: 4710 },
+      { l: '04.06', v: 4480 },
+      { l: '14.06', v: 4610 },
+      { l: '24.06', v: 4130 },
+      { l: '04.07', v: 3860 },
+      { l: '14.07', v: 4020 },
+      { l: '24.07', v: 3660 },
+      { l: '03.08', v: 3540 },
+      { l: '13.08', v: 3760 },
+      { l: '23.08', v: 3610 },
+      { l: '02.09', v: 3490 }
+    ];
+    var TARGET = 3500;
+
+    var W = 0, H = 0, dpr = 1;
+    var PAD = { t: 38, r: 22, b: 34, l: 22 };
+    var pts = [], yMin = 0, yMax = 1;
+    var progress = 0, hoverIndex = -1, rafId = null, started = false;
+
+    function yOf(v){
+      var ih = H - PAD.t - PAD.b;
+      return PAD.t + ih * (1 - (v - yMin) / (yMax - yMin));
+    }
+
+    function layout(){
+      var vals = DATA.map(function(d){ return d.v; });
+      var lo = Math.min.apply(null, vals.concat([TARGET]));
+      var hi = Math.max.apply(null, vals);
+      yMin = lo - 320;
+      yMax = hi + 300;
+
+      var iw = W - PAD.l - PAD.r;
+      pts = DATA.map(function(d, i){
+        return {
+          x: PAD.l + iw * (i / (DATA.length - 1)),
+          y: yOf(d.v),
+          v: d.v,
+          l: d.l
+        };
+      });
+    }
+
+    function pathSmooth(){
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, pts[0].y);
+      for (var i = 0; i < pts.length - 1; i++){
+        var p0 = pts[i - 1] || pts[i];
+        var p1 = pts[i];
+        var p2 = pts[i + 1];
+        var p3 = pts[i + 2] || pts[i + 1];
+        var c1x = p1.x + (p2.x - p0.x) / 6;
+        var c1y = p1.y + (p2.y - p0.y) / 6;
+        var c2x = p2.x - (p3.x - p1.x) / 6;
+        var c2y = p2.y - (p3.y - p1.y) / 6;
+        ctx.bezierCurveTo(c1x, c1y, c2x, c2y, p2.x, p2.y);
+      }
+    }
+
+    function drawBadge(x, y, text, accent, bg){
+      ctx.font = '800 12px "Plus Jakarta Sans", system-ui, sans-serif';
+      var tw = ctx.measureText(text).width;
+      var w = tw + 22, h = 27, r = 9;
+      var bx = x - w / 2;
+      var by = y - h - 14;
+
+      bx = Math.max(4, Math.min(bx, W - w - 4));
+      if (by < 4) by = y + 14;
+
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(bx, by, w, h, r);
+      else ctx.rect(bx, by, w, h);
+      ctx.fillStyle = bg;
+      ctx.fill();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = accent;
+      ctx.stroke();
+
+      ctx.fillStyle = accent;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(text, bx + w / 2, by + h / 2 + 0.5);
+    }
+
+    function draw(){
+      if (!W || !H) return;
+      ctx.clearRect(0, 0, W, H);
+
+      /* --- сетка --- */
+      ctx.save();
+      ctx.setLineDash([4, 7]);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,.07)';
+      for (var g = 0; g <= 3; g++){
+        var gy = PAD.t + (H - PAD.t - PAD.b) * (g / 3);
+        ctx.beginPath();
+        ctx.moveTo(PAD.l, gy);
+        ctx.lineTo(W - PAD.r, gy);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      /* --- линия цели --- */
+      var ty = yOf(TARGET);
+      ctx.save();
+      ctx.setLineDash([6, 6]);
+      ctx.lineWidth = 1.6;
+      ctx.strokeStyle = 'rgba(0,230,118,.85)';
+      ctx.beginPath();
+      ctx.moveTo(PAD.l, ty);
+      ctx.lineTo(W - PAD.r, ty);
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.font = '700 11.5px "Plus Jakarta Sans", system-ui, sans-serif';
+      ctx.fillStyle = 'rgba(0,230,118,.95)';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'bottom';
+      ctx.fillText('Цель: 3 500 ₽', W - PAD.r, ty - 6);
+
+      /* --- прогресс-клип для анимации отрисовки --- */
+      var clipW = W * progress;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(0, 0, clipW, H);
+      ctx.clip();
+
+      /* заливка области */
+      pathSmooth();
+      ctx.lineTo(pts[pts.length - 1].x, H - PAD.b + 4);
+      ctx.lineTo(pts[0].x, H - PAD.b + 4);
+      ctx.closePath();
+
+      var grad = ctx.createLinearGradient(0, PAD.t, 0, H - PAD.b);
+      grad.addColorStop(0, 'rgba(0,91,255,.42)');
+      grad.addColorStop(0.6, 'rgba(0,91,255,.12)');
+      grad.addColorStop(1, 'rgba(0,91,255,0)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      /* линия */
+      pathSmooth();
+      ctx.lineWidth = 2.8;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = '#3D8BFF';
+      ctx.shadowColor = 'rgba(0,91,255,.95)';
+      ctx.shadowBlur = 18;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      /* точки */
+      pts.forEach(function(p, i){
+        var isLast = i === pts.length - 1;
+        var isHover = i === hoverIndex;
+        if (!isLast && !isHover) return;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, isHover ? 6 : 4.6, 0, Math.PI * 2);
+        ctx.fillStyle = '#0A0E1A';
+        ctx.fill();
+        ctx.lineWidth = 2.6;
+        ctx.strokeStyle = isLast ? '#00E676' : '#7FB0FF';
+        ctx.stroke();
+      });
+
+      ctx.restore();
+
+      /* --- ховер: вертикаль + бейдж --- */
+      if (hoverIndex >= 0 && pts[hoverIndex]){
+        var hp = pts[hoverIndex];
+
+        ctx.save();
+        ctx.setLineDash([3, 5]);
+        ctx.lineWidth = 1.2;
+        ctx.strokeStyle = 'rgba(255,255,255,.3)';
+        ctx.beginPath();
+        ctx.moveTo(hp.x, PAD.t - 8);
+        ctx.lineTo(hp.x, H - PAD.b + 4);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.beginPath();
+        ctx.arc(hp.x, hp.y, 6.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#0A0E1A';
+        ctx.fill();
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = '#7FB0FF';
+        ctx.stroke();
+
+        drawBadge(hp.x, hp.y,
+          hp.l + ' · ' + fmt(hp.v) + ' ₽',
+          '#9FC4FF', 'rgba(10,14,26,.95)');
+      }
+
+      /* --- финальный бейдж --- */
+      if (progress > 0.985){
+        var last = pts[pts.length - 1];
+        var isHoverLast = hoverIndex === pts.length - 1;
+        if (!isHoverLast){
+          drawBadge(last.x, last.y, fmt(last.v) + ' ₽', '#00E676', 'rgba(6,20,14,.95)');
+        }
+      }
+
+      /* подписи по оси X */
+      ctx.font = '600 10.5px "Plus Jakarta Sans", system-ui, sans-serif';
+      ctx.fillStyle = 'rgba(142,155,174,.85)';
+      ctx.textBaseline = 'top';
+      [0, Math.floor(pts.length / 3), Math.floor(pts.length * 2 / 3), pts.length - 1].forEach(function(i, k){
+        if (!pts[i]) return;
+        ctx.textAlign = k === 0 ? 'left' : (k === 3 ? 'right' : 'center');
+        ctx.fillText(pts[i].l, pts[i].x, H - PAD.b + 12);
+      });
+    }
+
+    function fmt(n){
+      return new Intl.NumberFormat('ru-RU').format(n);
+    }
+
+    function animate(){
+      var start = null;
+      var dur = 1100;
+      function step(ts){
+        if (start === null) start = ts;
+        var t = Math.min((ts - start) / dur, 1);
+        progress = 1 - Math.pow(1 - t, 3);
+        draw();
+        if (t < 1) rafId = requestAnimationFrame(step);
+      }
+      rafId = requestAnimationFrame(step);
+    }
+
+    function resize(){
+      var rect = host.getBoundingClientRect();
+      if (!rect.width) return;
+      W = rect.width;
+      H = rect.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 3);
+
+      canvas.width = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      layout();
+      draw();
+    }
+
+    /* --- взаимодействие --- */
+    function pointerMove(clientX){
+      if (!pts.length) return;
+      var rect = canvas.getBoundingClientRect();
+      var x = clientX - rect.left;
+      var best = 0, bestDist = Infinity;
+      for (var i = 0; i < pts.length; i++){
+        var d = Math.abs(pts[i].x - x);
+        if (d < bestDist){ bestDist = d; best = i; }
+      }
+      if (best !== hoverIndex){
+        hoverIndex = best;
+        draw();
+      }
+    }
+
+    canvas.addEventListener('mousemove', function(e){ pointerMove(e.clientX); });
+    canvas.addEventListener('mouseleave', function(){
+      if (hoverIndex !== -1){ hoverIndex = -1; draw(); }
+    });
+    canvas.addEventListener('touchstart', function(e){
+      if (e.touches[0]) pointerMove(e.touches[0].clientX);
+    }, { passive: true });
+    canvas.addEventListener('touchmove', function(e){
+      if (e.touches[0]) pointerMove(e.touches[0].clientX);
+    }, { passive: true });
+    canvas.addEventListener('touchend', function(){
+      hoverIndex = -1;
+      draw();
+    });
+
+    /* --- старт --- */
+    resize();
+
+    if ('ResizeObserver' in window){
+      var ro = new ResizeObserver(function(){ resize(); });
+      ro.observe(host);
+    } else {
+      window.addEventListener('resize', resize);
+    }
+
+    if (reduceMotion){
+      progress = 1;
+      draw();
+    } else if ('IntersectionObserver' in window){
+      var cio = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting && !started){
+            started = true;
+            animate();
+            cio.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      cio.observe(host);
+    } else {
+      started = true;
+      animate();
+    }
+  })();
+
+  /* ==========================================================
+     3. КАЛЬКУЛЯТОР ЭКОНОМИИ
+     ========================================================== */
+  (function initCalc(){
+    var range = document.getElementById('budgetRange');
+    if (!range) return;
+
+    var budgetOut = document.getElementById('budgetOut');
+    var savingOut = document.getElementById('savingOut');
+    var savingYear = document.getElementById('savingYear');
+
+    var nf = new Intl.NumberFormat('ru-RU');
+    var RATE = 0.28;
+
+    function paintTrack(){
+      var pct = (range.value - range.min) / (range.max - range.min) * 100;
+      range.style.background =
+        'linear-gradient(90deg,#005BFF 0%,#00C46A ' + pct + '%,rgba(255,255,255,.1) ' + pct + '%)';
+    }
+
+    function update(){
+      var budget = Number(range.value) || 0;
+      var save = Math.round(budget * RATE / 100) * 100;
+
+      budgetOut.textContent = nf.format(budget) + ' ₽';
+      savingOut.textContent = nf.format(save) + ' ₽';
+      savingYear.textContent = nf.format(save * 12) + ' ₽';
+
+      paintTrack();
+    }
+
+    range.addEventListener('input', update);
+    update();
+  })();
+
+  /* ==========================================================
+     4. FAQ АККОРДЕОН
+     ========================================================== */
+  (function initFaq(){
+    var items = Array.prototype.slice.call(document.querySelectorAll('.faq__item'));
+    if (!items.length) return;
+
+    items.forEach(function(item){
+      var btn = item.querySelector('.faq__q');
+      var panel = item.querySelector('.faq__a');
+      if (!btn || !panel) return;
+
+      btn.addEventListener('click', function(){
+        var isOpen = item.classList.contains('open');
+
+        items.forEach(function(other){
+          if (other === item) return;
+          other.classList.remove('open');
+          var op = other.querySelector('.faq__a');
+          var ob = other.querySelector('.faq__q');
+          if (op) op.style.maxHeight = '0px';
+          if (ob) ob.setAttribute('aria-expanded', 'false');
+        });
+
+        if (isOpen){
+          item.classList.remove('open');
+          panel.style.maxHeight = '0px';
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('open');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    window.addEventListener('resize', function(){
+      items.forEach(function(item){
+        if (!item.classList.contains('open')) return;
+        var panel = item.querySelector('.faq__a');
+        if (panel) panel.style.maxHeight = panel.scrollHeight + 'px';
+      });
+    });
+  })();
+
+  /* ==========================================================
+     5. ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ МОКАПОВ
+     ========================================================== */
+  (function initTheme(){
+    var box = document.getElementById('galleryBox');
+    if (!box) return;
+
+    var buttons = Array.prototype.slice.call(box.querySelectorAll('.theme-toggle button'));
+
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var theme = btn.getAttribute('data-theme');
+
+        box.classList.toggle('light', theme === 'light');
+
+        buttons.forEach(function(b){
+          var active = b === btn;
+          b.classList.toggle('is-active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      });
+    });
+  })();
+
+  /* ==========================================================
+     6. ПЛАВНАЯ ПРОКРУТКА ДЛЯ АНКОРОВ (учёт высоты хедера)
+     ========================================================== */
+  (function initAnchors(){
+    var links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(function(link){
+      link.addEventListener('click', function(e){
+        var id = link.getAttribute('href');
+        if (!id || id === '#') return;
+        var target = document.querySelector(id);
+        if (!target) return;
+
+        e.preventDefault();
+        var headerH = header ? header.offsetHeight : 0;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - headerH - 16;
+
+        window.scrollTo({
+          top: Math.max(top, 0),
+          behavior: reduceMotion ? 'auto' : 'smooth'
+        });
+      });
+    });
+  })();
+
+})();
+</script>
+</body>
+</html>
