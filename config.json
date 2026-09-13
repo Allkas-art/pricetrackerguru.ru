@@ -1,0 +1,10 @@
+{
+  "min_version_code": 1,
+  "force_update": false,
+  "update_url": "https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app",
+  "update_message": "Вышло важное обновление Трекера Цен PRO с ускоренным алгоритмом мониторинга. Пожалуйста, обновите приложение для продолжения работы.",
+  "affiliate_subid": "pricetracker_app",
+  "promo_banner_active": false,
+  "promo_banner_text": "Горячие ночные скидки Ozon в нашем Telegram",
+  "promo_banner_url": "https://t.me/pricetracker_app"
+}
