@@ -177,7 +177,6 @@ p{margin:0}
 .hero h1{font-size:clamp(32px,5.4vw,62px);letter-spacing:-1.4px;line-height:1.05;margin:24px 0 20px}
 .hero__sub{color:var(--muted);font-size:clamp(15px,1.7vw,18px);max-width:560px;line-height:1.62}
 
-/* ========== HERO ACTIONS — 3 равные кнопки ========== */
 .hero__actions{
   display:grid;
   grid-template-columns:repeat(3, minmax(0, 1fr));
@@ -295,7 +294,6 @@ p{margin:0}
 .tech-card h3{font-size:18px;margin-bottom:10px;letter-spacing:-.4px}
 .tech-card p{color:var(--muted);font-size:14.5px;line-height:1.62}
 
-/* ========== COMPARISON ========== */
 .comparison-wrap{position:relative;border-radius:24px;border:1px solid var(--stroke);background:linear-gradient(180deg,rgba(20,26,46,.92),rgba(14,18,30,.72));-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);box-shadow:var(--shadow-card);overflow:hidden}
 .comparison-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin}
 .comparison-scroll::-webkit-scrollbar{height:6px}
@@ -319,7 +317,6 @@ p{margin:0}
 .comparison__cell--no svg{color:#5A6478}
 .comparison__cell--no{color:#5A6478 !important;font-weight:500 !important}
 
-/* Mobile cards for comparison */
 .comparison-cards{display:none;flex-direction:column;gap:14px}
 .comparison-summary{
   padding:18px 22px;border-radius:18px;margin-bottom:4px;
@@ -453,7 +450,6 @@ p{margin:0}
 .mobile-cta.is-shown{transform:translateY(0)}
 .mobile-cta .btn{width:100%;min-height:56px;border-radius:18px;box-shadow:0 20px 44px -18px rgba(255,255,255,.55),0 0 0 1px rgba(255,255,255,.2)}
 
-/* ========== RESPONSIVE ========== */
 @media (max-width:1080px){
   .hero__grid{grid-template-columns:1fr;gap:60px}
   .hero__visual{order:-1}
@@ -503,7 +499,6 @@ p{margin:0}
   .hero__badge{font-size:10px;padding:7px 12px;gap:7px;letter-spacing:.06em}
   .hero__badge svg{width:12px;height:12px}
 
-  /* Hero actions — столбик на мобиле */
   .hero__actions{
     grid-template-columns:1fr;
     gap:10px;
@@ -552,11 +547,9 @@ p{margin:0}
   .tech-card h3{font-size:17.5px}
   .tech-card p{font-size:14px}
 
-  /* ========== COMPARISON — карточки вместо таблицы ========== */
   .comparison-wrap{display:none}
   .comparison-cards{display:flex}
 
-  /* Gallery */
   .gallery{border-radius:24px;padding:0}
   .gallery__top{flex-direction:column;align-items:stretch;gap:20px;margin-bottom:20px}
   .gallery__top .section-head{margin-bottom:0}
@@ -746,9 +739,9 @@ p{margin:0}
 
         <a class="btn btn--ghost" href="https://max.ru/priceradar" target="_blank" rel="noopener"
            aria-label="Канал в MAX">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="currentColor" opacity=".16"/>
-            <path d="M7.5 16.2V8.4l4.5 4.4 4.5-4.4v7.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- MAX: белая монохромная иконка (официальный «пузырь-капля») -->
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.4C6.3 2.4 1.7 6.6 1.7 11.7c0 2.9 1.6 5.5 4 7.2-.3 1.2-.9 2.4-1.8 3.4-.4.4-.1 1 .5.9 2.7-.4 4.9-1.6 6.6-3.2.9.2 1.9.3 3 .3 5.7 0 10.3-4.2 10.3-9.3S17.7 2.4 12 2.4zm0 4.9c2.6 0 4.7 1.8 4.7 3.9s-2.1 3.9-4.7 3.9-4.7-1.8-4.7-3.9S9.4 7.3 12 7.3z"/>
           </svg>
           <span>Канал в MAX</span>
         </a>
@@ -998,7 +991,6 @@ p{margin:0}
       <p>Каждый формат решает свою задачу. Ниже — фактическое сравнение по ключевым для покупателя параметрам, без рекламных оценок.</p>
     </div>
 
-    <!-- Desktop: таблица -->
     <div class="comparison-wrap" data-reveal>
       <div class="comparison-scroll">
         <table class="comparison">
@@ -1086,7 +1078,6 @@ p{margin:0}
       </div>
     </div>
 
-    <!-- Mobile: карточки -->
     <div class="comparison-cards" data-reveal>
       <div class="comparison-summary">
         <b>Трекер Цен PRO</b> выигрывает по <em>4 из 5</em> параметров
@@ -1095,19 +1086,10 @@ p{margin:0}
       <article class="comparison-card">
         <h4>Персональные цены Ozon Карты</h4>
         <div class="comparison-card__list">
-          <div class="comparison-card__row">
-            <span>Telegram-боты</span>
-            <b>Зависит от бота</b>
-          </div>
-          <div class="comparison-card__row">
-            <span>Расширения</span>
-            <b>Только на ПК</b>
-          </div>
+          <div class="comparison-card__row"><span>Telegram-боты</span><b>Зависит от бота</b></div>
+          <div class="comparison-card__row"><span>Расширения</span><b>Только на ПК</b></div>
           <div class="comparison-card__row comparison-card__row--our">
-            <span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
-              Трекер Цен PRO
-            </span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Трекер Цен PRO</span>
             <b>Локально на смартфоне</b>
           </div>
         </div>
@@ -1116,19 +1098,10 @@ p{margin:0}
       <article class="comparison-card">
         <h4>Оповещение при выключенном экране</h4>
         <div class="comparison-card__list">
-          <div class="comparison-card__row">
-            <span>Telegram-боты</span>
-            <b>Ограниченное</b>
-          </div>
-          <div class="comparison-card__row comparison-card__row--no">
-            <span>Расширения</span>
-            <b>Нет</b>
-          </div>
+          <div class="comparison-card__row"><span>Telegram-боты</span><b>Ограниченное</b></div>
+          <div class="comparison-card__row comparison-card__row--no"><span>Расширения</span><b>Нет</b></div>
           <div class="comparison-card__row comparison-card__row--our">
-            <span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
-              Трекер Цен PRO
-            </span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Трекер Цен PRO</span>
             <b>Фоновый сервис Android</b>
           </div>
         </div>
@@ -1137,19 +1110,10 @@ p{margin:0}
       <article class="comparison-card">
         <h4>Где хранятся данные</h4>
         <div class="comparison-card__list">
-          <div class="comparison-card__row">
-            <span>Telegram-боты</span>
-            <b>На сервере бота</b>
-          </div>
-          <div class="comparison-card__row">
-            <span>Расширения</span>
-            <b>В браузере</b>
-          </div>
+          <div class="comparison-card__row"><span>Telegram-боты</span><b>На сервере бота</b></div>
+          <div class="comparison-card__row"><span>Расширения</span><b>В браузере</b></div>
           <div class="comparison-card__row comparison-card__row--our">
-            <span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
-              Трекер Цен PRO
-            </span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Трекер Цен PRO</span>
             <b>На вашем устройстве</b>
           </div>
         </div>
@@ -1158,19 +1122,10 @@ p{margin:0}
       <article class="comparison-card">
         <h4>Резервная копия и экспорт</h4>
         <div class="comparison-card__list">
-          <div class="comparison-card__row comparison-card__row--no">
-            <span>Telegram-боты</span>
-            <b>Нет</b>
-          </div>
-          <div class="comparison-card__row comparison-card__row--no">
-            <span>Расширения</span>
-            <b>Нет</b>
-          </div>
+          <div class="comparison-card__row comparison-card__row--no"><span>Telegram-боты</span><b>Нет</b></div>
+          <div class="comparison-card__row comparison-card__row--no"><span>Расширения</span><b>Нет</b></div>
           <div class="comparison-card__row comparison-card__row--our">
-            <span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
-              Трекер Цен PRO
-            </span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Трекер Цен PRO</span>
             <b>.json в Загрузки</b>
           </div>
         </div>
@@ -1179,24 +1134,14 @@ p{margin:0}
       <article class="comparison-card">
         <h4>Стоимость использования</h4>
         <div class="comparison-card__list">
-          <div class="comparison-card__row">
-            <span>Telegram-боты</span>
-            <b>Зависит от бота</b>
-          </div>
-          <div class="comparison-card__row">
-            <span>Расширения</span>
-            <b>Бесплатно</b>
-          </div>
+          <div class="comparison-card__row"><span>Telegram-боты</span><b>Зависит от бота</b></div>
+          <div class="comparison-card__row"><span>Расширения</span><b>Бесплатно</b></div>
           <div class="comparison-card__row comparison-card__row--our">
-            <span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
-              Трекер Цен PRO
-            </span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Трекер Цен PRO</span>
             <b>Бесплатно навсегда</b>
           </div>
         </div>
       </article>
-
     </div>
   </div>
 </section>
@@ -1401,9 +1346,9 @@ p{margin:0}
             Telegram-канал
           </a>
           <a href="https://max.ru/priceradar" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="currentColor" opacity=".18"/>
-              <path d="M7.5 16.2V8.4l4.5 4.4 4.5-4.4v7.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- MAX: белая монохромная иконка -->
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.4C6.3 2.4 1.7 6.6 1.7 11.7c0 2.9 1.6 5.5 4 7.2-.3 1.2-.9 2.4-1.8 3.4-.4.4-.1 1 .5.9 2.7-.4 4.9-1.6 6.6-3.2.9.2 1.9.3 3 .3 5.7 0 10.3-4.2 10.3-9.3S17.7 2.4 12 2.4zm0 4.9c2.6 0 4.7 1.8 4.7 3.9s-2.1 3.9-4.7 3.9-4.7-1.8-4.7-3.9S9.4 7.3 12 7.3z"/>
             </svg>
             Канал в MAX
           </a>
@@ -1478,18 +1423,15 @@ p{margin:0}
     }
     ticking = false;
   }
-
   window.addEventListener('scroll', function(){
     if (!ticking){ ticking = true; window.requestAnimationFrame(onScroll); }
   }, { passive: true });
   onScroll();
 
-  /* Burger drawer */
   (function initDrawer(){
     var burger = document.querySelector('.burger');
     var drawer = document.getElementById('drawer');
     if (!burger || !drawer) return;
-
     function open(){
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
@@ -1513,7 +1455,6 @@ p{margin:0}
     });
   })();
 
-  /* Reveal */
   var revealEls = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
   if ('IntersectionObserver' in window && !reduceMotion){
     var groups = new Map();
@@ -1536,7 +1477,6 @@ p{margin:0}
     revealEls.forEach(function(el){ el.classList.add('is-visible'); });
   }
 
-  /* Chart */
   (function initChart(){
     var canvas = document.getElementById('priceChart');
     if (!canvas) return;
@@ -1751,7 +1691,6 @@ p{margin:0}
     }
   })();
 
-  /* Calc */
   (function initCalc(){
     var range = document.getElementById('budgetRange');
     if (!range) return;
@@ -1776,7 +1715,6 @@ p{margin:0}
     update();
   })();
 
-  /* FAQ */
   (function initFaq(){
     var items = Array.prototype.slice.call(document.querySelectorAll('.faq__item'));
     if (!items.length) return;
@@ -1814,7 +1752,6 @@ p{margin:0}
     });
   })();
 
-  /* Anchors */
   (function initAnchors(){
     var links = document.querySelectorAll('a[href^="#"]');
     links.forEach(function(link){
