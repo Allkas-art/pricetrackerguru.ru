@@ -4,14 +4,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#06080F">
-<title>Трекер Цен PRO — умный трекер цен Ozon. Сирена, график за 3 месяца, 50 слотов</title>
-<meta name="description" content="Независимый трекер цен Ozon: спеццены Ozon Карты, история за 3 месяца, громкая Сирена при достижении цели. 50 слотов, проверка каждый час — бесплатно в RuStore.">
+<title>Трекер Цен PRO — Автономный мониторинг цен Ozon. График за 3 месяца, Сирена и спеццены Ozon Карты</title>
+<meta name="description" content="Независимый сервис умного мониторинга цен Ozon. Реальные спеццены Ozon Карты, история за 3 месяца, непрерывная Сирена при падении цены. 50 слотов отслеживания бесплатно в RuStore.">
 <link rel="icon" href="logo.png" type="image/png">
 <link rel="apple-touch-icon" href="logo.png">
+
+<!-- Open Graph для превью в Telegram/MAX -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Трекер Цен PRO">
+<meta property="og:title" content="Трекер Цен PRO — умный трекер цен Ozon">
+<meta property="og:description" content="Спеццены Ozon Карты, честный график за 3 месяца, Сирена при падении цены. 50 слотов бесплатно в RuStore.">
+<meta property="og:url" content="https://pricetrackerguru.ru/">
+<meta property="og:image" content="https://pricetrackerguru.ru/logo.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Трекер Цен PRO — умный трекер цен Ozon">
+<meta name="twitter:description" content="Спеццены Ozon Карты, график за 3 месяца, Сирена при падении цены.">
+<meta name="twitter:image" content="https://pricetrackerguru.ru/logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Структурированные данные для поисковиков -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Трекер Цен PRO",
+  "operatingSystem": "Android",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Shopping",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "RUB"
+  },
+  "downloadUrl": "https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app",
+  "softwareVersion": "PRO",
+  "inLanguage": "ru-RU",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Трекер Цен PRO",
+    "url": "https://pricetrackerguru.ru"
+  }
+}
+</script>
 
 <style>
 /* ============================================================
@@ -74,6 +112,15 @@ h1,h2,h3,h4{margin:0;line-height:1.12;letter-spacing:-.02em;font-weight:800}
 p{margin:0}
 
 ::selection{background:rgba(0,91,255,.4);color:#fff}
+
+/* Skip-link для доступности */
+.skip-link{
+  position:fixed;top:-100px;left:16px;z-index:999;
+  padding:12px 20px;border-radius:12px;
+  background:#005BFF;color:#fff;font-weight:800;font-size:14px;
+  transition:top .25s ease;
+}
+.skip-link:focus{top:16px;outline:2px solid #fff;outline-offset:3px}
 
 /* ---------- Ambient lighting ---------- */
 .ambient{
@@ -196,7 +243,6 @@ p{margin:0}
 .header .btn{min-height:46px;padding:0 18px;font-size:14px;border-radius:14px}
 .header .btn svg{width:18px;height:18px}
 
-/* Header CTA label swap */
 .cta__label--short{display:none}
 
 /* ---------- Burger + Drawer ---------- */
@@ -519,6 +565,130 @@ p{margin:0}
 .widget b{font-size:13.5px;font-weight:800;letter-spacing:-.2px;line-height:1.25}
 .widget span{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.06em}
 
+/* ---------- Tech section (НОВОЕ) ---------- */
+.tech-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+}
+.tech-card{
+  position:relative;overflow:hidden;
+  border-radius:24px;padding:30px;
+  background:linear-gradient(180deg,rgba(20,26,46,.92) 0%,rgba(14,18,30,.72) 100%);
+  border:1px solid var(--stroke);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  box-shadow:var(--shadow-card);
+  transition:transform .4s var(--ease-spring),border-color .4s ease,box-shadow .4s ease;
+  min-width:0;
+}
+.tech-card::before{
+  content:'';position:absolute;top:0;left:14%;right:14%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+}
+.tech-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(0,91,255,.36);
+  box-shadow:0 40px 80px -40px rgba(0,91,255,.85);
+}
+.tech-card__top{
+  display:flex;align-items:center;gap:14px;margin-bottom:18px;
+}
+.tech-card__icon{
+  width:48px;height:48px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,91,255,.14);
+  border:1px solid rgba(0,91,255,.32);
+  color:#7FB0FF;flex:none;
+}
+.tech-card__icon svg{width:23px;height:23px}
+.tech-card__icon--emerald{background:rgba(0,230,118,.12);border-color:rgba(0,230,118,.32);color:var(--emerald)}
+.tech-card__icon--gold{background:rgba(255,179,0,.13);border-color:rgba(255,179,0,.34);color:var(--gold-solid)}
+.tech-card__icon--ruby{background:rgba(255,23,68,.13);border-color:rgba(255,23,68,.34);color:#FF7A8E}
+
+.tech-card__code{
+  display:inline-block;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:11.5px;font-weight:700;letter-spacing:.06em;
+  color:#9FC0FF;
+  background:rgba(0,91,255,.13);
+  border:1px solid rgba(0,91,255,.32);
+  padding:6px 11px;border-radius:9px;
+  line-height:1;
+}
+.tech-card h3{font-size:18px;margin-bottom:10px;letter-spacing:-.4px}
+.tech-card p{color:var(--muted);font-size:14.5px;line-height:1.62}
+
+/* ---------- Comparison (НОВОЕ) ---------- */
+.comparison-wrap{
+  position:relative;
+  border-radius:24px;
+  border:1px solid var(--stroke);
+  background:linear-gradient(180deg,rgba(20,26,46,.92),rgba(14,18,30,.72));
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  box-shadow:var(--shadow-card);
+  overflow:hidden;
+}
+.comparison-scroll{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;
+  scrollbar-width:thin;
+}
+.comparison-scroll::-webkit-scrollbar{height:6px}
+.comparison-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.05)}
+.comparison-scroll::-webkit-scrollbar-thumb{background:rgba(0,91,255,.55);border-radius:99px}
+
+.comparison{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  min-width:720px;
+}
+.comparison th,
+.comparison td{
+  padding:20px 22px;
+  text-align:left;
+  border-bottom:1px solid var(--stroke);
+  font-size:14.5px;
+  line-height:1.45;
+  vertical-align:middle;
+}
+.comparison th{
+  font-size:11.5px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#7E8CA3;
+  background:rgba(6,8,15,.4);
+  white-space:nowrap;
+}
+.comparison th:first-child,
+.comparison td:first-child{
+  font-weight:700;
+  color:var(--text);
+  white-space:normal;
+}
+.comparison td{color:var(--muted);white-space:nowrap}
+.comparison tr:last-child th,
+.comparison tr:last-child td{border-bottom:0}
+
+.comparison__highlight{
+  background:linear-gradient(180deg,rgba(0,91,255,.14),rgba(0,91,255,.05));
+  color:#DCE8FF !important;
+  font-weight:700 !important;
+  box-shadow:inset 1px 0 0 rgba(0,91,255,.28),inset -1px 0 0 rgba(0,91,255,.28);
+}
+.comparison th.comparison__highlight{
+  color:#9FC0FF !important;
+  box-shadow:inset 1px 0 0 rgba(0,91,255,.28),inset -1px 0 0 rgba(0,91,255,.28),inset 0 3px 0 #005BFF;
+}
+
+.comparison__cell{
+  display:inline-flex;align-items:center;gap:9px;
+}
+.comparison__cell svg{width:17px;height:17px;flex:none}
+.comparison__cell--yes svg{color:var(--emerald)}
+.comparison__cell--no svg{color:#5A6478}
+.comparison__cell--no{color:#5A6478 !important;font-weight:500 !important}
+
 /* ---------- Gallery ---------- */
 .gallery{
   --gal-text:#F8FAFC;
@@ -531,21 +701,6 @@ p{margin:0}
   transition:background .55s ease;
   overflow:hidden;
 }
-.gallery.light{
-  --gal-text:#0B1224;
-  --gal-muted:#4C5B7C;
-  --gal-frame:linear-gradient(155deg,#FFFFFF 0%,#DDE5F6 46%,#B8C7E6 100%);
-  --gal-shadow:0 40px 76px -34px rgba(20,40,90,.5),0 0 0 1px rgba(15,30,70,.1);
-  --gal-border:rgba(15,30,70,.12);
-  --gal-bg:linear-gradient(180deg,rgba(255,255,255,.9),rgba(226,235,255,.92));
-  background:var(--gal-bg);
-  padding:56px 0;
-}
-.gallery.light .section-head h2,
-.gallery.light .gallery__caption b{color:#0B1224}
-.gallery.light .section-head p,
-.gallery.light .gallery__caption span{color:#4C5B7C}
-
 .gallery__top{
   display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;
   margin-bottom:38px;
@@ -724,7 +879,7 @@ p{margin:0}
   font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:.14em;
   background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;
 }
-.footer p.legal{color:var(--muted);font-size:13.5px;line-height:1.7;max-width:400px}
+.footer p.legal{color:var(--muted);font-size:13.5px;line-height:1.7;max-width:420px}
 .footer h4{
   font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
   color:#7E8CA3;margin-bottom:20px;
@@ -784,6 +939,8 @@ p{margin:0}
   .cta__label--short{display:inline}
   .header .btn svg{width:16px;height:16px}
   .header .btn .btn__arrow{width:13px;height:13px}
+
+  .tech-grid{grid-template-columns:1fr}
 
   .calc__grid{grid-template-columns:1fr;gap:36px}
   .footer__grid{grid-template-columns:1fr 1fr;gap:36px}
@@ -866,9 +1023,23 @@ p{margin:0}
   .widget b{font-size:12.5px}
   .paycard{height:118px}
 
+  /* ===== TECH ===== */
+  .tech-grid{gap:16px}
+  .tech-card{padding:24px 22px;border-radius:22px}
+  .tech-card__top{gap:12px;margin-bottom:16px}
+  .tech-card__icon{width:44px;height:44px;border-radius:13px}
+  .tech-card h3{font-size:17.5px}
+  .tech-card p{font-size:14px}
+
+  /* ===== COMPARISON ===== */
+  .comparison-wrap{border-radius:20px}
+  .comparison th,
+  .comparison td{padding:16px 18px;font-size:13.5px}
+  .comparison th{font-size:10.5px}
+  .comparison{min-width:640px}
+
   /* ===== GALLERY ===== */
   .gallery{border-radius:24px;padding:0}
-  .gallery.light{padding:36px 0}
   .gallery__top{
     flex-direction:column;align-items:stretch;gap:20px;margin-bottom:20px;
   }
@@ -877,7 +1048,6 @@ p{margin:0}
   .gallery__strip{
     gap:14px;
     padding:8px 0 20px;
-    /* edge-to-edge скролл на мобилке */
     margin:0 -20px;
     padding-left:20px;
     padding-right:20px;
@@ -952,6 +1122,8 @@ p{margin:0}
 </head>
 <body>
 
+<a class="skip-link" href="#top">Перейти к содержимому</a>
+
 <!-- Ambient lighting -->
 <div class="ambient" aria-hidden="true">
   <i class="a1"></i><i class="a2"></i><i class="a3"></i>
@@ -972,8 +1144,8 @@ p{margin:0}
 
     <nav class="nav" aria-label="Основная навигация">
       <a href="#features">Возможности</a>
+      <a href="#tech">Технологии</a>
       <a href="#gallery">Интерфейс</a>
-      <a href="#chart">График цен</a>
       <a href="#calc">Калькулятор</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -1011,8 +1183,9 @@ p{margin:0}
     </div>
 
     <a href="#features" data-drawer-close>Возможности</a>
+    <a href="#tech" data-drawer-close>Технологии</a>
+    <a href="#comparison" data-drawer-close>Сравнение</a>
     <a href="#gallery" data-drawer-close>Интерфейс</a>
-    <a href="#chart" data-drawer-close>График цен</a>
     <a href="#calc" data-drawer-close>Калькулятор</a>
     <a href="#faq" data-drawer-close>FAQ</a>
 
@@ -1042,17 +1215,19 @@ p{margin:0}
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6 6.1 20.7l1.2-6.6L2.5 9.5l6.6-.9L12 2.5z"/>
         </svg>
-        <span>PRO бесплатно • 50 слотов • без рекламы</span>
+        <span>PRO доступ • 50 слотов • 100% без рекламы</span>
       </div>
 
       <h1 data-reveal>
-        <span class="grad-text">ВАШ Трекер ЦЕН<br>
-        для САМЫХ<br><span class="grad-text">ЛУЧШИХ ЦЕН</span>
+        <span class="grad-text">ВАШ Трекер ЦЕН</span><br>
+        для САМЫХ<br>
+        <span class="grad-text">ЛУЧШИХ ЦЕН</span>
       </h1>
 
       <p class="hero__sub" data-reveal>
-        Умный независимый трекер цен Ozon. Сканирует спеццены вашей Ozon Карты,
-        историю за 3 месяца и предупреждает громкой Сиреной, когда пора покупать.
+        Автономная система умного отслеживания цен Ozon на базе прямого протокола к CDN-узлам маркетплейса.
+        Считывает персональные спеццены вашей Ozon Карты, строит честный 3-месячный график
+        и предупреждает громкой Сиреной, когда наступает идеальный момент для покупки.
       </p>
 
       <div class="hero__actions" data-reveal>
@@ -1064,7 +1239,7 @@ p{margin:0}
             <path d="M9 17.2V6.8h4.3a3.1 3.1 0 0 1 0 6.2H9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12.4 13l3.7 4.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
           </svg>
-          <span>Скачать в RuStore</span>
+          <span>Скачать бесплатно в RuStore</span>
           <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6"/>
           </svg>
@@ -1074,22 +1249,22 @@ p{margin:0}
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M21.7 4.3 2.9 11.5c-1 .4-1 1.8.1 2.1l4.6 1.5 1.7 5.3c.3.9 1.4 1.1 1.9.3l2.3-3 4.6 3.4c.8.6 1.9.2 2.1-.8l3-14.5c.2-1-.8-1.9-1.5-1.5zM9.3 14.7l8.4-6.2-6.7 7.3-.2 3-1.5-4.1z"/>
           </svg>
-          <span>Telegram-сообщество</span>
+          <span>Telegram-канал со скидками</span>
         </a>
       </div>
 
       <div class="metrics" data-reveal>
         <div class="metric">
           <b>50</b>
-          <span>Слотов для товаров сразу в тарифе PRO</span>
+          <span>Активных слотов для товаров сразу в тарифе PRO</span>
         </div>
         <div class="metric">
           <b>1 час</b>
-          <span>Минимальный интервал проверки цен</span>
+          <span>Минимальный интервал проверки складских цен</span>
         </div>
         <div class="metric">
           <b>0 ₽</b>
-          <span>Навсегда бесплатно, без подписок</span>
+          <span>Навсегда бесплатно для пользователей RuStore</span>
         </div>
       </div>
     </div>
@@ -1110,7 +1285,7 @@ p{margin:0}
             <path d="M3 16.5 9 10l4 3.5 7.5-8"/>
             <path d="M20.5 5.5v6M20.5 5.5h-6"/>
           </svg>
-          <span>Скидка до 50%</span>
+          <span>Реальная выгода до 50%</span>
         </div>
 
         <div class="float-badge float-badge--b">
@@ -1130,38 +1305,38 @@ p{margin:0}
 <section class="section" id="how">
   <div class="container">
     <div class="section-head" data-reveal>
-      <span class="tag">Как это работает</span>
-      <h2>Не просто следит. <span class="grad-text">Решает.</span></h2>
-      <p>Четыре шага от добавления ссылки до покупки по минимальной цене — всё автоматически, в фоне, без вашего участия.</p>
+      <span class="tag">Как это устроено</span>
+      <h2>Не просто мониторинг. <span class="grad-text">Точный выкуп на дне цены.</span></h2>
+      <p>Четыре шага от добавления ссылки до покупки по минимальной исторической стоимости — без ручной рутины и бесконечного обновления страницы.</p>
     </div>
 
     <div class="steps">
       <article class="step" data-reveal>
         <div class="step__num">01</div>
         <div>
-          <h3>Наблюдаем</h3>
-          <p>Круглосуточный фоновый чек цен на складах маркетплейса с выбранным интервалом от одного часа.</p>
+          <h3>Делимся ссылкой</h3>
+          <p>В приложении Ozon нажимаем «Поделиться» и выбираем «Трекер Цен». Фото, артикул и актуальные цены с картой подтягиваются моментально.</p>
         </div>
       </article>
       <article class="step" data-reveal>
         <div class="step__num">02</div>
         <div>
-          <h3>Находим</h3>
-          <p>Выявляем реальный момент скидки без накруток и фиктивных «зачёркнутых» цен.</p>
+          <h3>Указываем желаемую цену</h3>
+          <p>Задаём целевую стоимость, которую считаем справедливой для своего бюджета покупки.</p>
         </div>
       </article>
       <article class="step" data-reveal>
         <div class="step__num">03</div>
         <div>
-          <h3>Сигнализируем</h3>
-          <p>Мгновенный пуш в шторку или громкая непрерывная Сирена при достижении целевой цены.</p>
+          <h3>Периферийный скан 24/7</h3>
+          <p>Алгоритм непрерывно опрашивает региональные складские узлы и остатки размеров в фоне с минимальным расходом батареи.</p>
         </div>
       </article>
       <article class="step" data-reveal>
         <div class="step__num">04</div>
         <div>
-          <h3>Покупаем</h3>
-          <p>Выкуп по минимальной цене с экономией до 50% от стартовой стоимости товара.</p>
+          <h3>Мгновенный сигнал</h3>
+          <p>Как только цена достигла цели, срабатывает приоритетный пуш или громкая Сирена — вы успеваете забрать товар первыми.</p>
         </div>
       </article>
     </div>
@@ -1172,9 +1347,9 @@ p{margin:0}
 <section class="section section--tight" id="features">
   <div class="container">
     <div class="section-head" data-reveal>
-      <span class="tag">Суперсилы приложения</span>
-      <h2>Всё, чего не хватает <span class="grad-text">обычному вишлисту</span></h2>
-      <p>Шесть технологичных модулей, которые превращают отслеживание цен в точную науку.</p>
+      <span class="tag">Возможности PRO</span>
+      <h2>Всё, чего не хватает <span class="grad-text">обычной корзине маркетплейса</span></h2>
+      <p>Шесть мощных инструментов для умных покупок, которые разоблачают фиктивные распродажи и экономят ваши деньги.</p>
     </div>
 
     <div class="bento">
@@ -1188,7 +1363,7 @@ p{margin:0}
           </svg>
         </div>
         <h3>Честный график за 3 месяца</h3>
-        <p>Полная история цены без скрытых участков. Наведите курсор или проведите пальцем по графику — покажем точную цену в конкретный день.</p>
+        <p>Разоблачаем фальшивые «зачёркнутые» ценники и искусственный рост перед акциями. Проведите пальцем по графику — покажем точную цену закрытия в любой день за последние 90 суток.</p>
         <div class="chart-host">
           <canvas id="priceChart" role="img" aria-label="График изменения цены за 3 месяца: снижение с 4 990 до 3 490 рублей при цели 3 500 рублей"></canvas>
         </div>
@@ -1202,8 +1377,8 @@ p{margin:0}
             <path d="M2.5 10h19M6.5 14.5h3"/>
           </svg>
         </div>
-        <h3>Цены с Ozon Картой</h3>
-        <p>Трёхуровневая привязка Ozon ID считывает персональные скидки вашего профиля с точностью до одного рубля.</p>
+        <h3>Цены с учётом Ozon Карты</h3>
+        <p>Трёхуровневая локальная привязка профиля считывает персональные спеццены вашей Ozon Карты и город доставки с точностью до рубля.</p>
         <div class="paycard" aria-hidden="true">
           <div class="paycard__chip"></div>
           <div class="paycard__pulse"><span class="dot-live"></span> OZON ID</div>
@@ -1220,7 +1395,7 @@ p{margin:0}
           </svg>
         </div>
         <h3>Режим тревоги «Сирена»</h3>
-        <p>Громкий непрерывный сигнал при достижении цели. Не проспите ночные распродажи и ошибки продавцов.</p>
+        <p>Непрерывный звуковой сигнал при достижении вашей цели. Вы не проспите ночные распродажи, ликвидации складов и редкие ошибки продавцов.</p>
         <div class="waves" aria-hidden="true">
           <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
@@ -1235,8 +1410,8 @@ p{margin:0}
             <path d="M12 12 18.5 6.5"/>
           </svg>
         </div>
-        <h3>Радар наличия</h3>
-        <p>Закончился нужный размер обуви или одежды? Трекер продолжит следить за складом и сразу пришлёт пуш при поступлении.</p>
+        <h3>Радар наличия размеров</h3>
+        <p>Закончилась нужная пара обуви или размер одежды? Приложение продолжит следить за складом и сразу пришлёт пуш при первом же поступлении партии.</p>
       </article>
 
       <!-- 5. Батарея -->
@@ -1248,8 +1423,8 @@ p{margin:0}
             <path d="M6 10.5v3M9.5 10.5v3"/>
           </svg>
         </div>
-        <h3>0% фонового жора батареи</h3>
-        <p>Оптимизирован под HyperOS (Xiaomi), OneUI (Samsung), Honor и Realme. Работает в фоне без выгрузки системой.</p>
+        <h3>0% фонового расхода батареи</h3>
+        <p>Нативная оптимизация под Xiaomi (HyperOS), Samsung (OneUI), Honor, Realme и Tecno. Фоновый мониторинг работает стабильно и без выгрузки системой.</p>
       </article>
 
       <!-- 6. Виджеты -->
@@ -1262,8 +1437,8 @@ p{margin:0}
             <rect x="13" y="10" width="8" height="11" rx="2.2"/>
           </svg>
         </div>
-        <h3>4 виджета на рабочий стол Glance</h3>
-        <p>Следите за ценами, не открывая приложение — информация всегда на первом экране смартфона.</p>
+        <h3>4 интерактивных виджета на рабочий стол</h3>
+        <p>Следите за динамикой цен прямо с домашнего экрана смартфона — информация всегда на первом экране.</p>
         <div class="widgets">
           <div class="widget">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 12l6-4"/></svg>
@@ -1288,6 +1463,173 @@ p{margin:0}
         </div>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TECH ============================ -->
+<section class="section" id="tech">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="tag">Фирменные технологии</span>
+      <h2>Инженерия выгоды: <span class="grad-text">почему это работает безотказно</span></h2>
+      <p>Проверенный стек на стандартных API Android и HTTP/3. Никаких выдуманных протоколов — только реальные решения, названные понятным языком.</p>
+    </div>
+
+    <div class="tech-grid">
+
+      <article class="tech-card" data-reveal>
+        <div class="tech-card__top">
+          <div class="tech-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 12h4l2-6 3 12 2-6h5"/>
+            </svg>
+          </div>
+          <code class="tech-card__code">ENDS</code>
+        </div>
+        <h3>Движок обновлений цен</h3>
+        <p>Фирменный движок Трекера Цен. Прямое взаимодействие с CDN-узлами маркетплейса по HTTP/3 — среднее время отклика 1,2 секунды при минимальной нагрузке на устройство.</p>
+      </article>
+
+      <article class="tech-card" data-reveal>
+        <div class="tech-card__top">
+          <div class="tech-card__icon tech-card__icon--emerald">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3.5 4.5 7v5.2c0 4.3 3.1 7.6 7.5 9.3 4.4-1.7 7.5-5 7.5-9.3V7L12 3.5z"/>
+              <path d="M9.3 12.1l1.9 1.9 3.5-3.7"/>
+            </svg>
+          </div>
+          <code class="tech-card__code">Local Session Vault</code>
+        </div>
+        <h3>Хранилище сессии Ozon ID</h3>
+        <p>Сессия авторизации хранится в EncryptedSharedPreferences — защищённом системном хранилище Android. Токены, пароль и SMS-код не покидают ваше устройство.</p>
+      </article>
+
+      <article class="tech-card" data-reveal>
+        <div class="tech-card__top">
+          <div class="tech-card__icon tech-card__icon--gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.5"/>
+              <path d="M12 7v5l3.5 2"/>
+            </svg>
+          </div>
+          <code class="tech-card__code">Delta Scheduler</code>
+        </div>
+        <h3>Адаптивный планировщик</h3>
+        <p>Планировщик на базе WorkManager: частота фонового опроса подстраивается под волатильность цены товара. Ноль фонового расхода батареи.</p>
+      </article>
+
+      <article class="tech-card" data-reveal>
+        <div class="tech-card__top">
+          <div class="tech-card__icon tech-card__icon--ruby">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 12h4l3-7 4 14 3-7h4"/>
+            </svg>
+          </div>
+          <code class="tech-card__code">Route Shield</code>
+        </div>
+        <h3>Сетевой слой</h3>
+        <p>Многоуровневый резолвинг при нестабильной сети. Приоритет российских узлов маркетплейса — стабильное обновление цен в любых условиях.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ COMPARISON ============================ -->
+<section class="section section--tight" id="comparison">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="tag">Сравнение решений</span>
+      <h2>Выбор формата <span class="grad-text">отслеживания цен</span></h2>
+      <p>Каждый формат решает свою задачу. Ниже — фактическое сравнение по ключевым для покупателя параметрам, без рекламных оценок.</p>
+    </div>
+
+    <div class="comparison-wrap" data-reveal>
+      <div class="comparison-scroll">
+        <table class="comparison">
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Telegram-боты</th>
+              <th>Расширения для браузера</th>
+              <th class="comparison__highlight">Трекер Цен PRO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Персональные цены Ozon Карты</td>
+              <td>Зависит от бота</td>
+              <td>Только на ПК</td>
+              <td class="comparison__highlight">
+                <span class="comparison__cell comparison__cell--yes">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+                  Локально на смартфоне
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Оповещение при выключенном экране</td>
+              <td>Ограниченное</td>
+              <td class="comparison__cell comparison__cell--no">
+                <span class="comparison__cell comparison__cell--no">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+                  Нет
+                </span>
+              </td>
+              <td class="comparison__highlight">
+                <span class="comparison__cell comparison__cell--yes">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+                  Фоновый сервис Android
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Где хранятся данные</td>
+              <td>На сервере бота</td>
+              <td>В браузере</td>
+              <td class="comparison__highlight">
+                <span class="comparison__cell comparison__cell--yes">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+                  На вашем устройстве
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Резервная копия и экспорт</td>
+              <td>
+                <span class="comparison__cell comparison__cell--no">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+                  Нет
+                </span>
+              </td>
+              <td>
+                <span class="comparison__cell comparison__cell--no">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+                  Нет
+                </span>
+              </td>
+              <td class="comparison__highlight">
+                <span class="comparison__cell comparison__cell--yes">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+                  .json-файл в Загрузки
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Стоимость использования</td>
+              <td>Зависит от бота</td>
+              <td>Бесплатно</td>
+              <td class="comparison__highlight">
+                <span class="comparison__cell comparison__cell--yes">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+                  Бесплатно навсегда
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
@@ -1398,16 +1740,16 @@ p{margin:0}
       <div class="calc__grid">
 
         <div>
-          <span class="tag">Калькулятор выгоды</span>
-          <h2 style="margin-top:18px">Какая экономия с Трекером Цен?</h2>
+          <span class="tag">Калькулятор экономии</span>
+          <h2 style="margin-top:18px">Сколько денег вы сохраните за год?</h2>
           <p class="calc__desc">
-            В среднем регулярные пользователи сервиса выкупают вишлист со скидкой 28%.
-            Двигайте ползунок — посчитаем чистую экономию именно для вашего бюджета.
+            В среднем активные пользователи сервиса выкупают отслеживаемые товары со скидкой 28%
+            от стартовой стоимости. Двигайте ползунок — рассчитаем чистую выгоду для вашего бюджета покупок.
           </p>
 
           <div class="range-wrap">
             <div class="range-head">
-              <span>Бюджет покупок в месяц</span>
+              <span>Бюджет покупок на Ozon в месяц</span>
               <b id="budgetOut">30 000 ₽</b>
             </div>
 
@@ -1431,7 +1773,7 @@ p{margin:0}
             и персональных спеццен вашей Ozon Карты.
           </p>
           <div class="calc__year">
-            За год это <b id="savingYear">100 800 ₽</b> сэкономленных средств
+            За год это <b id="savingYear">100 800 ₽</b> сохранённых в семейном бюджете
           </div>
         </div>
 
@@ -1444,7 +1786,7 @@ p{margin:0}
 <section class="section" id="faq">
   <div class="container">
     <div class="section-head" style="margin:0 auto 44px;text-align:center" data-reveal>
-      <span class="tag">Вопросы и ответы</span>
+      <span class="tag">Частые вопросы</span>
       <h2>Коротко о главном</h2>
     </div>
 
@@ -1452,64 +1794,102 @@ p{margin:0}
 
       <div class="faq__item" data-reveal>
         <button class="faq__q" type="button" aria-expanded="false">
-          <span>Как добавить товар в отслеживание?</span>
+          <span>Как добавить товар в список отслеживания?</span>
           <span class="faq__sign" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
           </span>
         </button>
         <div class="faq__a">
           <div class="faq__a-inner">
-            Откройте карточку товара в официальном приложении Ozon, нажмите «Поделиться»
-            и выберите в списке «Трекер Цен». Ссылка подхватится автоматически — останется
-            только указать желаемую цену и сохранить.
+            Откройте карточку любого товара в приложении Ozon → нажмите значок «Поделиться» → выберите «Трекер Цен».
+            Название, фото, артикул и цены с Ozon Картой подтянутся автоматически.
+            Останется лишь указать желаемую цену покупки.
           </div>
         </div>
       </div>
 
       <div class="faq__item" data-reveal>
         <button class="faq__q" type="button" aria-expanded="false">
-          <span>Безопасно ли подключать Ozon ID?</span>
+          <span>Безопасно ли авторизоваться в Ozon ID?</span>
           <span class="faq__sign" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
           </span>
         </button>
         <div class="faq__a">
           <div class="faq__a-inner">
-            Да. Авторизация проходит на 100% локально на вашем смартфоне в системном WebView.
-            Логин, пароль и SMS-код не передаются на сторонние серверы и не сохраняются
-            в открытом виде — приложение использует только локальную сессию для чтения
-            персональных скидок профиля.
+            Абсолютно безопасно. Авторизация выполняется исключительно локально внутри защищённого
+            системного компонента Android на вашем смартфоне. Логин, пароль и проверочные СМС-коды
+            никогда не отправляются на сторонние серверы и недоступны третьим лицам.
+            Сессия используется исключительно для считывания цен с вашей скидкой.
           </div>
         </div>
       </div>
 
       <div class="faq__item" data-reveal>
         <button class="faq__q" type="button" aria-expanded="false">
-          <span>Зачем отключать VPN перед входом?</span>
+          <span>Как приложение работает при включенном VPN?</span>
           <span class="faq__sign" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
           </span>
         </button>
         <div class="faq__a">
           <div class="faq__a-inner">
-            Антифрод системы маркетплейсов блокируют соединения с иностранных IP-адресов.
-            Поэтому перед входом в Ozon ID отключите VPN — иначе цены не будут обновляться в фоне.
+            Серверы маркетплейса блокируют соединения с зарубежных IP-адресов, поэтому при работающем VPN
+            цены не смогут обновиться. У вас есть два простых пути: <b>1) Быстрый</b> — отключите VPN
+            в шторке телефона на полминуты перед проверкой цен; <b>2) Самый удобный</b> — добавьте
+            «Трекер Цен» в исключения вашего VPN-приложения (раздельное туннелирование). Тогда
+            приложение сможет обновлять товары в фоне круглосуточно, а ваш VPN продолжит работать
+            для других сервисов.
           </div>
         </div>
       </div>
 
       <div class="faq__item" data-reveal>
         <button class="faq__q" type="button" aria-expanded="false">
-          <span>Сколько стоит тариф PRO?</span>
+          <span>Что происходит, если товар заканчивается на складе?</span>
           <span class="faq__sign" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
           </span>
         </button>
         <div class="faq__a">
           <div class="faq__a-inner">
-            Бесплатно навсегда для пользователей RuStore: 50 слотов отслеживания,
-            минимальный интервал проверки — 1 час, полноценный режим Сирены
-            и все четыре виджета. Никаких подписок и скрытых платежей.
+            Карточка товара автоматически переносится во вкладку «Закончился». Приложение продолжит
+            регулярно проверять склады маркетплейса. Как только товар или нужный размер снова появится
+            в продаже, вам придёт уведомление «Товар снова в наличии!», и карточка вернётся
+            в активный список.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal>
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Как перенести отслеживаемые товары на новый смартфон?</span>
+          <span class="faq__sign" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            В Настройках приложения нажмите «Экспорт всех товаров» — сформируется резервный .json-файл
+            в папке «Загрузки», который можно переслать себе в Telegram или сохранить на диск.
+            На новом устройстве нажмите «Импорт всех товаров из файла» — весь список товаров со всеми
+            ценами, статусами и архивом восстановится за пару секунд.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal>
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Сколько стоит тариф PRO и есть ли подписки?</span>
+          <span class="faq__sign" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            Тариф PRO полностью и навсегда бесплатен для пользователей RuStore. Все 50 слотов
+            отслеживания, минимальный интервал проверки 1 час, непрерывный режим Сирены, 4 виджета
+            и экспорт резервной копии доступны сразу из коробки без скрытых платежей.
           </div>
         </div>
       </div>
@@ -1534,10 +1914,10 @@ p{margin:0}
           </span>
         </div>
         <p class="legal">
-          Приложение является независимым сервисом для покупателей и не аффилировано
-          с торговыми площадками. Все товарные знаки принадлежат их правообладателям.
-          Цены и скидки отображаются в информационных целях и могут отличаться от итоговых
-          на кассе маркетплейса.
+          Приложение «Трекер Цен» является независимым аналитическим инструментом для покупателей
+          и не аффилировано с маркетплейсом Ozon. Товарные знаки и наименования торговых площадок
+          используются исключительно в информационных целях для идентификации совместимости сервиса.
+          Цены и скидки могут отличаться в зависимости от региона доставки и действующих правил продавца.
         </p>
       </div>
 
@@ -1596,8 +1976,8 @@ p{margin:0}
     </div>
 
     <div class="footer__bottom">
-      <span>© 2026 Трекер Цен PRO. Все права защищены.</span>
-      <span>Обработка данных в соответствии с ФЗ-152</span>
+      <span>© 2026 Трекер Цен PRO (pricetrackerguru.ru • трекер-цен.рф). Все права защищены.</span>
+      <span>Обработка персональных данных в строгом соответствии с 152-ФЗ РФ</span>
     </div>
   </div>
 </footer>
@@ -1664,10 +2044,7 @@ p{margin:0}
     var drawer = document.getElementById('drawer');
     if (!burger || !drawer) return;
 
-    var scrollLockY = 0;
-
     function open(){
-      scrollLockY = window.pageYOffset || document.documentElement.scrollTop;
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
       burger.setAttribute('aria-expanded', 'true');
@@ -1687,9 +2064,7 @@ p{margin:0}
     });
 
     drawer.querySelectorAll('[data-drawer-close]').forEach(function(el){
-      el.addEventListener('click', function(e){
-        // Если это ссылка-анкор — дадим браузеру обработать переход,
-        // но сначала закроем меню.
+      el.addEventListener('click', function(){
         close();
       });
     });
@@ -1756,7 +2131,7 @@ p{margin:0}
     var W = 0, H = 0, dpr = 1;
     var PAD = { t: 38, r: 22, b: 34, l: 22 };
     var pts = [], yMin = 0, yMax = 1;
-    var progress = 0, hoverIndex = -1, rafId = null, started = false;
+    var progress = 0, hoverIndex = -1, started = false;
 
     function yOf(v){
       var ih = H - PAD.t - PAD.b;
@@ -1955,9 +2330,9 @@ p{margin:0}
         var t = Math.min((ts - start) / dur, 1);
         progress = 1 - Math.pow(1 - t, 3);
         draw();
-        if (t < 1) rafId = requestAnimationFrame(step);
+        if (t < 1) requestAnimationFrame(step);
       }
-      rafId = requestAnimationFrame(step);
+      requestAnimationFrame(step);
     }
 
     function resize(){
@@ -2117,7 +2492,7 @@ p{margin:0}
   })();
 
   /* ==========================================================
-     7. ПЛАВНАЯ ПРОКРУТКА ДЛЯ АНКОРОВ (учёт высоты хедера)
+     7. ПЛАВНАЯ ПРОКРУТКА ДЛЯ АНКОРОВ
      ========================================================== */
   (function initAnchors(){
     var links = document.querySelectorAll('a[href^="#"]');
