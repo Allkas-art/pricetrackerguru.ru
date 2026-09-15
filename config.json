@@ -1,10 +1,41 @@
 {
-  "min_version_code": 1,
-  "force_update": false,
-  "update_url": "https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app",
-  "update_message": "Вышло важное обновление Трекера Цен PRO с ускоренным алгоритмом мониторинга. Пожалуйста, обновите приложение для продолжения работы.",
-  "affiliate_subid": "pricetracker_app",
-  "promo_banner_active": false,
-  "promo_banner_text": "Горячие ночные скидки Ozon в нашем Telegram",
-  "promo_banner_url": "https://t.me/pricetracker_app"
+  "version_control": {
+    "min_version_code": 2,
+    "force_update": false,
+    "update_url": "https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app",
+    "update_message": "Вышло важное обновление Трекера Цен PRO. Пожалуйста, обновите приложение для стабильной работы."
+  },
+
+  "app_limits": {
+    "max_slots": 50,
+    "min_check_interval_hours": 1
+  },
+
+  "community_links": {
+    "telegram_url": "https://t.me/xxx",
+    "max_channel_url": "https://max.ru/xxx",
+    "rustore_review_url": "https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app"
+  },
+
+  "monetization": {
+    "affiliate_enabled": true,
+    "affiliate_subid": "pricetracker_app"
+  },
+
+  "legal_links": {
+    "privacy_policy_url": "https://glas.su/s/1fFxbn",
+    "terms_of_service_url": "https://glas.su/s/r7DiBx"
+  },
+
+  "crawler_tuning": {
+    "min_delay_ms": 3500,
+    "max_delay_ms": 7500
+  },
+
+  "announcement": {
+    "show": false,
+    "id": "promo_1",
+    "text": "Горячие ночные скидки Ozon в нашем Telegram-канале",
+    "url": "https://t.me/xxx"
+  }
 }
