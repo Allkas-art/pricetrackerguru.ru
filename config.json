@@ -1,6 +1,7 @@
 {
   "version_control": {
     "min_version_code": 2,
+    "current_version_name": "1.0.1",
     "force_update": false,
     "update_url": "https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app",
     "update_message": "Вышло важное обновление Трекера Цен PRO. Пожалуйста, обновите приложение для стабильной работы."
@@ -8,18 +9,20 @@
 
   "app_limits": {
     "max_slots": 60,
-    "min_check_interval_hours": 1
+    "min_check_interval_hours": 1,
+    "history_months": 3,
+    "widgets_count": 4
   },
 
   "community_links": {
-    "telegram_url": "https://t.me/xxx",
-    "max_channel_url": "https://max.ru/xxx",
+    "telegram_url": "https://t.me/priceradar_app",
+    "max_channel_url": "https://max.ru/priceradar",
     "rustore_review_url": "https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app"
   },
 
   "monetization": {
     "affiliate_enabled": true,
-    "affiliate_subid": "pricetracker_app"
+    "affiliate_subid": "priceradar_app"
   },
 
   "legal_links": {
@@ -36,6 +39,17 @@
     "show": false,
     "id": "promo_1",
     "text": "Горячие ночные скидки Ozon в нашем Telegram-канале",
-    "url": "https://t.me/xxx"
+    "url": "https://t.me/priceradar_app"
+  },
+
+  "site": {
+    "seo": {
+      "title": "Трекер Цен PRO — умный трекер цен Ozon",
+      "description": "Независимый сервис мониторинга цен Ozon: спеццены Ozon Карты, график за 3 месяца, Сирена при падении цены.",
+      "og_image": "logo-1024.png"
+    },
+    "footer": {
+      "copyright_year": "2026"
+    }
   }
 }
