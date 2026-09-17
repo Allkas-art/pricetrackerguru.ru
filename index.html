@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#06080F">
-<title>Трекер Цен PRO — Автономный мониторинг цен Ozon. График за 3 месяца, Сирена и спеццены Ozon Карты</title>
-<meta name="description" content="Независимый сервис умного мониторинга цен Ozon. Реальные спеццены Ozon Карты, история за 3 месяца, непрерывная Сирена при падении цены. 50 слотов отслеживания бесплатно в RuStore.">
+<title>Трекер Цен PRO — умный трекер цен Ozon</title>
+<meta name="description" content="Независимый сервис мониторинга цен Ozon: спеццены Ozon Карты, график за 3 месяца, Сирена при падении цены.">
 
 <link rel="icon" type="image/svg+xml" href="logo.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="logo-32.png">
@@ -28,7 +28,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Трекер Цен PRO">
 <meta property="og:title" content="Трекер Цен PRO — умный трекер цен Ozon">
-<meta property="og:description" content="Спеццены Ozon Карты, честный график за 3 месяца, Сирена при падении цены. 50 слотов бесплатно в RuStore.">
+<meta property="og:description" content="Спеццены Ozon Карты, честный график за 3 месяца, Сирена при падении цены. 60 слотов бесплатно в RuStore.">
 <meta property="og:url" content="https://pricetrackerguru.ru/">
 <meta property="og:image" content="https://pricetrackerguru.ru/logo-1024.png">
 <meta property="og:image:width" content="1024">
@@ -40,7 +40,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MobileApplication","name":"Трекер Цен PRO","operatingSystem":"Android","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Shopping","offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"},"downloadUrl":"https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app","softwareVersion":"PRO","inLanguage":"ru-RU","publisher":{"@type":"Organization","name":"Трекер Цен PRO","url":"https://pricetrackerguru.ru"}}
+{"@context":"https://schema.org","@type":"MobileApplication","name":"Трекер Цен PRO","operatingSystem":"Android","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Shopping","offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"},"downloadUrl":"https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app","softwareVersion":"1.0.1","inLanguage":"ru-RU","publisher":{"@type":"Organization","name":"Трекер Цен PRO","url":"https://pricetrackerguru.ru"}}
 </script>
 
 <style>
@@ -64,9 +64,68 @@ h1,h2,h3,h4{margin:0;line-height:1.12;letter-spacing:-.02em;font-weight:800}
 p{margin:0}
 ::selection{background:rgba(0,91,255,.4);color:#fff}
 
+/* Плавающий скрытый класс для подгрузки */
+.hidden-by-config{display:none !important}
+
+/* Skip link */
 .skip-link{position:fixed;top:-100px;left:16px;z-index:999;padding:12px 20px;border-radius:12px;background:#005BFF;color:#fff;font-weight:800;font-size:14px;transition:top .25s ease}
 .skip-link:focus{top:16px;outline:2px solid #fff;outline-offset:3px}
 
+/* ============ Announcement bar ============ */
+.announce{
+  position:relative;z-index:85;
+  background:linear-gradient(90deg,rgba(0,91,255,.18),rgba(0,196,106,.18));
+  border-bottom:1px solid rgba(0,91,255,.28);
+  padding:12px 20px;
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  font-size:14px;font-weight:600;
+  animation:annSlide .5s var(--ease-spring) both;
+}
+@keyframes annSlide{
+  from{opacity:0;transform:translateY(-100%)}
+  to{opacity:1;transform:translateY(0)}
+}
+.announce__inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;gap:16px;
+  min-width:0;
+}
+.announce__icon{
+  width:34px;height:34px;border-radius:10px;flex:none;
+  background:linear-gradient(135deg,#005BFF,#00A552);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;
+  box-shadow:0 8px 20px -10px rgba(0,91,255,.9);
+}
+.announce__icon svg{width:18px;height:18px}
+.announce__text{
+  flex:1;min-width:0;
+  color:var(--text);font-weight:600;
+  overflow:hidden;text-overflow:ellipsis;
+}
+.announce__cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-weight:800;font-size:13.5px;color:#00C46A;
+  white-space:nowrap;
+}
+.announce__cta:hover{color:#00E676}
+.announce__close{
+  width:32px;height:32px;border-radius:9px;flex:none;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--stroke-strong);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);
+  transition:background .2s ease,color .2s ease;
+}
+.announce__close:hover{background:rgba(255,255,255,.12);color:var(--text)}
+.announce__close svg{width:14px;height:14px}
+[data-theme="light"] .announce{background:linear-gradient(90deg,rgba(0,91,255,.08),rgba(0,196,106,.08));border-bottom-color:rgba(0,91,255,.16)}
+[data-theme="light"] .announce__close{background:rgba(11,18,36,.05);border-color:rgba(11,18,36,.10)}
+[data-theme="light"] .announce__close:hover{background:rgba(11,18,36,.10)}
+[data-theme="light"] .announce__cta{color:#008C46}
+[data-theme="light"] .announce__cta:hover{color:#00A552}
+
+/* ============ Ambient ============ */
 .ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .ambient i{position:absolute;display:block;border-radius:50%;filter:blur(140px);will-change:transform;opacity:.55}
 .ambient .a1{width:640px;height:640px;top:-200px;left:-160px;background:radial-gradient(circle,rgba(0,91,255,.62),transparent 68%)}
@@ -262,7 +321,6 @@ p{margin:0}
 .comparison-scroll::-webkit-scrollbar{height:6px}
 .comparison-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.05)}
 .comparison-scroll::-webkit-scrollbar-thumb{background:rgba(0,91,255,.55);border-radius:99px}
-
 .comparison{width:100%;border-collapse:separate;border-spacing:0;min-width:720px}
 .comparison th,.comparison td{padding:20px 22px;text-align:left;border-bottom:1px solid var(--stroke);font-size:14.5px;line-height:1.45;vertical-align:middle}
 .comparison th{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7E8CA3;background:rgba(6,8,15,.4);white-space:nowrap}
@@ -356,6 +414,17 @@ p{margin:0}
 .footer__links a:hover svg{color:var(--primary)}
 
 .footer__bottom{margin-top:56px;padding-top:26px;border-top:1px solid var(--stroke);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;font-size:12.5px;color:#65728A}
+.footer__version{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 10px;border-radius:8px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--stroke);
+  font-size:11.5px;font-weight:700;color:var(--muted);
+  letter-spacing:.04em;
+}
+.footer__version b{color:var(--emerald);font-weight:800}
+[data-theme="light"] .footer__version{background:rgba(11,18,36,.03);border-color:rgba(11,18,36,.07)}
+[data-theme="light"] .footer__version b{color:#008C46}
 
 .mobile-cta{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:90;display:none;transform:translateY(160%);transition:transform .5s var(--ease-spring);max-width:calc(100vw - 24px)}
 .mobile-cta.is-shown{transform:translateY(0)}
@@ -505,6 +574,9 @@ p{margin:0}
   .calc__grid{grid-template-columns:1fr;gap:36px}
   .footer__grid{grid-template-columns:1fr 1fr;gap:36px}
   .footer__brand-col{grid-column:span 2}
+  .announce{padding:10px 16px;font-size:13px}
+  .announce__icon{width:28px;height:28px}
+  .announce__icon svg{width:15px;height:15px}
 }
 @media (max-width:768px){
   .section{padding:68px 0}
@@ -585,6 +657,10 @@ p{margin:0}
   .footer__bottom{flex-direction:column;align-items:flex-start;gap:10px;margin-top:40px}
   .page{padding-bottom:88px}
   .mobile-cta{display:block}
+  .announce{padding:10px 14px;font-size:12.5px;gap:10px}
+  .announce__icon{width:26px;height:26px;border-radius:8px}
+  .announce__icon svg{width:14px;height:14px}
+  .announce__cta{display:none}
 }
 @media (max-width:420px){
   .container{padding:0 16px}
@@ -598,6 +674,7 @@ p{margin:0}
   .comparison-card__row{padding:11px 12px;gap:10px}
   .comparison-card__row span{font-size:12px}
   .comparison-card__row b{font-size:12.5px}
+  .announce__text{font-size:12px}
 }
 @media (max-width:360px){
   .brand__text{max-width:76px}
@@ -619,12 +696,34 @@ p{margin:0}
 
 <a class="skip-link" href="#top">Перейти к содержимому</a>
 
+<!-- Баннер анонса — управляется через config.json → announcement -->
+<div class="announce" id="announceBar" hidden>
+  <div class="announce__inner">
+    <span class="announce__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6 6.1 20.7l1.2-6.6L2.5 9.5l6.6-.9L12 2.5z"/>
+      </svg>
+    </span>
+    <span class="announce__text" data-config-text="announcement.text">Горячие ночные скидки Ozon в нашем Telegram-канале</span>
+    <a class="announce__cta" href="#" target="_blank" rel="noopener" data-config-href="announcement.url">
+      Подробнее
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 17 17 7M9 7h8v8"/>
+      </svg>
+    </a>
+    <button class="announce__close" type="button" aria-label="Закрыть" data-announce-close>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+</div>
+
 <div class="ambient" aria-hidden="true">
   <i class="a1"></i><i class="a2"></i><i class="a3"></i>
 </div>
 
 <div class="page">
 
+<!-- ============================ HEADER ============================ -->
 <header class="header" id="header">
   <div class="container header__inner">
     <a class="brand" href="#top" aria-label="Трекер Цен PRO — на главную">
@@ -659,7 +758,10 @@ p{margin:0}
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
     </button>
 
-    <a class="btn btn--primary header__cta" href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app" target="_blank" rel="noopener">
+    <a class="btn btn--primary header__cta"
+       href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app"
+       target="_blank" rel="noopener"
+       data-config-href="community_links.rustore_review_url">
       <svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="11" ry="11" fill="#0077FF"/><g fill="#FFFFFF"><rect x="9" y="17" width="16" height="23" rx="2.6"/><rect x="19" y="12.5" width="14" height="26" rx="2.6"/><rect x="28" y="9.5" width="12" height="27" rx="2.6"/></g></svg>
       <span class="cta__label cta__label--full">Скачать в RuStore</span>
       <span class="cta__label cta__label--short">RuStore</span>
@@ -672,6 +774,7 @@ p{margin:0}
   </div>
 </header>
 
+<!-- ============================ DRAWER ============================ -->
 <div class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer__backdrop" data-drawer-close></div>
   <nav class="drawer__panel" aria-label="Мобильная навигация">
@@ -703,7 +806,10 @@ p{margin:0}
       </div>
     </div>
     <div class="drawer__divider"></div>
-    <a class="btn btn--primary" href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app" target="_blank" rel="noopener" data-drawer-close>
+    <a class="btn btn--primary"
+       href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app"
+       target="_blank" rel="noopener" data-drawer-close
+       data-config-href="community_links.rustore_review_url">
       <svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="11" ry="11" fill="#0077FF"/><g fill="#FFFFFF"><rect x="9" y="17" width="16" height="23" rx="2.6"/><rect x="19" y="12.5" width="14" height="26" rx="2.6"/><rect x="28" y="9.5" width="12" height="27" rx="2.6"/></g></svg>
       <span>Скачать в RuStore</span>
     </a>
@@ -712,12 +818,14 @@ p{margin:0}
 
 <main id="top">
 
+<!-- ============================ HERO ============================ -->
 <section class="hero">
   <div class="container hero__grid">
+
     <div class="hero__copy">
       <div class="hero__badge" data-reveal>
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6 6.1 20.7l1.2-6.6L2.5 9.5l6.6-.9L12 2.5z"/></svg>
-        <span>PRO доступ • 50 слотов • 100% без рекламы</span>
+        <span>PRO доступ • <span data-config="app_limits.max_slots">60</span> слотов • 100% без рекламы</span>
       </div>
 
       <h1 data-reveal>
@@ -728,29 +836,52 @@ p{margin:0}
 
       <p class="hero__sub" data-reveal>
         Автономная система умного отслеживания цен Ozon на базе прямого протокола к CDN-узлам маркетплейса.
-        Считывает персональные спеццены вашей Ozon Карты, строит честный 3-месячный график
+        Считывает персональные спеццены вашей Ozon Карты, строит честный график за <span data-config="app_limits.history_months">3</span> месяца
         и предупреждает громкой Сиреной, когда наступает идеальный момент для покупки.
       </p>
 
       <div class="hero__actions" data-reveal>
-        <a class="btn btn--primary" href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app" target="_blank" rel="noopener" aria-label="Скачать бесплатно в RuStore">
+        <a class="btn btn--primary"
+           href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app"
+           target="_blank" rel="noopener"
+           data-config-href="community_links.rustore_review_url"
+           aria-label="Скачать бесплатно в RuStore">
           <svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="11" ry="11" fill="#0077FF"/><g fill="#FFFFFF"><rect x="9" y="17" width="16" height="23" rx="2.6"/><rect x="19" y="12.5" width="14" height="26" rx="2.6"/><rect x="28" y="9.5" width="12" height="27" rx="2.6"/></g></svg>
           <span>Скачать в RuStore</span>
         </a>
-        <a class="btn btn--ghost" href="https://t.me/priceradar_app" target="_blank" rel="noopener" aria-label="Telegram-канал">
+
+        <a class="btn btn--ghost"
+           href="https://t.me/priceradar_app"
+           target="_blank" rel="noopener"
+           data-config-href="community_links.telegram_url"
+           aria-label="Telegram-канал">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 4.3 2.9 11.5c-1 .4-1 1.8.1 2.1l4.6 1.5 1.7 5.3c.3.9 1.4 1.1 1.9.3l2.3-3 4.6 3.4c.8.6 1.9.2 2.1-.8l3-14.5c.2-1-.8-1.9-1.5-1.5zM9.3 14.7l8.4-6.2-6.7 7.3-.2 3-1.5-4.1z"/></svg>
           <span>Telegram-канал</span>
         </a>
-        <a class="btn btn--ghost" href="https://max.ru/priceradar" target="_blank" rel="noopener" aria-label="Канал в MAX">
+
+        <a class="btn btn--ghost"
+           href="https://max.ru/priceradar"
+           target="_blank" rel="noopener"
+           data-config-href="community_links.max_channel_url"
+           aria-label="Канал в MAX">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.4C6.3 2.4 1.7 6.6 1.7 11.7c0 2.9 1.6 5.5 4 7.2-.3 1.2-.9 2.4-1.8 3.4-.4.4-.1 1 .5.9 2.7-.4 4.9-1.6 6.6-3.2.9.2 1.9.3 3 .3 5.7 0 10.3-4.2 10.3-9.3S17.7 2.4 12 2.4zm0 4.9c2.6 0 4.7 1.8 4.7 3.9s-2.1 3.9-4.7 3.9-4.7-1.8-4.7-3.9S9.4 7.3 12 7.3z"/></svg>
           <span>Канал в MAX</span>
         </a>
       </div>
 
       <div class="metrics" data-reveal>
-        <div class="metric"><b>50</b><span>Активных слотов для товаров сразу в тарифе PRO</span></div>
-        <div class="metric"><b>1 час</b><span>Минимальный интервал проверки складских цен</span></div>
-        <div class="metric"><b>0 ₽</b><span>Навсегда бесплатно для пользователей RuStore</span></div>
+        <div class="metric">
+          <b data-config="app_limits.max_slots">60</b>
+          <span>Активных слотов для товаров сразу в тарифе PRO</span>
+        </div>
+        <div class="metric">
+          <b><span data-config="app_limits.min_check_interval_hours">1</span> час</b>
+          <span>Минимальный интервал проверки складских цен</span>
+        </div>
+        <div class="metric">
+          <b>0 ₽</b>
+          <span>Навсегда бесплатно для пользователей RuStore</span>
+        </div>
       </div>
     </div>
 
@@ -775,6 +906,7 @@ p{margin:0}
   </div>
 </section>
 
+<!-- ============================ WORKFLOW ============================ -->
 <section class="section" id="how">
   <div class="container">
     <div class="section-head" data-reveal>
@@ -792,6 +924,7 @@ p{margin:0}
   </div>
 </section>
 
+<!-- ============================ BENTO ============================ -->
 <section class="section section--tight" id="features">
   <div class="container">
     <div class="section-head" data-reveal>
@@ -803,7 +936,7 @@ p{margin:0}
     <div class="bento">
       <article class="card card--wide" id="chart" data-reveal>
         <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5M4 19h16"/><path d="M7 15.5 10.5 11l3.5 3 4.5-7"/></svg></div>
-        <h3>Честный график за 3 месяца</h3>
+        <h3>Честный график за <span data-config="app_limits.history_months">3</span> месяца</h3>
         <p>Разоблачаем фальшивые «зачёркнутые» ценники и искусственный рост перед акциями. Проведите пальцем по графику — покажем точную цену закрытия в любой день за последние 90 суток.</p>
         <div class="chart-host"><canvas id="priceChart" role="img" aria-label="График изменения цены за 3 месяца"></canvas></div>
       </article>
@@ -836,7 +969,7 @@ p{margin:0}
 
       <article class="card card--full" data-reveal>
         <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2.2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2.2"/><rect x="13" y="10" width="8" height="11" rx="2.2"/></svg></div>
-        <h3>4 интерактивных виджета на рабочий стол</h3>
+        <h3><span data-config="app_limits.widgets_count">4</span> интерактивных виджета на рабочий стол</h3>
         <p>Следите за динамикой цен прямо с домашнего экрана смартфона — информация всегда на первом экране.</p>
         <div class="widgets">
           <div class="widget"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 12l6-4"/></svg><b>Снайпер скидок</b><span>2 × 2</span></div>
@@ -849,11 +982,13 @@ p{margin:0}
   </div>
 </section>
 
+<!-- ============================ TECH ============================ -->
 <section class="section" id="tech">
   <div class="container">
     <div class="section-head" data-reveal>
       <span class="tag">Фирменные технологии</span>
       <h2>Инженерия выгоды: <span class="grad-text">почему это работает безотказно</span></h2>
+      <p>Проверенный стек на стандартных API Android и HTTP/3. Никаких выдуманных протоколов — только реальные решения, названные понятным языком.</p>
     </div>
 
     <div class="tech-grid">
@@ -881,6 +1016,7 @@ p{margin:0}
   </div>
 </section>
 
+<!-- ============================ COMPARISON ============================ -->
 <section class="section section--tight" id="comparison">
   <div class="container">
     <div class="section-head" data-reveal>
@@ -967,6 +1103,7 @@ p{margin:0}
   </div>
 </section>
 
+<!-- ============================ GALLERY ============================ -->
 <section class="section" id="gallery">
   <div class="container">
     <div class="gallery" id="galleryBox">
@@ -989,7 +1126,7 @@ p{margin:0}
         </figure>
         <figure class="gallery__item" style="margin:0" data-reveal>
           <div class="gallery__shot"><div class="screen"><img src="screen-chart.png" data-src-light="screen-chart-light.png" alt="График цен" loading="lazy" decoding="async" onerror="if(this.dataset.srcLight&&this.getAttribute('src')===this.dataset.srcLight){this.setAttribute('src',this.dataset.srcDark||'screen-chart.png');}"></div></div>
-          <figcaption class="gallery__caption"><b>График цен за 3 месяца</b><span>Аналитическая шторка: минимум 389 ₽, максимум 689 ₽, ваша цель 450 ₽.</span></figcaption>
+          <figcaption class="gallery__caption"><b>График цен за <span data-config="app_limits.history_months">3</span> месяца</b><span>Аналитическая шторка: минимум 389 ₽, максимум 689 ₽, ваша цель 450 ₽.</span></figcaption>
         </figure>
         <figure class="gallery__item" style="margin:0" data-reveal>
           <div class="gallery__shot"><div class="screen"><img src="screen-add.png" data-src-light="screen-add-light.png" alt="Добавление товара" loading="lazy" decoding="async" onerror="if(this.dataset.srcLight&&this.getAttribute('src')===this.dataset.srcLight){this.setAttribute('src',this.dataset.srcDark||'screen-add.png');}"></div></div>
@@ -1005,7 +1142,7 @@ p{margin:0}
         </figure>
         <figure class="gallery__item" style="margin:0" data-reveal>
           <div class="gallery__shot"><div class="screen"><img src="screen-settings-1.png" data-src-light="screen-settings-1-light.png" alt="Настройки: слоты" loading="lazy" decoding="async" onerror="if(this.dataset.srcLight&&this.getAttribute('src')===this.dataset.srcLight){this.setAttribute('src',this.dataset.srcDark||'screen-settings-1.png');}"></div></div>
-          <figcaption class="gallery__caption"><b>Настройки PRO: слоты</b><span>4 из 50 слотов, журнал проверок, сохранение log.txt и выбор интервала.</span></figcaption>
+          <figcaption class="gallery__caption"><b>Настройки PRO: слоты</b><span>4 из <span data-config="app_limits.max_slots">60</span> слотов, журнал проверок, сохранение log.txt и выбор интервала.</span></figcaption>
         </figure>
         <figure class="gallery__item" style="margin:0" data-reveal>
           <div class="gallery__shot"><div class="screen"><img src="screen-settings-2.png" data-src-light="screen-settings-2-light.png" alt="Настройки: Сирена" loading="lazy" decoding="async" onerror="if(this.dataset.srcLight&&this.getAttribute('src')===this.dataset.srcLight){this.setAttribute('src',this.dataset.srcDark||'screen-settings-2.png');}"></div></div>
@@ -1016,6 +1153,7 @@ p{margin:0}
   </div>
 </section>
 
+<!-- ============================ CALCULATOR ============================ -->
 <section class="section" id="calc">
   <div class="container">
     <div class="calc" data-reveal>
@@ -1041,6 +1179,7 @@ p{margin:0}
   </div>
 </section>
 
+<!-- ============================ FAQ ============================ -->
 <section class="section" id="faq">
   <div class="container">
     <div class="section-head" style="margin:0 auto 44px;text-align:center" data-reveal>
@@ -1071,7 +1210,7 @@ p{margin:0}
       </div>
       <div class="faq__item" data-reveal>
         <button class="faq__q" type="button" aria-expanded="false"><span>Сколько стоит тариф PRO и есть ли подписки?</span><span class="faq__sign" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
-        <div class="faq__a"><div class="faq__a-inner">Тариф PRO полностью и навсегда бесплатен для пользователей RuStore. Все 50 слотов отслеживания, минимальный интервал проверки 1 час, непрерывный режим Сирены, 4 виджета и экспорт резервной копии доступны сразу из коробки без скрытых платежей.</div></div>
+        <div class="faq__a"><div class="faq__a-inner">Тариф PRO полностью и навсегда бесплатен для пользователей RuStore. Все <span data-config="app_limits.max_slots">60</span> слотов отслеживания, минимальный интервал проверки <span data-config="app_limits.min_check_interval_hours">1</span> час, непрерывный режим Сирены, <span data-config="app_limits.widgets_count">4</span> виджета и экспорт резервной копии доступны сразу из коробки без скрытых платежей.</div></div>
       </div>
     </div>
   </div>
@@ -1079,6 +1218,7 @@ p{margin:0}
 
 </main>
 
+<!-- ============================ FOOTER ============================ -->
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
@@ -1103,106 +1243,278 @@ p{margin:0}
       <div>
         <h4>Сообщество</h4>
         <div class="footer__links">
-          <a href="https://t.me/priceradar_app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 4.3 2.9 11.5c-1 .4-1 1.8.1 2.1l4.6 1.5 1.7 5.3c.3.9 1.4 1.1 1.9.3l2.3-3 4.6 3.4c.8.6 1.9.2 2.1-.8l3-14.5c.2-1-.8-1.9-1.5-1.5zM9.3 14.7l8.4-6.2-6.7 7.3-.2 3-1.5-4.1z"/></svg>Telegram-канал</a>
-          <a href="https://max.ru/priceradar" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.4C6.3 2.4 1.7 6.6 1.7 11.7c0 2.9 1.6 5.5 4 7.2-.3 1.2-.9 2.4-1.8 3.4-.4.4-.1 1 .5.9 2.7-.4 4.9-1.6 6.6-3.2.9.2 1.9.3 3 .3 5.7 0 10.3-4.2 10.3-9.3S17.7 2.4 12 2.4zm0 4.9c2.6 0 4.7 1.8 4.7 3.9s-2.1 3.9-4.7 3.9-4.7-1.8-4.7-3.9S9.4 7.3 12 7.3z"/></svg>Канал в MAX</a>
-          <a href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18.6l-5.9 3.1 1.2-6.6L2.5 10.5l6.6-.9L12 3.5z"/></svg>Оценить в RuStore</a>
+          <a href="https://t.me/priceradar_app" target="_blank" rel="noopener" data-config-href="community_links.telegram_url">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 4.3 2.9 11.5c-1 .4-1 1.8.1 2.1l4.6 1.5 1.7 5.3c.3.9 1.4 1.1 1.9.3l2.3-3 4.6 3.4c.8.6 1.9.2 2.1-.8l3-14.5c.2-1-.8-1.9-1.5-1.5zM9.3 14.7l8.4-6.2-6.7 7.3-.2 3-1.5-4.1z"/></svg>
+            Telegram-канал
+          </a>
+          <a href="https://max.ru/priceradar" target="_blank" rel="noopener" data-config-href="community_links.max_channel_url">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.4C6.3 2.4 1.7 6.6 1.7 11.7c0 2.9 1.6 5.5 4 7.2-.3 1.2-.9 2.4-1.8 3.4-.4.4-.1 1 .5.9 2.7-.4 4.9-1.6 6.6-3.2.9.2 1.9.3 3 .3 5.7 0 10.3-4.2 10.3-9.3S17.7 2.4 12 2.4zm0 4.9c2.6 0 4.7 1.8 4.7 3.9s-2.1 3.9-4.7 3.9-4.7-1.8-4.7-3.9S9.4 7.3 12 7.3z"/></svg>
+            Канал в MAX
+          </a>
+          <a href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app" target="_blank" rel="noopener" data-config-href="community_links.rustore_review_url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 18.6l-5.9 3.1 1.2-6.6L2.5 10.5l6.6-.9L12 3.5z"/></svg>
+            Оценить в RuStore
+          </a>
         </div>
       </div>
       <div>
         <h4>Документы</h4>
         <div class="footer__links">
-          <a href="https://glas.su/s/1fFxbn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 4.5 7v5.2c0 4.3 3.1 7.6 7.5 9.3 4.4-1.7 7.5-5 7.5-9.3V7L12 3.5z"/><path d="M9.3 12.1l1.9 1.9 3.5-3.7"/></svg>Политика конфиденциальности</a>
-          <a href="https://glas.su/s/r7DiBx" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5l-5-5z"/><path d="M14 3.5v5h5"/></svg>Пользовательское соглашение</a>
-          <a href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="11" ry="11" fill="#0077FF"/><g fill="#FFFFFF"><rect x="9" y="17" width="16" height="23" rx="2.6"/><rect x="19" y="12.5" width="14" height="26" rx="2.6"/><rect x="28" y="9.5" width="12" height="27" rx="2.6"/></g></svg>Страница в RuStore</a>
+          <a href="https://glas.su/s/1fFxbn" target="_blank" rel="noopener" data-config-href="legal_links.privacy_policy_url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 4.5 7v5.2c0 4.3 3.1 7.6 7.5 9.3 4.4-1.7 7.5-5 7.5-9.3V7L12 3.5z"/><path d="M9.3 12.1l1.9 1.9 3.5-3.7"/></svg>
+            Политика конфиденциальности
+          </a>
+          <a href="https://glas.su/s/r7DiBx" target="_blank" rel="noopener" data-config-href="legal_links.terms_of_service_url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5l-5-5z"/><path d="M14 3.5v5h5"/></svg>
+            Пользовательское соглашение
+          </a>
+          <a href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app" target="_blank" rel="noopener" data-config-href="community_links.rustore_review_url">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="11" ry="11" fill="#0077FF"/><g fill="#FFFFFF"><rect x="9" y="17" width="16" height="23" rx="2.6"/><rect x="19" y="12.5" width="14" height="26" rx="2.6"/><rect x="28" y="9.5" width="12" height="27" rx="2.6"/></g></svg>
+            Страница в RuStore
+          </a>
         </div>
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 Трекер Цен PRO. Все права защищены.</span>
-      <span>Сайт не осуществляет целенаправленный сбор и хранение персональных данных пользователей. Подробнее — в Политике конфиденциальности.</span>
+      <span>© <span data-config="site.footer.copyright_year">2026</span> Трекер Цен PRO (pricetrackerguru.ru • трекер-цен.рф). Все права защищены.</span>
+      <span class="footer__version">Версия <b data-config="version_control.current_version_name">1.0.1</b></span>
     </div>
   </div>
 </footer>
 
 </div>
 
+<!-- ============================ MOBILE CTA ============================ -->
 <div class="mobile-cta" id="mobileCta">
-  <a class="btn btn--primary" href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app" target="_blank" rel="noopener">
+  <a class="btn btn--primary"
+     href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app"
+     target="_blank" rel="noopener"
+     data-config-href="community_links.rustore_review_url">
     <svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="11" ry="11" fill="#0077FF"/><g fill="#FFFFFF"><rect x="9" y="17" width="16" height="23" rx="2.6"/><rect x="19" y="12.5" width="14" height="26" rx="2.6"/><rect x="28" y="9.5" width="12" height="27" rx="2.6"/></g></svg>
     <span>Установить из RuStore</span>
     <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
   </a>
 </div>
-
 <script>
 (function(){
   'use strict';
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   var root = document.documentElement;
-  var themeSub = document.querySelector('[data-theme-sub]');
 
-  function currentTheme(){ return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
-  function isAuto(){ return root.getAttribute('data-theme-auto') === 'true'; }
-  function timeBasedTheme(){ var h = new Date().getHours(); return (h >= 7 && h < 19) ? 'light' : 'dark'; }
+  /* ==========================================================
+     1. CONFIG.JSON — МЯГКАЯ ПОДСТАНОВКА ЗНАЧЕНИЙ
+     ==========================================================
+     Читает config.json, заменяет значения в HTML по атрибутам:
+     - data-config="путь.к.полю"      → подставляет текст в элемент
+     - data-config-href="путь"        → подставляет href в ссылку
+     При любой ошибке — молча оставляет дефолтные значения из HTML.
+  */
+  (function initConfigLoader(){
+    var CONFIG_URL = 'config.json';
 
-  function swapImages(theme){
-    document.querySelectorAll('img[data-src-light]').forEach(function(img){
-      if (!img.dataset.srcDark) img.dataset.srcDark = img.getAttribute('src');
-      var target = theme === 'light' ? img.dataset.srcLight : img.dataset.srcDark;
-      if (img.getAttribute('src') === target) return;
-      img.setAttribute('src', target);
-    });
-  }
-
-  function syncDrawerThemeButtons(){
-    var t = currentTheme();
-    document.querySelectorAll('[data-set-theme]').forEach(function(b){
-      b.classList.toggle('is-active', b.getAttribute('data-set-theme') === t);
-    });
-    if (themeSub){
-      if (isAuto()) themeSub.textContent = 'Авто по времени (07:00 – 19:00)';
-      else themeSub.textContent = t === 'light' ? 'Светлая тема' : 'Тёмная тема';
+    function getByPath(obj, path){
+      if (!obj || !path) return undefined;
+      var parts = path.split('.');
+      var cur = obj;
+      for (var i = 0; i < parts.length; i++){
+        if (cur == null || typeof cur !== 'object') return undefined;
+        cur = cur[parts[i]];
+      }
+      return cur;
     }
-  }
 
-  function applyTheme(theme, save){
-    root.setAttribute('data-theme', theme);
-    if (save){
-      try { localStorage.setItem('tc-theme', theme); } catch(e){}
-      root.setAttribute('data-theme-auto', 'false');
+    function applyConfig(cfg){
+      if (!cfg || typeof cfg !== 'object') return;
+
+      /* Текстовые подстановки */
+      document.querySelectorAll('[data-config]').forEach(function(el){
+        var path = el.getAttribute('data-config');
+        var val = getByPath(cfg, path);
+        if (val === undefined || val === null) return;
+        var str = String(val);
+        if (el.textContent.trim() === str) return;
+        el.textContent = str;
+      });
+
+      /* Href-подстановки */
+      document.querySelectorAll('[data-config-href]').forEach(function(el){
+        var path = el.getAttribute('data-config-href');
+        var val = getByPath(cfg, path);
+        if (val === undefined || val === null) return;
+        if (el.getAttribute('href') !== val) el.setAttribute('href', val);
+      });
+
+      /* SEO: title, description, og-image */
+      var seo = cfg.site && cfg.site.seo;
+      if (seo){
+        if (seo.title && document.title !== seo.title) document.title = seo.title;
+        if (seo.description){
+          var metaDesc = document.querySelector('meta[name="description"]');
+          if (metaDesc && metaDesc.getAttribute('content') !== seo.description){
+            metaDesc.setAttribute('content', seo.description);
+          }
+          var ogDesc = document.querySelector('meta[property="og:description"]');
+          if (ogDesc && ogDesc.getAttribute('content') !== seo.description){
+            ogDesc.setAttribute('content', seo.description);
+          }
+        }
+        if (seo.og_image){
+          var ogImg = document.querySelector('meta[property="og:image"]');
+          if (ogImg){
+            var url = seo.og_image;
+            /* Если относительный путь — подставить origin */
+            if (url.indexOf('http') !== 0 && location.protocol.indexOf('http') === 0){
+              url = location.origin + '/' + url.replace(/^\/+/, '');
+            }
+            if (ogImg.getAttribute('content') !== url) ogImg.setAttribute('content', url);
+          }
+        }
+      }
+
+      /* Уведомляем остальные модули, что конфиг применён */
+      document.dispatchEvent(new CustomEvent('tc-config-applied', { detail: { config: cfg } }));
     }
-    swapImages(theme);
-    syncDrawerThemeButtons();
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'light' ? '#F5F7FB' : '#06080F');
-    document.dispatchEvent(new CustomEvent('tc-theme-change', { detail: { theme: theme } }));
-  }
 
-  document.querySelectorAll('[data-theme-toggle]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      applyTheme(currentTheme() === 'light' ? 'dark' : 'light', true);
-    });
-  });
-  document.querySelectorAll('[data-set-theme]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      applyTheme(btn.getAttribute('data-set-theme'), true);
-    });
-  });
+    /* Асинхронный fetch. Тихо игнорирует любые ошибки */
+    fetch(CONFIG_URL, { cache: 'no-cache' })
+      .then(function(res){
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(applyConfig)
+      .catch(function(){ /* Молча оставляем дефолты из HTML */ });
+  })();
 
-  function maybeAutoUpdate(){
-    if (isAuto()){
-      var t = timeBasedTheme();
-      if (t !== currentTheme()) applyTheme(t, false);
-      else syncDrawerThemeButtons();
+  /* ==========================================================
+     2. ANNOUNCEMENT БАННЕР (управляется из config.json)
+     ==========================================================
+     Показывается если announcement.show === true.
+     Запоминается закрытие по announcement.id в localStorage.
+  */
+  (function initAnnounce(){
+    var bar = document.getElementById('announceBar');
+    if (!bar) return;
+
+    var closeBtn = bar.querySelector('[data-announce-close]');
+
+    function dismiss(id){
+      try { localStorage.setItem('tc-announce-closed-' + id, '1'); } catch(e){}
+      bar.hidden = true;
     }
-  }
-  setInterval(maybeAutoUpdate, 5 * 60 * 1000);
-  document.addEventListener('visibilitychange', function(){ if (!document.hidden) maybeAutoUpdate(); });
 
-  swapImages(currentTheme());
-  syncDrawerThemeButtons();
+    document.addEventListener('tc-config-applied', function(e){
+      var cfg = e.detail.config || {};
+      var ann = cfg.announcement || {};
+      if (!ann.show || !ann.id) { bar.hidden = true; return; }
 
+      /* Уже закрывали это объявление? */
+      var closed = false;
+      try { closed = localStorage.getItem('tc-announce-closed-' + ann.id) === '1'; } catch(e){}
+      if (closed) { bar.hidden = true; return; }
+
+      bar.hidden = false;
+    });
+
+    if (closeBtn){
+      closeBtn.addEventListener('click', function(){
+        /* Читаем id напрямую из байтового значения на странице */
+        var idAttr = 'promo_1';
+        /* Пробуем достать актуальный id, если уже применился */
+        try {
+          /* Косвенно — ищем по data-атрибуту в элементе текста */
+          var textEl = bar.querySelector('[data-config-text]');
+          if (textEl && textEl.dataset.announceId) idAttr = textEl.dataset.announceId;
+        } catch(e){}
+        dismiss(idAttr);
+      });
+    }
+
+    /* Дополнительно: сохраняем id при подстановке */
+    document.addEventListener('tc-config-applied', function(e){
+      var cfg = e.detail.config || {};
+      if (cfg.announcement && cfg.announcement.id){
+        var textEl = bar.querySelector('[data-config-text]');
+        if (textEl) textEl.dataset.announceId = cfg.announcement.id;
+      }
+    });
+  })();
+
+  /* ==========================================================
+     3. ТЕМА: АВТО ПО ВРЕМЕНИ + РУЧНОЕ ПЕРЕКЛЮЧЕНИЕ
+  */
+  (function initTheme(){
+    var themeSub = document.querySelector('[data-theme-sub]');
+
+    function currentTheme(){ return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
+    function isAuto(){ return root.getAttribute('data-theme-auto') === 'true'; }
+    function timeBasedTheme(){ var h = new Date().getHours(); return (h >= 7 && h < 19) ? 'light' : 'dark'; }
+
+    function swapImages(theme){
+      document.querySelectorAll('img[data-src-light]').forEach(function(img){
+        if (!img.dataset.srcDark) img.dataset.srcDark = img.getAttribute('src');
+        var target = theme === 'light' ? img.dataset.srcLight : img.dataset.srcDark;
+        if (img.getAttribute('src') === target) return;
+        img.setAttribute('src', target);
+      });
+    }
+
+    function syncButtons(){
+      var t = currentTheme();
+      document.querySelectorAll('[data-set-theme]').forEach(function(b){
+        b.classList.toggle('is-active', b.getAttribute('data-set-theme') === t);
+      });
+      if (themeSub){
+        if (isAuto()) themeSub.textContent = 'Авто по времени (07:00 – 19:00)';
+        else themeSub.textContent = t === 'light' ? 'Светлая тема' : 'Тёмная тема';
+      }
+    }
+
+    function applyTheme(theme, save){
+      root.setAttribute('data-theme', theme);
+      if (save){
+        try { localStorage.setItem('tc-theme', theme); } catch(e){}
+        root.setAttribute('data-theme-auto', 'false');
+      }
+      swapImages(theme);
+      syncButtons();
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', theme === 'light' ? '#F5F7FB' : '#06080F');
+      document.dispatchEvent(new CustomEvent('tc-theme-change', { detail: { theme: theme } }));
+    }
+
+    document.querySelectorAll('[data-theme-toggle]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        applyTheme(currentTheme() === 'light' ? 'dark' : 'light', true);
+      });
+    });
+    document.querySelectorAll('[data-set-theme]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        applyTheme(btn.getAttribute('data-set-theme'), true);
+      });
+    });
+
+    function maybeAutoUpdate(){
+      if (isAuto()){
+        var t = timeBasedTheme();
+        if (t !== currentTheme()) applyTheme(t, false);
+        else syncButtons();
+      }
+    }
+    setInterval(maybeAutoUpdate, 5 * 60 * 1000);
+    document.addEventListener('visibilitychange', function(){
+      if (!document.hidden) maybeAutoUpdate();
+    });
+
+    swapImages(currentTheme());
+    syncButtons();
+
+    /* Экспортируем для других модулей */
+    window.__tcTheme = { current: currentTheme, isLight: function(){ return currentTheme() === 'light'; } };
+  })();
+
+  /* ==========================================================
+     4. HEADER SCROLL + AMBIENT + MOBILE CTA
+  */
   var header = document.getElementById('header');
   var mobileCta = document.getElementById('mobileCta');
   var blobs = document.querySelectorAll('.ambient i');
@@ -1225,17 +1537,40 @@ p{margin:0}
   }, { passive: true });
   onScroll();
 
+  /* ==========================================================
+     5. DRAWER (мобильное меню)
+  */
   (function initDrawer(){
     var burger = document.querySelector('.burger');
     var drawer = document.getElementById('drawer');
     if (!burger || !drawer) return;
-    function open(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); burger.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; }
-    function close(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
-    burger.addEventListener('click', function(){ if (drawer.classList.contains('open')) close(); else open(); });
-    drawer.querySelectorAll('[data-drawer-close]').forEach(function(el){ el.addEventListener('click', close); });
-    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && drawer.classList.contains('open')) close(); });
+
+    function open(){
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+      burger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function close(){
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    burger.addEventListener('click', function(){
+      if (drawer.classList.contains('open')) close(); else open();
+    });
+    drawer.querySelectorAll('[data-drawer-close]').forEach(function(el){
+      el.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && drawer.classList.contains('open')) close();
+    });
   })();
 
+  /* ==========================================================
+     6. REVEAL ON SCROLL (появление блоков)
+  */
   var revealEls = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
   if ('IntersectionObserver' in window && !reduceMotion){
     var groups = new Map();
@@ -1246,16 +1581,27 @@ p{margin:0}
       el.style.transitionDelay = Math.min(idx * 70, 420) + 'ms';
     });
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){ if (entry.isIntersecting){ entry.target.classList.add('is-visible'); io.unobserve(entry.target); } });
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
     revealEls.forEach(function(el){ io.observe(el); });
-  } else { revealEls.forEach(function(el){ el.classList.add('is-visible'); }); }
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
 
+  /* ==========================================================
+     7. CANVAS GRAPH — график цен
+  */
   (function initChart(){
     var canvas = document.getElementById('priceChart');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
     var host = canvas.parentElement;
+
     var DATA = [
       {l:'15.05',v:4990},{l:'25.05',v:4710},{l:'04.06',v:4480},{l:'14.06',v:4610},
       {l:'24.06',v:4130},{l:'04.07',v:3860},{l:'14.07',v:4020},{l:'24.07',v:3660},
@@ -1266,8 +1612,8 @@ p{margin:0}
     var PAD = { t: 38, r: 22, b: 34, l: 22 };
     var pts = [], yMin = 0, yMax = 1;
     var progress = 0, hoverIndex = -1, started = false;
-    var isLight = function(){ return document.documentElement.getAttribute('data-theme') === 'light'; };
 
+    function isLight(){ return root.getAttribute('data-theme') === 'light'; }
     function themeColors(){
       return isLight()
         ? { grid:'rgba(11,18,36,.08)', target:'rgba(0,165,82,.85)', targetText:'rgba(0,140,66,.95)', line:'#005BFF', lineGlow:'rgba(0,91,255,.55)', badgeBg:'rgba(255,255,255,.96)', xText:'rgba(92,107,133,.85)', hoverV:'rgba(11,18,36,.14)', lastDot:'#00A552', hoverDot:'#005BFF', fillTop:'rgba(0,91,255,.22)', fillMid:'rgba(0,91,255,.07)' }
@@ -1281,7 +1627,9 @@ p{margin:0}
       var hi = Math.max.apply(null, vals);
       yMin = lo - 320; yMax = hi + 300;
       var iw = W - PAD.l - PAD.r;
-      pts = DATA.map(function(d, i){ return { x: PAD.l + iw * (i / (DATA.length - 1)), y: yOf(d.v), v: d.v, l: d.l }; });
+      pts = DATA.map(function(d, i){
+        return { x: PAD.l + iw * (i / (DATA.length - 1)), y: yOf(d.v), v: d.v, l: d.l };
+      });
     }
     function pathSmooth(){
       ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y);
@@ -1434,25 +1782,47 @@ p{margin:0}
     }
 
     canvas.addEventListener('mousemove', function(e){ pointerMove(e.clientX); });
-    canvas.addEventListener('mouseleave', function(){ if (hoverIndex !== -1){ hoverIndex = -1; draw(); } });
-    canvas.addEventListener('touchstart', function(e){ if (e.touches[0]) pointerMove(e.touches[0].clientX); }, { passive: true });
-    canvas.addEventListener('touchmove', function(e){ if (e.touches[0]) pointerMove(e.touches[0].clientX); }, { passive: true });
-    canvas.addEventListener('touchend', function(){ hoverIndex = -1; draw(); });
+    canvas.addEventListener('mouseleave', function(){
+      if (hoverIndex !== -1){ hoverIndex = -1; draw(); }
+    });
+    canvas.addEventListener('touchstart', function(e){
+      if (e.touches[0]) pointerMove(e.touches[0].clientX);
+    }, { passive: true });
+    canvas.addEventListener('touchmove', function(e){
+      if (e.touches[0]) pointerMove(e.touches[0].clientX);
+    }, { passive: true });
+    canvas.addEventListener('touchend', function(){
+      hoverIndex = -1; draw();
+    });
     document.addEventListener('tc-theme-change', function(){ draw(); });
 
     resize();
-    if ('ResizeObserver' in window){ var ro = new ResizeObserver(function(){ resize(); }); ro.observe(host); }
-    else { window.addEventListener('resize', resize); }
+    if ('ResizeObserver' in window){
+      var ro = new ResizeObserver(function(){ resize(); });
+      ro.observe(host);
+    } else {
+      window.addEventListener('resize', resize);
+    }
 
-    if (reduceMotion){ progress = 1; draw(); }
-    else if ('IntersectionObserver' in window){
+    if (reduceMotion){
+      progress = 1; draw();
+    } else if ('IntersectionObserver' in window){
       var cio = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){ if (en.isIntersecting && !started){ started = true; animate(); cio.disconnect(); } });
+        entries.forEach(function(en){
+          if (en.isIntersecting && !started){
+            started = true; animate(); cio.disconnect();
+          }
+        });
       }, { threshold: 0.3 });
       cio.observe(host);
-    } else { started = true; animate(); }
+    } else {
+      started = true; animate();
+    }
   })();
 
+  /* ==========================================================
+     8. CALCULATOR — калькулятор экономии
+  */
   (function initCalc(){
     var range = document.getElementById('budgetRange');
     if (!range) return;
@@ -1461,9 +1831,10 @@ p{margin:0}
     var savingYear = document.getElementById('savingYear');
     var nf = new Intl.NumberFormat('ru-RU');
     var RATE = 0.28;
+
     function paintTrack(){
       var pct = (range.value - range.min) / (range.max - range.min) * 100;
-      var empty = document.documentElement.getAttribute('data-theme') === 'light' ? 'rgba(11,18,36,.08)' : 'rgba(255,255,255,.1)';
+      var empty = root.getAttribute('data-theme') === 'light' ? 'rgba(11,18,36,.08)' : 'rgba(255,255,255,.1)';
       range.style.background = 'linear-gradient(90deg,#005BFF 0%,#00C46A ' + pct + '%,' + empty + ' ' + pct + '%)';
     }
     function update(){
@@ -1479,6 +1850,9 @@ p{margin:0}
     update();
   })();
 
+  /* ==========================================================
+     9. FAQ — аккордеон
+  */
   (function initFaq(){
     var items = Array.prototype.slice.call(document.querySelectorAll('.faq__item'));
     if (!items.length) return;
@@ -1496,8 +1870,15 @@ p{margin:0}
           if (op) op.style.maxHeight = '0px';
           if (ob) ob.setAttribute('aria-expanded', 'false');
         });
-        if (isOpen){ item.classList.remove('open'); panel.style.maxHeight = '0px'; btn.setAttribute('aria-expanded', 'false'); }
-        else { item.classList.add('open'); panel.style.maxHeight = panel.scrollHeight + 'px'; btn.setAttribute('aria-expanded', 'true'); }
+        if (isOpen){
+          item.classList.remove('open');
+          panel.style.maxHeight = '0px';
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('open');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
       });
     });
     window.addEventListener('resize', function(){
@@ -1509,6 +1890,9 @@ p{margin:0}
     });
   })();
 
+  /* ==========================================================
+     10. ПЛАВНЫЕ АНКОРЫ
+  */
   (function initAnchors(){
     var links = document.querySelectorAll('a[href^="#"]');
     links.forEach(function(link){
