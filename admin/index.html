@@ -4,135 +4,1945 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Пульт управления — Трекер Цен</title>
-<meta name="theme-color" content="#06080F"><meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#06080F">
+<meta name="robots" content="noindex,nofollow,noarchive">
+
 <style>
-:root{color-scheme:dark;--bg:#06080F;--panel:#101625;--panel2:#151d2f;--line:rgba(255,255,255,.09);--text:#f4f7fb;--muted:#91a0b7;--accent:#00e07f;--blue:#5b8cff;--danger:#ff647c;--shadow:0 24px 70px rgba(0,0,0,.32)}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0%,rgba(0,91,255,.16),transparent 32%),radial-gradient(circle at 90% 20%,rgba(0,224,127,.08),transparent 28%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:760px;margin:auto;padding:18px 14px 44px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 18px}.brand{display:flex;align-items:center;gap:11px}.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(160deg,#00e07f,#008c46);display:grid;place-items:center;font-weight:900;font-size:20px}.brand b{display:block;font-size:17px}.brand span{display:block;color:var(--muted);font-size:12px}.status{font-size:12px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}.status.ok{color:#9affc9;border-color:rgba(0,224,127,.28);background:rgba(0,224,127,.07)}
-.card{background:linear-gradient(180deg,rgba(20,26,46,.92),rgba(11,16,28,.92));border:1px solid var(--line);border-radius:22px;padding:18px;margin:12px 0;box-shadow:var(--shadow)}.head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:15px}.head h2{margin:0;font-size:17px}.head p{margin:4px 0 0;color:var(--muted);font-size:12.5px}.tag{font-size:11px;color:#a9b7ca;border:1px solid var(--line);border-radius:999px;padding:5px 8px;white-space:nowrap}.field{margin:13px 0}.field label{display:flex;justify-content:space-between;gap:10px;margin-bottom:7px;font-weight:650;font-size:13px}.hint{color:var(--muted);font-size:11.5px;font-weight:400;margin-top:4px}.input,.textarea{width:100%;border:1px solid rgba(255,255,255,.1);background:#0b111e;color:var(--text);border-radius:13px;padding:12px 13px;outline:none;font:inherit}.input:focus,.textarea:focus{border-color:rgba(91,140,255,.65);box-shadow:0 0 0 3px rgba(91,140,255,.1)}.textarea{min-height:100px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}.switch span{font-weight:650}.switch small{display:block;color:var(--muted);font-weight:400;font-size:11.5px;margin-top:2px}.toggle{position:relative;width:52px;height:30px;flex:none}.toggle input{display:none}.track{position:absolute;inset:0;border-radius:999px;background:#273146;border:1px solid rgba(255,255,255,.08);transition:.2s}.track:after{content:"";position:absolute;width:24px;height:24px;left:2px;top:2px;border-radius:50%;background:#d7deea;transition:.2s}.toggle input:checked+.track{background:#00b967}.toggle input:checked+.track:after{transform:translateX(22px);background:white}.preview{border:1px dashed rgba(255,255,255,.14);border-radius:16px;padding:13px;background:rgba(255,255,255,.025)}.preview b{display:block;margin-bottom:4px}.preview p{margin:0;color:var(--muted);font-size:12.5px}.actions{position:sticky;bottom:12px;z-index:5;display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px;padding:10px;border:1px solid var(--line);background:rgba(6,8,15,.88);backdrop-filter:blur(18px);border-radius:18px}.btn{border:0;border-radius:13px;padding:13px 12px;font:700 14px inherit;cursor:pointer}.primary{background:linear-gradient(180deg,#fff,#dce6f7);color:#06080f}.secondary{background:#182136;color:#e8edf5;border:1px solid var(--line)}.danger{background:rgba(255,100,124,.1);color:#ff9aac;border:1px solid rgba(255,100,124,.2)}.notice{display:none;margin:12px 0;padding:12px 13px;border-radius:14px;font-size:13px}.notice.show{display:block}.notice.ok{background:rgba(0,224,127,.08);border:1px solid rgba(0,224,127,.2);color:#a9ffd0}.notice.err{background:rgba(255,100,124,.08);border:1px solid rgba(255,100,124,.2);color:#ffb1be}.locked{opacity:.55}.locked input,.locked textarea{cursor:not-allowed}.foot{color:#68758b;font-size:11px;text-align:center;margin-top:18px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:flex-end;justify-content:center;padding:14px;z-index:20}.modal.open{display:flex}.sheet{width:min(760px,100%);background:#101625;border:1px solid var(--line);border-radius:22px;padding:18px}.sheet h3{margin:0 0 8px}.sheet p{color:var(--muted);font-size:13px}.code{background:#080d17;border:1px solid var(--line);padding:10px;border-radius:12px;font:12px ui-monospace,SFMono-Regular,Menlo,monospace;overflow:auto;max-height:240px;white-space:pre-wrap}
-@media(max-width:560px){.row{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.top{align-items:flex-start}.status{font-size:10px}}
+:root{
+  color-scheme:dark;
+  --bg:#06080F;
+  --panel:#101625;
+  --panel2:#151d2f;
+  --line:rgba(255,255,255,.09);
+  --text:#f4f7fb;
+  --muted:#91a0b7;
+  --accent:#00e07f;
+  --blue:#5b8cff;
+  --danger:#ff647c;
+  --shadow:0 24px 70px rgba(0,0,0,.32)
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(0,91,255,.16),transparent 32%),
+    radial-gradient(circle at 90% 20%,rgba(0,224,127,.08),transparent 28%),
+    var(--bg);
+  color:var(--text);
+  font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+
+.wrap{
+  max-width:760px;
+  margin:auto;
+  padding:18px 14px 44px
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:4px 0 18px
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:linear-gradient(160deg,#00e07f,#008c46);
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  font-size:20px
+}
+
+.brand b{
+  display:block;
+  font-size:17px
+}
+
+.brand span{
+  display:block;
+  color:var(--muted);
+  font-size:12px
+}
+
+.status{
+  font-size:12px;
+  padding:7px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--muted)
+}
+
+.status.ok{
+  color:#9affc9;
+  border-color:rgba(0,224,127,.28);
+  background:rgba(0,224,127,.07)
+}
+
+.card{
+  background:linear-gradient(180deg,rgba(20,26,46,.92),rgba(11,16,28,.92));
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:18px;
+  margin:12px 0;
+  box-shadow:var(--shadow)
+}
+
+.head{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:flex-start;
+  margin-bottom:15px
+}
+
+.head h2{
+  margin:0;
+  font-size:17px
+}
+
+.head p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:12.5px
+}
+
+.tag{
+  font-size:11px;
+  color:#a9b7ca;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:5px 8px;
+  white-space:nowrap
+}
+
+.field{
+  margin:13px 0
+}
+
+.field label{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:7px;
+  font-weight:650;
+  font-size:13px
+}
+
+.hint{
+  color:var(--muted);
+  font-size:11.5px;
+  font-weight:400;
+  margin-top:4px
+}
+
+.input,.textarea{
+  width:100%;
+  border:1px solid rgba(255,255,255,.1);
+  background:#0b111e;
+  color:var(--text);
+  border-radius:13px;
+  padding:12px 13px;
+  outline:none;
+  font:inherit
+}
+
+.input:focus,.textarea:focus{
+  border-color:rgba(91,140,255,.65);
+  box-shadow:0 0 0 3px rgba(91,140,255,.1)
+}
+
+.textarea{
+  min-height:100px;
+  resize:vertical
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}
+
+.switch{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 0
+}
+
+.switch span{
+  font-weight:650
+}
+
+.switch small{
+  display:block;
+  color:var(--muted);
+  font-weight:400;
+  font-size:11.5px;
+  margin-top:2px
+}
+
+.toggle{
+  position:relative;
+  width:52px;
+  height:30px;
+  flex:none
+}
+
+.toggle input{
+  display:none
+}
+
+.track{
+  position:absolute;
+  inset:0;
+  border-radius:999px;
+  background:#273146;
+  border:1px solid rgba(255,255,255,.08);
+  transition:.2s
+}
+
+.track:after{
+  content:"";
+  position:absolute;
+  width:24px;
+  height:24px;
+  left:2px;
+  top:2px;
+  border-radius:50%;
+  background:#d7deea;
+  transition:.2s
+}
+
+.toggle input:checked+.track{
+  background:#00b967
+}
+
+.toggle input:checked+.track:after{
+  transform:translateX(22px);
+  background:white
+}
+
+.preview{
+  border:1px dashed rgba(255,255,255,.14);
+  border-radius:16px;
+  padding:13px;
+  background:rgba(255,255,255,.025)
+}
+
+.preview b{
+  display:block;
+  margin-bottom:4px
+}
+
+.preview p{
+  margin:0;
+  color:var(--muted);
+  font-size:12.5px
+}
+
+.actions{
+  position:sticky;
+  bottom:12px;
+  z-index:5;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:14px;
+  padding:10px;
+  border:1px solid var(--line);
+  background:rgba(6,8,15,.88);
+  backdrop-filter:blur(18px);
+  border-radius:18px
+}
+
+.btn{
+  border:0;
+  border-radius:13px;
+  padding:13px 12px;
+  font:700 14px inherit;
+  cursor:pointer
+}
+
+.btn:disabled{
+  opacity:.55;
+  cursor:not-allowed
+}
+
+.primary{
+  background:linear-gradient(180deg,#fff,#dce6f7);
+  color:#06080f
+}
+
+.secondary{
+  background:#182136;
+  color:#e8edf5;
+  border:1px solid var(--line)
+}
+
+.danger{
+  background:rgba(255,100,124,.1);
+  color:#ff9aac;
+  border:1px solid rgba(255,100,124,.2)
+}
+
+.notice{
+  display:none;
+  margin:12px 0;
+  padding:12px 13px;
+  border-radius:14px;
+  font-size:13px
+}
+
+.notice.show{
+  display:block
+}
+
+.notice.ok{
+  background:rgba(0,224,127,.08);
+  border:1px solid rgba(0,224,127,.2);
+  color:#a9ffd0
+}
+
+.notice.err{
+  background:rgba(255,100,124,.08);
+  border:1px solid rgba(255,100,124,.2);
+  color:#ffb1be
+}
+
+.locked{
+  opacity:.55
+}
+
+.locked input,
+.locked textarea{
+  cursor:not-allowed
+}
+
+.foot{
+  color:#68758b;
+  font-size:11px;
+  text-align:center;
+  margin-top:18px
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  padding:14px;
+  z-index:20
+}
+
+.modal.open{
+  display:flex
+}
+
+.sheet{
+  width:min(760px,100%);
+  background:#101625;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:18px
+}
+
+.sheet h3{
+  margin:0 0 8px
+}
+
+.sheet p{
+  color:var(--muted);
+  font-size:13px
+}
+
+.code{
+  background:#080d17;
+  border:1px solid var(--line);
+  padding:10px;
+  border-radius:12px;
+  font:12px ui-monospace,SFMono-Regular,Menlo,monospace;
+  overflow:auto;
+  max-height:240px;
+  white-space:pre-wrap
+}
+
+.modal-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:10px
+}
+
+@media(max-width:560px){
+  .row{
+    grid-template-columns:1fr
+  }
+
+  .actions{
+    grid-template-columns:1fr
+  }
+
+  .modal-actions{
+    grid-template-columns:1fr
+  }
+
+  .top{
+    align-items:flex-start
+  }
+
+  .status{
+    font-size:10px
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div class="wrap">
+
   <header class="top">
-    <div class="brand"><div class="logo">Ц</div><div><b>Трекер Цен</b><span>Пульт удалённого управления</span></div></div>
+    <div class="brand">
+      <div class="logo">Ц</div>
+      <div>
+        <b>Трекер Цен</b>
+        <span>Пульт удалённого управления</span>
+      </div>
+    </div>
+
     <div id="status" class="status">Загрузка…</div>
   </header>
 
   <div id="notice" class="notice"></div>
 
+  <!-- ПУБЛИКАЦИЯ -->
   <section class="card">
-    <div class="head"><div><h2>📱 Обновление приложения</h2><p>Главный инструмент управления старыми версиями.</p></div><span class="tag">APK 2.0.0</span></div>
-    <div class="row">
-      <div class="field"><label>Текущая версия</label><input id="currentVersion" class="input" type="text"></div>
-      <div class="field"><label>Минимальный versionCode</label><input id="minVersionCode" class="input" type="number" min="1"></div>
+
+    <div class="head">
+      <div>
+        <h2>🔐 Публикация</h2>
+        <p>Защищённая публикация config.json через Cloudflare Worker.</p>
+      </div>
+
+      <span class="tag">Protected API</span>
     </div>
-    <div class="switch"><div><span>Принудительное обновление</span><small>Старая версия не сможет продолжить работу.</small></div><label class="toggle"><input id="forceUpdate" type="checkbox"><span class="track"></span></label></div>
-    <div class="field"><label>Ссылка на обновление</label><input id="updateUrl" class="input" type="url"></div>
-    <div class="field"><label>Текст окна обновления</label><textarea id="updateMessage" class="textarea"></textarea></div>
-    <div class="preview"><b>Предпросмотр</b><p id="updatePreview">—</p></div>
-  </section>
 
-  <section class="card">
-    <div class="head"><div><h2>📢 Объявление</h2><p>Контент, который можно менять без выпуска новой версии APK.</p></div><span class="tag">Сайт: да</span></div>
-    <div class="switch"><div><span>Показывать объявление</span><small>Сайт уже использует этот блок. APK 2.0.0 его не отображает.</small></div><label class="toggle"><input id="annShow" type="checkbox"><span class="track"></span></label></div>
-    <div class="field"><label>Текст</label><textarea id="annText" class="textarea"></textarea></div>
-    <div class="row">
-      <div class="field"><label>Текст кнопки</label><input id="annButton" class="input" type="text"></div>
-      <div class="field"><label>ID объявления</label><input id="annId" class="input" type="text"></div>
+    <div class="field">
+      <label>Ключ публикации</label>
+
+      <input
+        id="adminToken"
+        class="input"
+        type="password"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Введи ADMIN_TOKEN"
+      >
+
+      <div class="hint">
+        Это ADMIN_TOKEN из Cloudflare Worker.
+        GitHub-токен сюда не вводится.
+        Ключ используется только во время текущей сессии и не сохраняется браузером.
+      </div>
     </div>
-    <div class="field"><label>Ссылка</label><input id="annUrl" class="input" type="url"></div>
+
   </section>
 
+  <!-- ОБНОВЛЕНИЕ -->
   <section class="card">
-    <div class="head"><div><h2>📦 Ограничения приложения</h2><p>Значения синхронно используются Android и сайтом.</p></div><span class="tag">Remote</span></div>
-    <div class="row">
-      <div class="field"><label>Максимум товаров</label><input id="maxProducts" class="input" type="number" min="1" max="1000"></div>
-      <div class="field"><label>История, месяцев</label><input id="historyMonths" class="input" type="number" min="1" max="24"></div>
+
+    <div class="head">
+      <div>
+        <h2>📱 Обновление приложения</h2>
+        <p>Главный инструмент управления старыми версиями.</p>
+      </div>
+
+      <span class="tag">APK 2.0.0</span>
     </div>
-    <div class="preview"><b>Что изменится на сайте</b><p>Версия, лимит товаров и период истории обновятся автоматически из того же config.json.</p></div>
-  </section>
 
-  <section class="card">
-    <div class="head"><div><h2>💰 Партнёрские ссылки</h2><p>Меняется без новой версии APK.</p></div><span class="tag">SubID</span></div>
-    <div class="field"><label>Affiliate SubID</label><input id="affiliateSubid" class="input" type="text"></div>
-    <div class="hint">Отдельный переключатель «включить/выключить» пока не показываем: APK 2.0.0 не использует affiliate_enabled как самостоятельный флаг.</div>
-  </section>
-
-  <section class="card">
-    <div class="head"><div><h2>🔗 Ссылки</h2><p>Меняются одновременно для приложения и сайта там, где текущий APK их читает.</p></div><span class="tag">Links</span></div>
-    <div class="field"><label>Telegram</label><input id="telegramUrl" class="input" type="url"></div>
-    <div class="field"><label>MAX</label><input id="maxUrl" class="input" type="url"></div>
-    <div class="field"><label>RuStore</label><input id="rustoreUrl" class="input" type="url"></div>
-    <div class="field"><label>Политика конфиденциальности</label><input id="privacyUrl" class="input" type="url"></div>
-    <div class="field"><label>Пользовательское соглашение</label><input id="termsUrl" class="input" type="url"></div>
-  </section>
-
-  <section class="card">
-    <div class="head"><div><h2>🌐 Сайт</h2><p>Параметры, которые логично держать в том же JSON.</p></div><span class="tag">Site only</span></div>
-    <div class="field"><label>SEO title</label><input id="seoTitle" class="input" type="text"></div>
-    <div class="field"><label>SEO description</label><textarea id="seoDescription" class="textarea"></textarea></div>
     <div class="row">
-      <div class="field"><label>OG image</label><input id="ogImage" class="input" type="text"></div>
-      <div class="field"><label>Год в футере</label><input id="footerYear" class="input" type="text"></div>
+
+      <div class="field">
+        <label>Текущая версия</label>
+        <input id="currentVersion" class="input" type="text">
+      </div>
+
+      <div class="field">
+        <label>Минимальный versionCode</label>
+        <input id="minVersionCode" class="input" type="number" min="1">
+      </div>
+
     </div>
-    <div class="field"><label>Количество виджетов на сайте</label><input id="widgetsCount" class="input" type="number" min="1" max="10"></div>
-    <div class="hint">Сейчас в APK 2.0.0 реально доступно 4 виджета. Это поле пока меняет отображение сайта, а не состав Android-виджетов.</div>
+
+    <div class="switch">
+
+      <div>
+        <span>Принудительное обновление</span>
+        <small>Старая версия не сможет продолжить работу.</small>
+      </div>
+
+      <label class="toggle">
+        <input id="forceUpdate" type="checkbox">
+        <span class="track"></span>
+      </label>
+
+    </div>
+
+    <div class="field">
+      <label>Ссылка на обновление</label>
+      <input id="updateUrl" class="input" type="url">
+    </div>
+
+    <div class="field">
+      <label>Текст окна обновления</label>
+      <textarea id="updateMessage" class="textarea"></textarea>
+    </div>
+
+    <div class="preview">
+      <b>Предпросмотр</b>
+      <p id="updatePreview">—</p>
+    </div>
+
   </section>
 
+  <!-- ОБЪЯВЛЕНИЕ -->
+  <section class="card">
+
+    <div class="head">
+      <div>
+        <h2>📢 Объявление</h2>
+        <p>Контент, который можно менять без выпуска новой версии APK.</p>
+      </div>
+
+      <span class="tag">Сайт: да</span>
+    </div>
+
+    <div class="switch">
+
+      <div>
+        <span>Показывать объявление</span>
+        <small>
+          Сайт уже использует этот блок. APK 2.0.0 его не отображает.
+        </small>
+      </div>
+
+      <label class="toggle">
+        <input id="annShow" type="checkbox">
+        <span class="track"></span>
+      </label>
+
+    </div>
+
+    <div class="field">
+      <label>Текст</label>
+      <textarea id="annText" class="textarea"></textarea>
+    </div>
+
+    <div class="row">
+
+      <div class="field">
+        <label>Текст кнопки</label>
+        <input id="annButton" class="input" type="text">
+      </div>
+
+      <div class="field">
+        <label>ID объявления</label>
+        <input id="annId" class="input" type="text">
+      </div>
+
+    </div>
+
+    <div class="field">
+      <label>Ссылка</label>
+      <input id="annUrl" class="input" type="url">
+    </div>
+
+  </section>
+
+  <!-- ОГРАНИЧЕНИЯ -->
+  <section class="card">
+
+    <div class="head">
+      <div>
+        <h2>📦 Ограничения приложения</h2>
+        <p>Значения синхронно используются Android и сайтом.</p>
+      </div>
+
+      <span class="tag">Remote</span>
+    </div>
+
+    <div class="row">
+
+      <div class="field">
+        <label>Максимум товаров</label>
+        <input
+          id="maxProducts"
+          class="input"
+          type="number"
+          min="1"
+          max="1000"
+        >
+      </div>
+
+      <div class="field">
+        <label>История, месяцев</label>
+        <input
+          id="historyMonths"
+          class="input"
+          type="number"
+          min="1"
+          max="24"
+        >
+      </div>
+
+    </div>
+
+    <div class="preview">
+      <b>Что изменится на сайте</b>
+      <p>
+        Версия, лимит товаров и период истории обновятся автоматически
+        из того же config.json.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ПАРТНЕРСКИЕ ССЫЛКИ -->
+  <section class="card">
+
+    <div class="head">
+      <div>
+        <h2>💰 Партнёрские ссылки</h2>
+        <p>Меняется без новой версии APK.</p>
+      </div>
+
+      <span class="tag">SubID</span>
+    </div>
+
+    <div class="field">
+      <label>Affiliate SubID</label>
+      <input id="affiliateSubid" class="input" type="text">
+    </div>
+
+    <div class="hint">
+      Отдельный переключатель «включить/выключить» пока не показываем:
+      APK 2.0.0 не использует affiliate_enabled как самостоятельный флаг.
+    </div>
+
+  </section>
+
+  <!-- ССЫЛКИ -->
+  <section class="card">
+
+    <div class="head">
+      <div>
+        <h2>🔗 Ссылки</h2>
+        <p>
+          Меняются одновременно для приложения и сайта там,
+          где текущий APK их читает.
+        </p>
+      </div>
+
+      <span class="tag">Links</span>
+    </div>
+
+    <div class="field">
+      <label>Telegram</label>
+      <input id="telegramUrl" class="input" type="url">
+    </div>
+
+    <div class="field">
+      <label>MAX</label>
+      <input id="maxUrl" class="input" type="url">
+    </div>
+
+    <div class="field">
+      <label>RuStore</label>
+      <input id="rustoreUrl" class="input" type="url">
+    </div>
+
+    <div class="field">
+      <label>Политика конфиденциальности</label>
+      <input id="privacyUrl" class="input" type="url">
+    </div>
+
+    <div class="field">
+      <label>Пользовательское соглашение</label>
+      <input id="termsUrl" class="input" type="url">
+    </div>
+
+  </section>
+
+  <!-- САЙТ -->
+  <section class="card">
+
+    <div class="head">
+      <div>
+        <h2>🌐 Сайт</h2>
+        <p>Параметры, которые логично держать в том же JSON.</p>
+      </div>
+
+      <span class="tag">Site only</span>
+    </div>
+
+    <div class="field">
+      <label>SEO title</label>
+      <input id="seoTitle" class="input" type="text">
+    </div>
+
+    <div class="field">
+      <label>SEO description</label>
+      <textarea id="seoDescription" class="textarea"></textarea>
+    </div>
+
+    <div class="row">
+
+      <div class="field">
+        <label>OG image</label>
+        <input id="ogImage" class="input" type="text">
+      </div>
+
+      <div class="field">
+        <label>Год в футере</label>
+        <input id="footerYear" class="input" type="text">
+      </div>
+
+    </div>
+
+    <div class="field">
+      <label>Количество виджетов на сайте</label>
+
+      <input
+        id="widgetsCount"
+        class="input"
+        type="number"
+        min="0"
+        max="4"
+      >
+    </div>
+
+    <div class="hint">
+      Сейчас в APK 2.0.0 реально доступно 4 виджета.
+      Это поле пока меняет отображение сайта, а не состав Android-виджетов.
+    </div>
+
+  </section>
+
+  <!-- ДЕЙСТВИЯ -->
   <div class="actions">
-    <button class="btn secondary" id="reloadBtn">Загрузить config</button>
-    <button class="btn secondary" id="downloadBtn">Скачать JSON</button>
-    <button class="btn primary" id="publishBtn">Опубликовать</button>
-    <button class="btn danger" id="resetBtn">Вернуть загруженное</button>
+
+    <button class="btn secondary" id="reloadBtn">
+      Загрузить config
+    </button>
+
+    <button class="btn secondary" id="downloadBtn">
+      Скачать JSON
+    </button>
+
+    <button class="btn primary" id="publishBtn">
+      Опубликовать
+    </button>
+
+    <button class="btn danger" id="resetBtn">
+      Вернуть загруженное
+    </button>
+
   </div>
 
-  <div class="foot">Remote Control v1 · Перед публикацией выполняется проверка JSON. Публикация требует защищённого backend-эндпоинта; токен не хранится в странице.</div>
+  <div class="foot">
+    Remote Control v1 · Перед публикацией выполняется проверка JSON.
+    Публикация выполняется через защищённый Cloudflare Worker.
+    ADMIN_TOKEN не сохраняется в браузере.
+  </div>
+
 </div>
 
-<div id="modal" class="modal"><div class="sheet"><h3>Что будет опубликовано</h3><p>Ниже итоговый config.json. В этой версии интерфейса можно скачать его сразу; подключение защищённого publish API делается отдельно.</p><div id="jsonPreview" class="code"></div><button id="closeModal" class="btn primary" style="width:100%;margin-top:10px">Закрыть</button></div></div>
+<!-- МОДАЛЬНОЕ ОКНО -->
+<div id="modal" class="modal">
+
+  <div class="sheet">
+
+    <h3>Что будет опубликовано</h3>
+
+    <p>
+      Ниже итоговый config.json.
+      После подтверждения он будет передан защищённому Cloudflare Worker,
+      который обновит config.json в GitHub.
+    </p>
+
+    <div id="jsonPreview" class="code"></div>
+
+    <div class="modal-actions">
+
+      <button
+        id="closeModal"
+        class="btn secondary"
+        type="button"
+      >
+        Отмена
+      </button>
+
+      <button
+        id="confirmPublish"
+        class="btn primary"
+        type="button"
+      >
+        Подтвердить публикацию
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 
 <script>
 (function(){
+
 'use strict';
-var cfg=null, loadedCfg=null;
-var $=function(id){return document.getElementById(id)};
-var fields={
- currentVersion:'currentVersion',minVersionCode:'minVersionCode',forceUpdate:'forceUpdate',updateUrl:'updateUrl',updateMessage:'updateMessage',
- annShow:'annShow',annText:'annText',annButton:'annButton',annId:'annId',annUrl:'annUrl',
- maxProducts:'maxProducts',historyMonths:'historyMonths',affiliateSubid:'affiliateSubid',telegramUrl:'telegramUrl',maxUrl:'maxUrl',rustoreUrl:'rustoreUrl',privacyUrl:'privacyUrl',termsUrl:'termsUrl',
- seoTitle:'seoTitle',seoDescription:'seoDescription',ogImage:'ogImage',footerYear:'footerYear',widgetsCount:'widgetsCount'
+
+/*
+ * ============================================================
+ * CONFIG
+ * ============================================================
+ *
+ * Это публичный адрес Cloudflare Worker.
+ *
+ * GitHub TOKEN здесь НИКОГДА не используется.
+ * GitHub TOKEN хранится только в Secrets Cloudflare Worker.
+ *
+ * ADMIN_TOKEN вводится пользователем вручную и существует
+ * только в памяти текущей страницы.
+ */
+var API_BASE =
+  'https://pricetrackerguru-config-api.price-tracker-ru.workers.dev';
+
+
+var cfg = null;
+var loadedCfg = null;
+var pendingCfg = null;
+
+
+var $ = function(id){
+  return document.getElementById(id);
 };
-function setNotice(msg,type){var n=$('notice');n.textContent=msg;n.className='notice show '+(type||'ok');}
-function clearNotice(){$('notice').className='notice';}
-function setVal(k,v){$(fields[k]).value=v==null?'':v}
-function setCheck(k,v){$(fields[k]).checked=!!v}
+
+
+var fields = {
+
+  currentVersion:'currentVersion',
+  minVersionCode:'minVersionCode',
+  forceUpdate:'forceUpdate',
+  updateUrl:'updateUrl',
+  updateMessage:'updateMessage',
+
+  annShow:'annShow',
+  annText:'annText',
+  annButton:'annButton',
+  annId:'annId',
+  annUrl:'annUrl',
+
+  maxProducts:'maxProducts',
+  historyMonths:'historyMonths',
+
+  affiliateSubid:'affiliateSubid',
+
+  telegramUrl:'telegramUrl',
+  maxUrl:'maxUrl',
+  rustoreUrl:'rustoreUrl',
+  privacyUrl:'privacyUrl',
+  termsUrl:'termsUrl',
+
+  seoTitle:'seoTitle',
+  seoDescription:'seoDescription',
+  ogImage:'ogImage',
+  footerYear:'footerYear',
+
+  widgetsCount:'widgetsCount'
+};
+
+
+/*
+ * ============================================================
+ * UI
+ * ============================================================
+ */
+
+function setNotice(msg,type){
+
+  var n = $('notice');
+
+  n.textContent = msg;
+
+  n.className =
+    'notice show ' +
+    (type || 'ok');
+}
+
+
+function clearNotice(){
+
+  $('notice').className = 'notice';
+}
+
+
+function setVal(k,v){
+
+  $(fields[k]).value =
+    v == null ? '' : v;
+}
+
+
+function setCheck(k,v){
+
+  $(fields[k]).checked = !!v;
+}
+
+
+/*
+ * ============================================================
+ * LOAD FORM
+ * ============================================================
+ */
+
 function loadForm(c){
- cfg=JSON.parse(JSON.stringify(c)); loadedCfg=JSON.parse(JSON.stringify(c));
- setVal('currentVersion',c.version_control.current_version_name);setVal('minVersionCode',c.version_control.min_version_code);setCheck('forceUpdate',c.version_control.force_update);setVal('updateUrl',c.version_control.update_url);setVal('updateMessage',c.version_control.update_message);
- setCheck('annShow',c.announcement.show);setVal('annText',c.announcement.text);setVal('annButton',c.announcement.button_text||'Открыть');setVal('annId',c.announcement.id);setVal('annUrl',c.announcement.url);
- setVal('maxProducts',c.app_limits.max_products);setVal('historyMonths',c.app_limits.history_months);setVal('widgetsCount',c.app_limits.widgets_count);
- setVal('affiliateSubid',c.monetization.affiliate_subid);setVal('telegramUrl',c.community_links.telegram_url);setVal('maxUrl',c.community_links.max_channel_url);setVal('rustoreUrl',c.community_links.rustore_review_url);setVal('privacyUrl',c.legal_links.privacy_policy_url);setVal('termsUrl',c.legal_links.terms_of_service_url);
- setVal('seoTitle',c.site.seo.title);setVal('seoDescription',c.site.seo.description);setVal('ogImage',c.site.seo.og_image);setVal('footerYear',c.site.footer.copyright_year);updatePreview();
- $('status').textContent='Config загружен';$('status').className='status ok';clearNotice();
+
+  cfg =
+    JSON.parse(
+      JSON.stringify(c)
+    );
+
+  loadedCfg =
+    JSON.parse(
+      JSON.stringify(c)
+    );
+
+
+  /*
+   * VERSION
+   */
+
+  setVal(
+    'currentVersion',
+    c.version_control.current_version_name
+  );
+
+  setVal(
+    'minVersionCode',
+    c.version_control.min_version_code
+  );
+
+  setCheck(
+    'forceUpdate',
+    c.version_control.force_update
+  );
+
+  setVal(
+    'updateUrl',
+    c.version_control.update_url
+  );
+
+  setVal(
+    'updateMessage',
+    c.version_control.update_message
+  );
+
+
+  /*
+   * ANNOUNCEMENT
+   */
+
+  setCheck(
+    'annShow',
+    c.announcement.show
+  );
+
+  setVal(
+    'annText',
+    c.announcement.text
+  );
+
+  setVal(
+    'annButton',
+    c.announcement.button_text || 'Открыть'
+  );
+
+  setVal(
+    'annId',
+    c.announcement.id
+  );
+
+  setVal(
+    'annUrl',
+    c.announcement.url
+  );
+
+
+  /*
+   * LIMITS
+   */
+
+  setVal(
+    'maxProducts',
+    c.app_limits.max_products
+  );
+
+  setVal(
+    'historyMonths',
+    c.app_limits.history_months
+  );
+
+  setVal(
+    'widgetsCount',
+    c.app_limits.widgets_count
+  );
+
+
+  /*
+   * MONETIZATION
+   */
+
+  setVal(
+    'affiliateSubid',
+    c.monetization.affiliate_subid
+  );
+
+
+  /*
+   * LINKS
+   */
+
+  setVal(
+    'telegramUrl',
+    c.community_links.telegram_url
+  );
+
+  setVal(
+    'maxUrl',
+    c.community_links.max_channel_url
+  );
+
+  setVal(
+    'rustoreUrl',
+    c.community_links.rustore_review_url
+  );
+
+  setVal(
+    'privacyUrl',
+    c.legal_links.privacy_policy_url
+  );
+
+  setVal(
+    'termsUrl',
+    c.legal_links.terms_of_service_url
+  );
+
+
+  /*
+   * SITE
+   */
+
+  setVal(
+    'seoTitle',
+    c.site.seo.title
+  );
+
+  setVal(
+    'seoDescription',
+    c.site.seo.description
+  );
+
+  setVal(
+    'ogImage',
+    c.site.seo.og_image
+  );
+
+  setVal(
+    'footerYear',
+    c.site.footer.copyright_year
+  );
+
+
+  updatePreview();
+
+
+  $('status').textContent =
+    'Config загружен';
+
+  $('status').className =
+    'status ok';
+
+  clearNotice();
 }
+
+
+/*
+ * ============================================================
+ * BUILD CONFIG
+ * ============================================================
+ */
+
 function build(){
- var out={version_control:{min_version_code:Number($('minVersionCode').value),current_version_name:$('currentVersion').value.trim(),force_update:$('forceUpdate').checked,update_url:$('updateUrl').value.trim(),update_message:$('updateMessage').value.trim()},app_limits:{max_products:Number($('maxProducts').value),history_months:Number($('historyMonths').value),widgets_count:Number($('widgetsCount').value)},community_links:{telegram_url:$('telegramUrl').value.trim(),max_channel_url:$('maxUrl').value.trim(),rustore_review_url:$('rustoreUrl').value.trim()},monetization:{affiliate_subid:$('affiliateSubid').value.trim()},legal_links:{privacy_policy_url:$('privacyUrl').value.trim(),terms_of_service_url:$('termsUrl').value.trim()},announcement:{show:$('annShow').checked,id:$('annId').value.trim(),text:$('annText').value.trim(),button_text:$('annButton').value.trim(),url:$('annUrl').value.trim()},site:{seo:{title:$('seoTitle').value.trim(),description:$('seoDescription').value.trim(),og_image:$('ogImage').value.trim()},footer:{copyright_year:$('footerYear').value.trim()}}};
- return out;
+
+  var out = {
+
+    version_control: {
+
+      min_version_code:
+        Number(
+          $('minVersionCode').value
+        ),
+
+      current_version_name:
+        $('currentVersion')
+          .value
+          .trim(),
+
+      force_update:
+        $('forceUpdate').checked,
+
+      update_url:
+        $('updateUrl')
+          .value
+          .trim(),
+
+      update_message:
+        $('updateMessage')
+          .value
+          .trim()
+    },
+
+
+    app_limits: {
+
+      max_products:
+        Number(
+          $('maxProducts').value
+        ),
+
+      history_months:
+        Number(
+          $('historyMonths').value
+        ),
+
+      widgets_count:
+        Number(
+          $('widgetsCount').value
+        )
+    },
+
+
+    community_links: {
+
+      telegram_url:
+        $('telegramUrl')
+          .value
+          .trim(),
+
+      max_channel_url:
+        $('maxUrl')
+          .value
+          .trim(),
+
+      rustore_review_url:
+        $('rustoreUrl')
+          .value
+          .trim()
+    },
+
+
+    monetization: {
+
+      affiliate_subid:
+        $('affiliateSubid')
+          .value
+          .trim()
+    },
+
+
+    legal_links: {
+
+      privacy_policy_url:
+        $('privacyUrl')
+          .value
+          .trim(),
+
+      terms_of_service_url:
+        $('termsUrl')
+          .value
+          .trim()
+    },
+
+
+    announcement: {
+
+      show:
+        $('annShow').checked,
+
+      id:
+        $('annId')
+          .value
+          .trim(),
+
+      text:
+        $('annText')
+          .value
+          .trim(),
+
+      button_text:
+        $('annButton')
+          .value
+          .trim(),
+
+      url:
+        $('annUrl')
+          .value
+          .trim()
+    },
+
+
+    site: {
+
+      seo: {
+
+        title:
+          $('seoTitle')
+            .value
+            .trim(),
+
+        description:
+          $('seoDescription')
+            .value
+            .trim(),
+
+        og_image:
+          $('ogImage')
+            .value
+            .trim()
+      },
+
+      footer: {
+
+        copyright_year:
+          $('footerYear')
+            .value
+            .trim()
+      }
+    }
+  };
+
+
+  return out;
 }
-function validate(c){var e=[];if(!c.version_control.current_version_name)e.push('Укажите текущую версию.');if(!Number.isInteger(c.version_control.min_version_code)||c.version_control.min_version_code<1)e.push('Минимальный versionCode должен быть целым числом.');if(!/^https:\/\//i.test(c.version_control.update_url))e.push('Ссылка обновления должна начинаться с HTTPS.');if(c.version_control.force_update&&c.version_control.min_version_code<3)e.push('Для текущего APK минимальный versionCode не должен быть ниже 3.');if(!Number.isInteger(c.app_limits.max_products)||c.app_limits.max_products<1||c.app_limits.max_products>1000)e.push('Лимит товаров: 1–1000.');if(!Number.isInteger(c.app_limits.history_months)||c.app_limits.history_months<1||c.app_limits.history_months>24)e.push('История: 1–24 месяца.');['telegram_url','max_channel_url','rustore_review_url'].forEach(function(k){if(!/^https:\/\//i.test(c.community_links[k]))e.push(k+' должен быть HTTPS.');});if(c.announcement.show&&(!c.announcement.text||!/^https:\/\//i.test(c.announcement.url)))e.push('Для активного объявления нужны текст и HTTPS-ссылка.');return e;}
-function updatePreview(){var m=$('updateMessage');if(m)$('updatePreview').textContent=(m.value||'—');}
-function download(c){var blob=new Blob([JSON.stringify(c,null,2)+'\n'],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='config.json';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},500);}
-function showModal(c){$('jsonPreview').textContent=JSON.stringify(c,null,2);$('modal').classList.add('open');}
-async function load(){try{var r=await fetch('/config.json',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);loadForm(await r.json())}catch(e){$('status').textContent='Нет config.json';$('status').className='status';setNotice('Не удалось загрузить config.json: '+e.message,'err')}}
-Object.keys(fields).forEach(function(k){$(fields[k]).addEventListener('input',updatePreview)});
-$('reloadBtn').onclick=load;
-$('downloadBtn').onclick=function(){var c=build(),e=validate(c);if(e.length){setNotice(e.join(' '),'err');return}download(c);setNotice('Готово: config.json скачан.','ok')};
-$('resetBtn').onclick=function(){if(loadedCfg)loadForm(loadedCfg)};
-$('publishBtn').onclick=function(){var c=build(),e=validate(c);if(e.length){setNotice(e.join(' '),'err');return}showModal(c)};
-$('closeModal').onclick=function(){$('modal').classList.remove('open')};
+
+
+/*
+ * ============================================================
+ * VALIDATION
+ * ============================================================
+ *
+ * Это предварительная проверка в браузере.
+ *
+ * Worker всё равно выполняет собственную серверную
+ * проверку перед изменением GitHub.
+ */
+
+function validate(c){
+
+  var e = [];
+
+
+  if(
+    !c.version_control.current_version_name
+  ){
+
+    e.push(
+      'Укажите текущую версию.'
+    );
+  }
+
+
+  if(
+    !Number.isInteger(
+      c.version_control.min_version_code
+    ) ||
+    c.version_control.min_version_code < 1
+  ){
+
+    e.push(
+      'Минимальный versionCode должен быть целым числом.'
+    );
+  }
+
+
+  if(
+    !/^https:\/\//i.test(
+      c.version_control.update_url
+    )
+  ){
+
+    e.push(
+      'Ссылка обновления должна начинаться с HTTPS.'
+    );
+  }
+
+
+  if(
+    c.version_control.force_update &&
+    c.version_control.min_version_code < 3
+  ){
+
+    e.push(
+      'Для текущего APK минимальный versionCode не должен быть ниже 3.'
+    );
+  }
+
+
+  if(
+    !Number.isInteger(
+      c.app_limits.max_products
+    ) ||
+    c.app_limits.max_products < 1 ||
+    c.app_limits.max_products > 1000
+  ){
+
+    e.push(
+      'Лимит товаров: 1–1000.'
+    );
+  }
+
+
+  if(
+    !Number.isInteger(
+      c.app_limits.history_months
+    ) ||
+    c.app_limits.history_months < 1 ||
+    c.app_limits.history_months > 24
+  ){
+
+    e.push(
+      'История: 1–24 месяца.'
+    );
+  }
+
+
+  if(
+    !Number.isInteger(
+      c.app_limits.widgets_count
+    ) ||
+    c.app_limits.widgets_count < 0 ||
+    c.app_limits.widgets_count > 4
+  ){
+
+    e.push(
+      'Количество виджетов: 0–4.'
+    );
+  }
+
+
+  [
+    'telegram_url',
+    'max_channel_url',
+    'rustore_review_url'
+  ].forEach(function(k){
+
+    if(
+      !/^https:\/\//i.test(
+        c.community_links[k]
+      )
+    ){
+
+      e.push(
+        k + ' должен быть HTTPS.'
+      );
+    }
+
+  });
+
+
+  if(
+    c.announcement.show &&
+    (
+      !c.announcement.text ||
+      !/^https:\/\//i.test(
+        c.announcement.url
+      )
+    )
+  ){
+
+    e.push(
+      'Для активного объявления нужны текст и HTTPS-ссылка.'
+    );
+  }
+
+
+  return e;
+}
+
+
+/*
+ * ============================================================
+ * PREVIEW
+ * ============================================================
+ */
+
+function updatePreview(){
+
+  var m =
+    $('updateMessage');
+
+  if(m){
+
+    $('updatePreview').textContent =
+      m.value || '—';
+  }
+}
+
+
+/*
+ * ============================================================
+ * DOWNLOAD
+ * ============================================================
+ */
+
+function download(c){
+
+  var blob =
+    new Blob(
+      [
+        JSON.stringify(
+          c,
+          null,
+          2
+        ) +
+        '\n'
+      ],
+      {
+        type:'application/json'
+      }
+    );
+
+
+  var a =
+    document.createElement('a');
+
+
+  var url =
+    URL.createObjectURL(blob);
+
+
+  a.href = url;
+  a.download = 'config.json';
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+
+  setTimeout(
+    function(){
+
+      URL.revokeObjectURL(url);
+
+    },
+    500
+  );
+}
+
+
+/*
+ * ============================================================
+ * MODAL
+ * ============================================================
+ */
+
+function showModal(c){
+
+  pendingCfg =
+    JSON.parse(
+      JSON.stringify(c)
+    );
+
+
+  $('jsonPreview').textContent =
+    JSON.stringify(
+      c,
+      null,
+      2
+    );
+
+
+  $('modal')
+    .classList
+    .add('open');
+}
+
+
+function closeModal(){
+
+  pendingCfg = null;
+
+  $('modal')
+    .classList
+    .remove('open');
+}
+
+
+/*
+ * ============================================================
+ * LOAD CONFIG FROM GITHUB PAGES
+ * ============================================================
+ */
+
+async function load(){
+
+  try{
+
+    $('status').textContent =
+      'Загрузка…';
+
+    $('status').className =
+      'status';
+
+
+    var r =
+      await fetch(
+        '/config.json',
+        {
+          cache:'no-store'
+        }
+      );
+
+
+    if(!r.ok){
+
+      throw new Error(
+        'HTTP ' + r.status
+      );
+    }
+
+
+    var data =
+      await r.json();
+
+
+    loadForm(data);
+
+
+  }catch(e){
+
+    $('status').textContent =
+      'Нет config.json';
+
+    $('status').className =
+      'status';
+
+
+    setNotice(
+      'Не удалось загрузить config.json: ' +
+      e.message,
+      'err'
+    );
+  }
+}
+
+
+/*
+ * ============================================================
+ * PUBLISH
+ * ============================================================
+ */
+
+async function publish(){
+
+  if(!pendingCfg){
+
+    setNotice(
+      'Нет конфигурации для публикации.',
+      'err'
+    );
+
+    return;
+  }
+
+
+  var token =
+    $('adminToken')
+      .value
+      .trim();
+
+
+  if(!token){
+
+    closeModal();
+
+    setNotice(
+      'Введите ADMIN_TOKEN перед публикацией.',
+      'err'
+    );
+
+    $('adminToken').focus();
+
+    return;
+  }
+
+
+  /*
+   * Дополнительное подтверждение опасной операции.
+   */
+
+  var forceConfirm = false;
+
+
+  if(
+    pendingCfg.version_control.force_update === true
+  ){
+
+    var confirmed =
+      window.confirm(
+        'Включён режим ПРИНУДИТЕЛЬНОГО ОБНОВЛЕНИЯ.\n\n' +
+        'Пользователи старых версий приложения ' +
+        'не смогут продолжить работу.\n\n' +
+        'Продолжить публикацию?'
+      );
+
+
+    if(!confirmed){
+
+      return;
+    }
+
+
+    forceConfirm = true;
+  }
+
+
+  var button =
+    $('confirmPublish');
+
+
+  var oldText =
+    button.textContent;
+
+
+  button.disabled = true;
+
+  button.textContent =
+    'Публикация…';
+
+
+  try{
+
+    var headers = {
+
+      'Content-Type':
+        'application/json',
+
+      'Authorization':
+        'Bearer ' + token
+    };
+
+
+    if(forceConfirm){
+
+      headers[
+        'X-Force-Confirm'
+      ] = 'yes';
+    }
+
+
+    var response =
+      await fetch(
+        API_BASE + '/publish',
+        {
+          method:'POST',
+          headers:headers,
+          body:
+            JSON.stringify(
+              pendingCfg
+            )
+        }
+      );
+
+
+    var data = null;
+
+
+    try{
+
+      data =
+        await response.json();
+
+    }catch(_){
+
+      data = null;
+    }
+
+
+    if(!response.ok){
+
+      var serverError =
+        data &&
+        data.error
+          ? data.error
+          : 'HTTP ' + response.status;
+
+
+      if(
+        data &&
+        data.details
+      ){
+
+        serverError +=
+          ' — ' +
+          data.details;
+      }
+
+
+      throw new Error(
+        serverError
+      );
+    }
+
+
+    if(
+      !data ||
+      data.ok !== true
+    ){
+
+      throw new Error(
+        'Worker не подтвердил публикацию.'
+      );
+    }
+
+
+    closeModal();
+
+
+    $('status').textContent =
+      'Опубликовано';
+
+    $('status').className =
+      'status ok';
+
+
+    var commitText =
+      data.commit
+        ? '\nCommit: ' + data.commit
+        : '';
+
+
+    setNotice(
+      'config.json успешно опубликован в GitHub.' +
+      '\nВерсия: ' +
+      (data.version || pendingCfg.version_control.current_version_name) +
+      commitText,
+      'ok'
+    );
+
+
+    /*
+     * ВАЖНО:
+     * token не записывается никуда.
+     *
+     * Он остаётся только в переменной DOM input
+     * до перезагрузки страницы/очистки поля.
+     */
+
+  }catch(e){
+
+    setNotice(
+      'Ошибка публикации: ' +
+      e.message,
+      'err'
+    );
+
+  }finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      oldText;
+  }
+}
+
+
+/*
+ * ============================================================
+ * EVENTS
+ * ============================================================
+ */
+
+Object.keys(fields).forEach(
+  function(k){
+
+    $(fields[k])
+      .addEventListener(
+        'input',
+        updatePreview
+      );
+
+  }
+);
+
+
+$('reloadBtn').onclick =
+  load;
+
+
+$('downloadBtn').onclick =
+  function(){
+
+    var c =
+      build();
+
+
+    var e =
+      validate(c);
+
+
+    if(e.length){
+
+      setNotice(
+        e.join(' '),
+        'err'
+      );
+
+      return;
+    }
+
+
+    download(c);
+
+
+    setNotice(
+      'Готово: config.json скачан.',
+      'ok'
+    );
+  };
+
+
+$('resetBtn').onclick =
+  function(){
+
+    if(loadedCfg){
+
+      loadForm(
+        loadedCfg
+      );
+
+    }else{
+
+      setNotice(
+        'Загруженного config.json пока нет.',
+        'err'
+      );
+    }
+  };
+
+
+$('publishBtn').onclick =
+  function(){
+
+    var c =
+      build();
+
+
+    var e =
+      validate(c);
+
+
+    if(e.length){
+
+      setNotice(
+        e.join(' '),
+        'err'
+      );
+
+      return;
+    }
+
+
+    showModal(c);
+  };
+
+
+$('confirmPublish').onclick =
+  publish;
+
+
+$('closeModal').onclick =
+  closeModal;
+
+
+/*
+ * Закрытие модального окна по нажатию
+ * на затемнённую область.
+ */
+
+$('modal').addEventListener(
+  'click',
+  function(e){
+
+    if(
+      e.target === $('modal')
+    ){
+
+      closeModal();
+    }
+
+  }
+);
+
+
+/*
+ * Escape закрывает окно,
+ * но ничего не публикует.
+ */
+
+document.addEventListener(
+  'keydown',
+  function(e){
+
+    if(
+      e.key === 'Escape'
+    ){
+
+      closeModal();
+    }
+
+  }
+);
+
+
+/*
+ * ============================================================
+ * START
+ * ============================================================
+ */
+
 load();
+
 })();
 </script>
+
 </body>
 </html>
