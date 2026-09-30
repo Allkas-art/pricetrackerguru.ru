@@ -7,7 +7,7 @@
     "update_message": "Вышла новая версия «Трекера Цен». Обновите приложение через RuStore, чтобы продолжить работу."
   },
   "app_limits": {
-    "max_products": 60,
+    "max_products": 70,
     "history_months": 3,
     "widgets_count": 4
   },
