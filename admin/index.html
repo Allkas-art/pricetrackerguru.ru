@@ -124,7 +124,7 @@ function validate(c){var e=[];if(!c.version_control.current_version_name)e.push(
 function updatePreview(){var m=$('updateMessage');if(m)$('updatePreview').textContent=(m.value||'—');}
 function download(c){var blob=new Blob([JSON.stringify(c,null,2)+'\n'],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='config.json';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},500);}
 function showModal(c){$('jsonPreview').textContent=JSON.stringify(c,null,2);$('modal').classList.add('open');}
-async function load(){try{var r=await fetch('config.json',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);loadForm(await r.json())}catch(e){$('status').textContent='Нет config.json';$('status').className='status';setNotice('Не удалось загрузить config.json: '+e.message,'err')}}
+async function load(){try{var r=await fetch('/config.json',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);loadForm(await r.json())}catch(e){$('status').textContent='Нет config.json';$('status').className='status';setNotice('Не удалось загрузить config.json: '+e.message,'err')}}
 Object.keys(fields).forEach(function(k){$(fields[k]).addEventListener('input',updatePreview)});
 $('reloadBtn').onclick=load;
 $('downloadBtn').onclick=function(){var c=build(),e=validate(c);if(e.length){setNotice(e.join(' '),'err');return}download(c);setNotice('Готово: config.json скачан.','ok')};
