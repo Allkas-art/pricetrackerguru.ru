@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="tcGrad" x1="0" y1="0" x2="0" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00E07F"/>
+      <stop offset="1" stop-color="#008C46"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="115" ry="115" fill="url(#tcGrad)"/>
+  <path d="M256 112 L256 396 M256 396 L154 290 M256 396 L358 290"
+        stroke="#FFFFFF"
+        stroke-width="58"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"/>
+</svg>
