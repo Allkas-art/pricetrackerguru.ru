@@ -1,13 +1,13 @@
 {
   "version_control": {
-    "min_version_code": 4,
-    "current_version_name": "2.1.0",
+    "min_version_code": 3,
+    "current_version_name": "2.0.0",
     "force_update": false,
     "update_url": "https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app",
     "update_message": "Вышла новая версия «Трекера Цен» 2.1.0. Обновите приложение через RuStore, чтобы продолжить работу."
   },
   "app_limits": {
-    "max_products": 70,
+    "max_products": 60,
     "history_months": 3,
     "widgets_count": 4
   },
@@ -24,7 +24,7 @@
     "terms_of_service_url": "https://glas.su/s/r7DiBx"
   },
   "announcement": {
-    "show": true,
+    "show": false,
     "id": "promo_1",
     "text": "Скоро обновление 2.1.0",
     "button_text": "Открыть сайт",
