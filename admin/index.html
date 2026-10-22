@@ -6,13 +6,17 @@
 <title>Вход — Трекер Цен</title>
 <meta name="theme-color" content="#06080F">
 <meta name="robots" content="noindex,nofollow,noarchive">
+<link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='85%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230CE874'/%3E%3Cstop offset='100%25' stop-color='%23006E2E'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Cpath d='M50 20V78M27 57L50 79L73 57' fill='none' stroke='%23fff' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="/logo-192.png">
 <style>
 :root{color-scheme:dark;--bg:#06080F;--panel:#101625;--panel2:#151d2f;--line:rgba(255,255,255,.09);--text:#f4f7fb;--muted:#91a0b7;--accent:#00e07f;--blue:#5b8cff;--danger:#ff647c;--shadow:0 24px 70px rgba(0,0,0,.32)}
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(0,91,255,.16),transparent 32%),radial-gradient(circle at 90% 20%,rgba(0,224,127,.08),transparent 28%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .auth-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.auth-box{width:min(420px,100%);background:linear-gradient(180deg,rgba(20,26,46,.96),rgba(11,16,28,.96));border:1px solid var(--line);border-radius:24px;padding:26px 22px;box-shadow:var(--shadow);text-align:center}
-.auth-box .logo{margin:0 auto 14px;width:52px;height:52px;font-size:24px;border-radius:16px}
+.auth-box{width:min(400px,100%);background:linear-gradient(180deg,rgba(20,26,46,.96),rgba(11,16,28,.96));border:1px solid var(--line);border-radius:24px;padding:28px 22px;box-shadow:var(--shadow);text-align:center}
+.app-icon{display:block;border-radius:14px;box-shadow:0 8px 24px rgba(0,224,127,.18)}
+.auth-box .app-icon{margin:0 auto 14px;width:58px;height:58px;border-radius:15px}
 .auth-box h1{margin:0 0 6px;font-size:20px}
 .auth-box p{margin:0 0 18px;color:var(--muted);font-size:13px}
 .auth-err{display:none;margin-top:12px;padding:10px 12px;border-radius:12px;background:rgba(255,100,124,.1);border:1px solid rgba(255,100,124,.25);color:#ffb1be;font-size:13px}
@@ -21,8 +25,8 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
 .app-unlocked.active{display:block}
 .wrap{max-width:760px;margin:auto;padding:18px 14px 44px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 18px}
-.brand{display:flex;align-items:center;gap:11px}
-.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(160deg,#00e07f,#008c46);display:grid;place-items:center;font-weight:900;font-size:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .app-icon{width:42px;height:42px;border-radius:11px;flex:none}
 .brand b{display:block;font-size:17px}
 .brand span{display:block;color:var(--muted);font-size:12px}
 .status{font-size:12px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
@@ -76,11 +80,15 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
 
 <div id="authScreen" class="auth-screen">
   <div class="auth-box">
-    <div class="logo">🔒</div>
+    <svg class="app-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="lg1" x1="0%" y1="0%" x2="85%" y2="100%"><stop offset="0%" stop-color="#0CE874"/><stop offset="100%" stop-color="#006E2E"/></linearGradient></defs>
+      <rect width="100" height="100" rx="22" fill="url(#lg1)"/>
+      <path d="M50 20V78M27 57L50 79L73 57" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
     <h1>Трекер Цен · Admin</h1>
-    <p>Доступ ограничен. Введите серверный ключ управления для входа в панель.</p>
+    <p>Введите пароль для входа в панель управления</p>
     <div class="field">
-      <input id="loginTokenInput" class="input" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Введите ADMIN_TOKEN">
+      <input id="loginTokenInput" class="input" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Введите пароль">
     </div>
     <button id="loginBtn" class="btn primary" type="button">Войти в панель</button>
     <div id="authError" class="auth-err"></div>
@@ -91,24 +99,18 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
 <div class="wrap">
   <header class="top">
     <div class="brand">
-      <div class="logo">Ц</div>
+      <svg class="app-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="lg2" x1="0%" y1="0%" x2="85%" y2="100%"><stop offset="0%" stop-color="#0CE874"/><stop offset="100%" stop-color="#006E2E"/></linearGradient></defs>
+        <rect width="100" height="100" rx="22" fill="url(#lg2)"/>
+        <path d="M50 20V78M27 57L50 79L73 57" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
       <div><b>Трекер Цен</b><span>Пульт удалённого управления</span></div>
     </div>
     <div id="status" class="status">Загрузка…</div>
   </header>
 
   <div id="notice" class="notice"></div>
-
-  <section class="card">
-    <div class="head">
-      <div><h2>🔐 Сессия администратора</h2><p>Ключ активен только до закрытия вкладки.</p></div>
-      <span class="tag">Авторизовано</span>
-    </div>
-    <div class="field">
-      <label>Ключ публикации</label>
-      <input id="adminToken" class="input" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="ADMIN_TOKEN">
-    </div>
-  </section>
+  <input id="adminToken" type="hidden">
 
   <section class="card">
     <div class="head">
@@ -197,7 +199,7 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
     <button class="btn danger" id="resetBtn" type="button">Вернуть загруженное</button>
   </div>
 
-  <div class="foot">Remote Control v1.3 · Защищённый вход · ADMIN_TOKEN не сохраняется в браузере.</div>
+  <div class="foot">Remote Control v1.4 · Защищённый вход · Пароль хранится только в памяти открытой вкладки.</div>
 </div>
 </div>
 
@@ -354,7 +356,7 @@ async function unlockPanel(){
   var errBox = $('authError');
   var btn = $('loginBtn');
   errBox.className = 'auth-err';
-  if(!token){ errBox.textContent = 'Введите ключ доступа'; errBox.className = 'auth-err show'; return; }
+  if(!token){ errBox.textContent = 'Введите пароль'; errBox.className = 'auth-err show'; return; }
 
   btn.disabled = true;
   btn.textContent = 'Проверка…';
@@ -367,7 +369,7 @@ async function unlockPanel(){
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
         body: JSON.stringify({ auth_check: true })
       });
-      if(resp.status === 401 || resp.status === 403) throw new Error('Неверный ключ доступа (ADMIN_TOKEN)');
+      if(resp.status === 401 || resp.status === 403) throw new Error('Неверный пароль');
     }
     $('adminToken').value = token;
     $('loginTokenInput').value = '';
@@ -376,7 +378,7 @@ async function unlockPanel(){
     document.title = 'Пульт управления — Трекер Цен';
     await load();
   }catch(err){
-    errBox.textContent = err.message || 'Неверный ключ доступа';
+    errBox.textContent = err.message || 'Неверный пароль';
     errBox.className = 'auth-err show';
   }finally{
     btn.disabled = false;
@@ -387,7 +389,7 @@ async function unlockPanel(){
 async function publish(){
   if(!pendingCfg) return;
   var token = $('adminToken').value.trim();
-  if(!token){ closeModal(); setNotice('Введите ADMIN_TOKEN.', 'err'); return; }
+  if(!token){ closeModal(); setNotice('Сессия истекла, обновите страницу и войдите снова.', 'err'); return; }
   var forceConfirm = false;
   if(pendingCfg.version_control.force_update === true){
     if(!window.confirm('Включено ПРИНУДИТЕЛЬНОЕ ОБНОВЛЕНИЕ. Продолжить?')) return;
@@ -434,4 +436,4 @@ $('modal').addEventListener('click', function(e){ if(e.target === $('modal')) cl
 </script>
 </body>
 </html>
-<!-- КОНЕЦ ФАЙЛА: ЕСЛИ ВИДИШЬ ЭТУ СТРОКУ, ФАЙЛ СКОПИРОВАН ПОЛНОСТЬЮ -->
+<!-- КОНЕЦ ФАЙЛА -->
