@@ -24,13 +24,18 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
 .app-unlocked{display:none}
 .app-unlocked.active{display:block}
 .wrap{max-width:760px;margin:auto;padding:18px 14px 44px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 18px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 14px}
 .brand{display:flex;align-items:center;gap:12px}
 .brand .app-icon{width:42px;height:42px;border-radius:11px;flex:none}
 .brand b{display:block;font-size:17px}
 .brand span{display:block;color:var(--muted);font-size:12px}
-.status{font-size:12px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.channel-bar{display:flex;gap:8px;padding:6px;background:#0d1322;border:1px solid var(--line);border-radius:16px;margin-bottom:14px}
+.channel-tab{flex:1;padding:10px;border-radius:12px;border:0;background:none;color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;transition:.2s}
+.channel-tab.active-prod{background:rgba(0,224,127,.12);color:#9affc9;border:1px solid rgba(0,224,127,.3)}
+.channel-tab.active-prev{background:rgba(255,179,0,.14);color:#ffd56b;border:1px solid rgba(255,179,0,.35)}
+.status{font-size:12px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
 .status.ok{color:#9affc9;border-color:rgba(0,224,127,.28);background:rgba(0,224,127,.07)}
+.status.prev{color:#ffd56b;border-color:rgba(255,179,0,.35);background:rgba(255,179,0,.08)}
 .card{background:linear-gradient(180deg,rgba(20,26,46,.92),rgba(11,16,28,.92));border:1px solid var(--line);border-radius:22px;padding:18px;margin:12px 0;box-shadow:var(--shadow)}
 .head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:15px}
 .head h2{margin:0;font-size:17px}
@@ -38,12 +43,11 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
 .tag{font-size:11px;color:#a9b7ca;border:1px solid var(--line);border-radius:999px;padding:5px 8px;white-space:nowrap}
 .field{margin:13px 0;text-align:left}
 .field label{display:flex;justify-content:space-between;gap:10px;margin-bottom:7px;font-weight:650;font-size:13px}
-.hint{color:var(--muted);font-size:11.5px;font-weight:400;margin-top:4px}
 .input,.textarea{width:100%;border:1px solid rgba(255,255,255,.1);background:#0b111e;color:var(--text);border-radius:13px;padding:12px 13px;outline:none;font:inherit}
 .input:focus,.textarea:focus{border-color:rgba(91,140,255,.65);box-shadow:0 0 0 3px rgba(91,140,255,.1)}
-.textarea{min-height:100px;resize:vertical}
+.textarea{min-height:90px;resize:vertical}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
 .switch span{font-weight:650}
 .switch small{display:block;color:var(--muted);font-weight:400;font-size:11.5px;margin-top:2px}
 .toggle{position:relative;width:52px;height:30px;flex:none}
@@ -52,28 +56,30 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
 .track:after{content:"";position:absolute;width:24px;height:24px;left:2px;top:2px;border-radius:50%;background:#d7deea;transition:.2s}
 .toggle input:checked+.track{background:#00b967}
 .toggle input:checked+.track:after{transform:translateX(22px);background:white}
-.preview{border:1px dashed rgba(255,255,255,.14);border-radius:16px;padding:13px;background:rgba(255,255,255,.025)}
+.preview{border:1px dashed rgba(255,255,255,.14);border-radius:16px;padding:12px;background:rgba(255,255,255,.025)}
 .preview b{display:block;margin-bottom:4px}
 .preview p{margin:0;color:var(--muted);font-size:12.5px}
-.actions{position:sticky;bottom:12px;z-index:5;display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px;padding:10px;border:1px solid var(--line);background:rgba(6,8,15,.88);backdrop-filter:blur(18px);border-radius:18px}
+.actions{position:sticky;bottom:12px;z-index:5;display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px;padding:10px;border:1px solid var(--line);background:rgba(6,8,15,.92);backdrop-filter:blur(18px);border-radius:18px}
 .btn{border:0;border-radius:13px;padding:13px 12px;font:700 14px inherit;cursor:pointer;width:100%}
 .btn:disabled{opacity:.55;cursor:not-allowed}
 .primary{background:linear-gradient(180deg,#fff,#dce6f7);color:#06080f}
+.warn{background:linear-gradient(180deg,#ffd56b,#e6a817);color:#241900}
 .secondary{background:#182136;color:#e8edf5;border:1px solid var(--line)}
 .danger{background:rgba(255,100,124,.1);color:#ff9aac;border:1px solid rgba(255,100,124,.2)}
 .notice{display:none;margin:12px 0;padding:12px 13px;border-radius:14px;font-size:13px}
 .notice.show{display:block}
 .notice.ok{background:rgba(0,224,127,.08);border:1px solid rgba(0,224,127,.2);color:#a9ffd0}
+.notice.prev{background:rgba(255,179,0,.1);border:1px solid rgba(255,179,0,.3);color:#ffd56b}
 .notice.err{background:rgba(255,100,124,.08);border:1px solid rgba(255,100,124,.2);color:#ffb1be}
 .foot{color:#68758b;font-size:11px;text-align:center;margin-top:18px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:flex-end;justify-content:center;padding:14px;z-index:20}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:flex-end;justify-content:center;padding:14px;z-index:20}
 .modal.open{display:flex}
 .sheet{width:min(760px,100%);background:#101625;border:1px solid var(--line);border-radius:22px;padding:18px}
-.sheet h3{margin:0 0 8px}
+.sheet h3{margin:0 0 6px}
 .sheet p{color:var(--muted);font-size:13px}
-.code{background:#080d17;border:1px solid var(--line);padding:10px;border-radius:12px;font:12px ui-monospace,SFMono-Regular,Menlo,monospace;overflow:auto;max-height:240px;white-space:pre-wrap}
+.code{background:#080d17;border:1px solid var(--line);padding:10px;border-radius:12px;font:12px ui-monospace,monospace;overflow:auto;max-height:220px;white-space:pre-wrap}
 .modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
-@media(max-width:560px){.row,.actions,.modal-actions{grid-template-columns:1fr}.top{align-items:flex-start}.status{font-size:10px}}
+@media(max-width:560px){.row,.actions,.modal-actions{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -85,7 +91,7 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
       <rect width="100" height="100" rx="22" fill="url(#lg1)"/>
       <path d="M50 20V78M27 57L50 79L73 57" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-    <h1>Трекер Цен · Admin</h1>
+    <h1>Трекер Цен · Remote</h1>
     <p>Введите пароль для входа в панель управления</p>
     <div class="field">
       <input id="loginTokenInput" class="input" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Введите пароль">
@@ -109,12 +115,18 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
     <div id="status" class="status">Загрузка…</div>
   </header>
 
+  <!-- ПЕРЕКЛЮЧАТЕЛЬ РЕЖИМА: PROD / PREVIEW -->
+  <div class="channel-bar">
+    <button id="tabProd" class="channel-tab active-prod" type="button">🟢 Боевой (config.json)</button>
+    <button id="tabPrev" class="channel-tab" type="button">🟡 Тест (config_preview.json)</button>
+  </div>
+
   <div id="notice" class="notice"></div>
   <input id="adminToken" type="hidden">
 
   <section class="card">
     <div class="head">
-      <div><h2>📱 Обновление приложения</h2><p>Главный инструмент управления старыми версиями.</p></div>
+      <div><h2>📱 Обновление приложения</h2><p>Управление версиями в RuStore.</p></div>
       <span class="tag">APK 2.1.0</span>
     </div>
     <div class="row">
@@ -122,7 +134,7 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
       <div class="field"><label>Минимальный versionCode</label><input id="minVersionCode" class="input" type="number" min="1"></div>
     </div>
     <div class="switch">
-      <div><span>Принудительное обновление</span><small>Старая версия покажет блокирующее окно обновления.</small></div>
+      <div><span>Принудительное обновление</span><small>Старая версия покажет блокирующее окно.</small></div>
       <label class="toggle"><input id="forceUpdate" type="checkbox"><span class="track"></span></label>
     </div>
     <div class="field"><label>Ссылка на обновление</label><input id="updateUrl" class="input" type="url"></div>
@@ -136,7 +148,7 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
       <span class="tag">APK + Сайт</span>
     </div>
     <div class="switch">
-      <div><span>Показывать объявление</span><small>Отображает инфо-баннер в приложении и на сайте.</small></div>
+      <div><span>Показывать объявление</span><small>Отображает инфо-баннер.</small></div>
       <label class="toggle"><input id="annShow" type="checkbox"><span class="track"></span></label>
     </div>
     <div class="field"><label>Текст</label><textarea id="annText" class="textarea"></textarea></div>
@@ -149,7 +161,7 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
 
   <section class="card">
     <div class="head">
-      <div><h2>📦 Ограничения приложения</h2><p>Синхронно используются Android и сайтом.</p></div>
+      <div><h2>📦 Ограничения приложения</h2><p>Синхронно для Android и сайта.</p></div>
       <span class="tag">Remote</span>
     </div>
     <div class="row">
@@ -160,7 +172,7 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
 
   <section class="card">
     <div class="head">
-      <div><h2>💰 Партнёрские ссылки</h2><p>Меняется без новой версии APK.</p></div>
+      <div><h2>💰 Партнёрские ссылки</h2><p>SubID для покупок.</p></div>
       <span class="tag">SubID</span>
     </div>
     <div class="field"><label>Affiliate SubID</label><input id="affiliateSubid" class="input" type="text"></div>
@@ -168,7 +180,7 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
 
   <section class="card">
     <div class="head">
-      <div><h2>🔗 Ссылки</h2><p>Меняются одновременно для приложения и сайта.</p></div>
+      <div><h2>🔗 Ссылки</h2><p>Сообщества и документы.</p></div>
       <span class="tag">Links</span>
     </div>
     <div class="field"><label>Telegram</label><input id="telegramUrl" class="input" type="url"></div>
@@ -193,24 +205,22 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
   </section>
 
   <div class="actions">
-    <button class="btn secondary" id="reloadBtn" type="button">Загрузить config</button>
-    <button class="btn secondary" id="downloadBtn" type="button">Скачать JSON</button>
-    <button class="btn primary" id="publishBtn" type="button">Опубликовать</button>
-    <button class="btn danger" id="resetBtn" type="button">Вернуть загруженное</button>
+    <button class="btn warn" id="publishPrevBtn" type="button">🟡 Отправить на тест (Preview)</button>
+    <button class="btn primary" id="publishProdBtn" type="button">🟢 Опубликовать для всех (Prod)</button>
   </div>
 
-  <div class="foot">Remote Control v1.4 · Защищённый вход · Пароль хранится только в памяти открытой вкладки.</div>
+  <div class="foot">Remote Control v2.0 · Двухконтурное управление: Preview ➔ Production.</div>
 </div>
 </div>
 
 <div id="modal" class="modal">
   <div class="sheet">
-    <h3>Что будет опубликовано</h3>
-    <p>После подтверждения config.json будет обновлён через защищённый Cloudflare Worker.</p>
+    <h3 id="modalTitle">Подтверждение публикации</h3>
+    <p id="modalDesc">Проверьте итоговый JSON перед сохранением.</p>
     <div id="jsonPreview" class="code"></div>
     <div class="modal-actions">
       <button id="closeModal" class="btn secondary" type="button">Отмена</button>
-      <button id="confirmPublish" class="btn primary" type="button">Подтвердить публикацию</button>
+      <button id="confirmPublish" class="btn primary" type="button">Подтвердить</button>
     </div>
   </div>
 </div>
@@ -219,7 +229,8 @@ body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(
 (function(){
 'use strict';
 var API_BASE = 'https://pricetrackerguru-config-api.price-tracker-ru.workers.dev';
-var REMOTE_CONFIG_URL = 'https://pricetrackerguru.ru/config.json';
+var activeChannel = 'prod'; // 'prod' или 'preview'
+var targetPublishFile = 'config.json';
 var cfg = null, loadedCfg = null, pendingCfg = null;
 var $ = function(id){ return document.getElementById(id); };
 
@@ -271,8 +282,8 @@ function loadForm(c){
   setVal('ogImage', c.site && c.site.seo ? c.site.seo.og_image : '');
   setVal('footerYear', c.site && c.site.footer ? c.site.footer.copyright_year : '');
   updatePreview();
-  $('status').textContent = 'Config загружен';
-  $('status').className = 'status ok';
+  $('status').textContent = (activeChannel === 'preview') ? 'Режим: Preview' : 'Режим: Production';
+  $('status').className = 'status ' + (activeChannel === 'preview' ? 'prev' : 'ok');
   clearNotice();
 }
 
@@ -321,7 +332,7 @@ function validate(c){
   if(!c.version_control.current_version_name) e.push('Укажите текущую версию.');
   if(!Number.isInteger(c.version_control.min_version_code) || c.version_control.min_version_code < 1) e.push('versionCode должен быть >= 1.');
   if(!c.version_control.update_message) e.push('Укажите текст окна обновления.');
-  if(!isSafeHttpsUrl(c.version_control.update_url)) e.push('Ссылка обновления должна быть чистым HTTPS URL.');
+  if(!isSafeHttpsUrl(c.version_control.update_url)) e.push('Ссылка обновления должна быть HTTPS URL.');
   if(!Number.isInteger(c.app_limits.max_products) || c.app_limits.max_products < 1 || c.app_limits.max_products > 1000) e.push('Лимит товаров: 1–1000.');
   if(!Number.isInteger(c.app_limits.history_months) || c.app_limits.history_months < 1 || c.app_limits.history_months > 24) e.push('История: 1–24 мес.');
   if(!Number.isInteger(c.app_limits.widgets_count) || c.app_limits.widgets_count < 0 || c.app_limits.widgets_count > 4) e.push('Виджеты: 0–4.');
@@ -333,21 +344,24 @@ function validate(c){
   return e;
 }
 
-async function fetchConfigJson(){
-  try{ var r = await fetch('/config.json', { cache:'no-store' }); if(r.ok) return await r.json(); }catch(_){}
-  var r2 = await fetch(REMOTE_CONFIG_URL, { cache:'no-store' });
-  if(!r2.ok) throw new Error('HTTP ' + r2.status);
-  return await r2.json();
+async function fetchConfig(fileName){
+  var url = 'https://pricetrackerguru.ru/' + fileName + '?_t=' + Date.now();
+  var r = await fetch(url, { cache:'no-store' });
+  if(!r.ok) throw new Error('HTTP ' + r.status);
+  return await r.json();
 }
 
-async function load(){
-  try{
-    $('status').textContent = 'Загрузка…';
-    $('status').className = 'status';
-    loadForm(await fetchConfigJson());
-  }catch(e){
-    $('status').textContent = 'Нет config.json';
-    setNotice('Не удалось загрузить config.json: ' + e.message, 'err');
+async function switchChannel(target){
+  activeChannel = target;
+  $('tabProd').className = 'channel-tab' + (target === 'prod' ? ' active-prod' : '');
+  $('tabPrev').className = 'channel-tab' + (target === 'preview' ? ' active-prev' : '');
+  var fileName = (target === 'preview') ? 'config_preview.json' : 'config.json';
+  $('status').textContent = 'Загрузка ' + fileName + '…';
+  try {
+    var data = await fetchConfig(fileName);
+    loadForm(data);
+  } catch(e) {
+    setNotice('Не удалось загрузить ' + fileName + ': ' + e.message, 'err');
   }
 }
 
@@ -376,7 +390,7 @@ async function unlockPanel(){
     $('authScreen').style.display = 'none';
     $('appUnlocked').classList.add('active');
     document.title = 'Пульт управления — Трекер Цен';
-    await load();
+    await switchChannel('prod');
   }catch(err){
     errBox.textContent = err.message || 'Неверный пароль';
     errBox.className = 'auth-err show';
@@ -386,26 +400,47 @@ async function unlockPanel(){
   }
 }
 
+function startPublishFlow(targetFile){
+  targetPublishFile = targetFile;
+  var c = build();
+  var e = validate(c);
+  if(e.length){ setNotice(e.join(' '), 'err'); return; }
+  pendingCfg = JSON.parse(JSON.stringify(c));
+  var isPreview = (targetFile === 'config_preview.json');
+  $('modalTitle').textContent = isPreview ? '🟡 Публикация в Preview (Тест)' : '🟢 Публикация в Production (Для всех)';
+  $('modalDesc').textContent = isPreview 
+    ? 'Этот конфиг начнут получать ТОЛЬКО ваши тестовые телефоны. Обычные пользователи его НЕ увидят.'
+    : 'Этот конфиг станет БОЕВЫМ для всех пользователей приложения и посетителей сайта.';
+  $('jsonPreview').textContent = JSON.stringify(c, null, 2);
+  $('confirmPublish').className = 'btn ' + (isPreview ? 'warn' : 'primary');
+  $('confirmPublish').textContent = isPreview ? 'Отправить на тест' : 'Опубликовать для всех';
+  $('modal').classList.add('open');
+}
+
 async function publish(){
   if(!pendingCfg) return;
   var token = $('adminToken').value.trim();
   if(!token){ closeModal(); setNotice('Сессия истекла, обновите страницу и войдите снова.', 'err'); return; }
   var forceConfirm = false;
-  if(pendingCfg.version_control.force_update === true){
-    if(!window.confirm('Включено ПРИНУДИТЕЛЬНОЕ ОБНОВЛЕНИЕ. Продолжить?')) return;
+  if(pendingCfg.version_control.force_update === true && targetPublishFile === 'config.json'){
+    if(!window.confirm('Включено ПРИНУДИТЕЛЬНОЕ ОБНОВЛЕНИЕ для всех пользователей. Продолжить?')) return;
     forceConfirm = true;
   }
   var button = $('confirmPublish'), oldText = button.textContent;
   button.disabled = true; button.textContent = 'Публикация…';
   try{
-    var headers = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token };
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token,
+      'X-Target-File': targetPublishFile
+    };
     if(forceConfirm) headers['X-Force-Confirm'] = 'yes';
     var response = await fetch(API_BASE + '/publish', { method:'POST', headers:headers, body: JSON.stringify(pendingCfg) });
     var data = null; try{ data = await response.json(); }catch(_){}
     if(!response.ok) throw new Error((data && (data.error || (data.errors && data.errors.join('; ')))) || ('HTTP ' + response.status));
     closeModal();
-    $('status').textContent = 'Опубликовано'; $('status').className = 'status ok';
-    setNotice('config.json успешно опубликован в GitHub!', 'ok');
+    var isPrev = (targetPublishFile === 'config_preview.json');
+    setNotice(isPrev ? '🟡 Черновик опубликован в config_preview.json!' : '🟢 Боевой конфиг опубликован в config.json для всех!', isPrev ? 'prev' : 'ok');
   }catch(e){
     setNotice('Ошибка публикации: ' + e.message, 'err');
   }finally{
@@ -413,25 +448,18 @@ async function publish(){
   }
 }
 
-function showModal(c){ pendingCfg = JSON.parse(JSON.stringify(c)); $('jsonPreview').textContent = JSON.stringify(c, null, 2); $('modal').classList.add('open'); }
 function closeModal(){ pendingCfg = null; $('modal').classList.remove('open'); }
 
 $('loginBtn').onclick = unlockPanel;
 $('loginTokenInput').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); unlockPanel(); } });
-Object.keys(fields).forEach(function(k){ $(fields[k]).addEventListener('input', updatePreview); });
-$('reloadBtn').onclick = load;
-$('downloadBtn').onclick = function(){
-  var c = build(), e = validate(c);
-  if(e.length){ setNotice(e.join(' '), 'err'); return; }
-  var blob = new Blob([JSON.stringify(c, null, 2) + '\n'], { type:'application/json' });
-  var a = document.createElement('a'), url = URL.createObjectURL(blob);
-  a.href = url; a.download = 'config.json'; document.body.appendChild(a); a.click(); a.remove();
-};
-$('resetBtn').onclick = function(){ if(loadedCfg) loadForm(loadedCfg); };
-$('publishBtn').onclick = function(){ var c = build(), e = validate(c); if(e.length){ setNotice(e.join(' '), 'err'); return; } showModal(c); };
+$('tabProd').onclick = function(){ switchChannel('prod'); };
+$('tabPrev').onclick = function(){ switchChannel('preview'); };
+$('publishPrevBtn').onclick = function(){ startPublishFlow('config_preview.json'); };
+$('publishProdBtn').onclick = function(){ startPublishFlow('config.json'); };
 $('confirmPublish').onclick = publish;
 $('closeModal').onclick = closeModal;
 $('modal').addEventListener('click', function(e){ if(e.target === $('modal')) closeModal(); });
+Object.keys(fields).forEach(function(k){ $(fields[k]).addEventListener('input', updatePreview); });
 })();
 </script>
 </body>
