@@ -120,7 +120,7 @@ p{margin:0}
 .cta__label--short{display:none}
 .burger{display:none;width:42px;height:42px;border-radius:13px;background:rgba(255,255,255,.06);border:1px solid var(--stroke-strong);flex-direction:column;align-items:center;justify-content:center;gap:4px;flex:none;transition:background .25s ease,transform .18s var(--ease-spring)}
 .burger:active{transform:scale(.94)}
-.burger span{display:block;width:16px;height:2px;background:#DCE8FF;border-radius:2px;transition:transform .3s var(--ease-spring),opacity .25s ease}
+.burger span{width:14px}
 .drawer{position:fixed;inset:0;z-index:200;opacity:0;pointer-events:none;transition:opacity .3s ease}
 .drawer.open{opacity:1;pointer-events:auto}
 .drawer__backdrop{position:absolute;inset:0;background:rgba(2,4,10,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
@@ -653,9 +653,11 @@ p{margin:0}
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var root = document.documentElement;
 
-  /* 1. CONFIG.JSON — ПОЛНАЯ СИНХРОНИЗАЦИЯ С АДМИНКОЙ */
+  /* 1. CONFIG.JSON — ПОЛНАЯ СИНХРОНИЗАЦИЯ С АДМИНКОЙ + ПРЕДПРОСМОТР ЧЕРЕЗ ?preview=1 */
   (function initConfigLoader(){
-    var CONFIG_URL = '/config.json';
+    var isPreview = window.location.search.toLowerCase().indexOf('preview') !== -1;
+    var CONFIG_URL = (isPreview ? '/config_preview.json' : '/config.json') + '?_t=' + Date.now();
+
     function getByPath(obj, path){
       if (!obj || !path) return undefined;
       var parts = path.split('.'), cur = obj;
@@ -665,8 +667,10 @@ p{margin:0}
       }
       return cur;
     }
+
     function applyConfig(cfg){
       if (!cfg || typeof cfg !== 'object') return;
+
       document.querySelectorAll('[data-config], [data-config-text]').forEach(function(el){
         var path = el.getAttribute('data-config') || el.getAttribute('data-config-text');
         var val = getByPath(cfg, path);
@@ -674,11 +678,13 @@ p{margin:0}
         var str = String(val).trim();
         if (str && el.textContent.trim() !== str) el.textContent = str;
       });
+
       document.querySelectorAll('[data-config-href]').forEach(function(el){
         var path = el.getAttribute('data-config-href');
         var val = getByPath(cfg, path);
         if (typeof val === 'string' && val.trim()) el.setAttribute('href', val.trim());
       });
+
       var widgetsCount = getByPath(cfg, 'app_limits.widgets_count');
       if (typeof widgetsCount === 'number'){
         var widgetCards = document.querySelectorAll('.widgets .widget');
@@ -688,6 +694,7 @@ p{margin:0}
           widgetsSection.closest('.card').classList.toggle('hidden-by-config', widgetsCount <= 0);
         }
       }
+
       var verName = getByPath(cfg, 'version_control.current_version_name');
       var rustoreUrl = getByPath(cfg, 'community_links.rustore_review_url') || getByPath(cfg, 'version_control.update_url');
       if (typeof verName === 'string' && verName.trim()){
@@ -701,6 +708,7 @@ p{margin:0}
           } catch(e){}
         }
       }
+
       var seo = (cfg.site && cfg.site.seo) ? cfg.site.seo : null;
       if (seo){
         if (seo.title && document.title !== seo.title){
@@ -725,8 +733,10 @@ p{margin:0}
           }
         }
       }
-      document.dispatchEvent(new CustomEvent('tc-config-applied', { detail: { config: cfg } }));
+
+      document.dispatchEvent(new CustomEvent('tc-config-applied', { detail: { config: cfg, isPreview: isPreview } }));
     }
+
     fetch(CONFIG_URL, { cache: 'no-store' })
       .then(function(res){ if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
       .then(applyConfig)
@@ -739,18 +749,28 @@ p{margin:0}
     if (!bar) return;
     var closeBtn = bar.querySelector('[data-announce-close]');
     var currentAnnId = 'promo_1';
+
     function dismiss(id){
       try { localStorage.setItem('tc-announce-closed-' + id, '1'); } catch(e){}
       bar.hidden = true;
     }
+
     document.addEventListener('tc-config-applied', function(e){
       var cfg = e.detail.config || {}, ann = cfg.announcement || {};
       currentAnnId = ann.id || 'promo_1';
       if (!ann.show || !ann.text) { bar.hidden = true; return; }
+
+      // В режиме ?preview=1 всегда показываем баннер, игнорируя кэш закрытия
+      if (e.detail.isPreview) {
+        bar.hidden = false;
+        return;
+      }
+
       var closed = false;
       try { closed = localStorage.getItem('tc-announce-closed-' + currentAnnId) === '1'; } catch(e){}
       bar.hidden = closed;
     });
+
     if (closeBtn) closeBtn.addEventListener('click', function(){ dismiss(currentAnnId); });
   })();
 
@@ -922,7 +942,9 @@ p{margin:0}
       }
       if (progress > 0.985 && hoverIndex !== pts.length - 1){
         var last = pts[pts.length - 1];
-        drawBadge(last.x, last.y, fmt(last.v) + ' ₽', isLight() ? '#00A552' : '#00E676', C.badgeBg);
+        if (hoverIndex !== pts.length - 1){
+          drawBadge(last.x, last.y, fmt(last.v) + ' ₽', isLight() ? '#00A552' : '#00E676', C.badgeBg);
+        }
       }
       ctx.font = '600 10.5px "Plus Jakarta Sans", system-ui, sans-serif'; ctx.fillStyle = C.xText; ctx.textBaseline = 'top';
       [0, Math.floor(pts.length/3), Math.floor(pts.length*2/3), pts.length-1].forEach(function(i, k){
@@ -944,7 +966,7 @@ p{margin:0}
     }
     function pointerMove(clientX){
       if (!pts.length) return;
-      var x = clientX - canvas.getBoundingClientRect().left, best = 0, bestDist = Infinity;
+      var rect = canvas.getBoundingClientRect(); var x = clientX - rect.left, best = 0, bestDist = Infinity;
       for (var i = 0; i < pts.length; i++){ var d = Math.abs(pts[i].x - x); if (d < bestDist){ bestDist = d; best = i; } }
       if (best !== hoverIndex){ hoverIndex = best; draw(); }
     }
@@ -963,9 +985,37 @@ p{margin:0}
     } else { started = true; animate(); }
   })();
 
-  /* 8. FAQ */
+  /* 8. CALCULATOR */
+  (function initCalc(){
+    var range = document.getElementById('budgetRange');
+    if (!range) return;
+    var budgetOut = document.getElementById('budgetOut');
+    var savingOut = document.getElementById('savingOut');
+    var savingYear = document.getElementById('savingYear');
+    var nf = new Intl.NumberFormat('ru-RU');
+    var RATE = 0.28;
+    function paintTrack(){
+      var pct = (range.value - range.min) / (range.max - range.min) * 100;
+      var empty = root.getAttribute('data-theme') === 'light' ? 'rgba(11,18,36,.08)' : 'rgba(255,255,255,.1)';
+      range.style.background = 'linear-gradient(90deg,#005BFF 0%,#00C46A ' + pct + '%,' + empty + ' ' + pct + '%)';
+    }
+    function update(){
+      var budget = Number(range.value) || 0;
+      var save = Math.round(budget * RATE / 100) * 100;
+      budgetOut.textContent = nf.format(budget) + ' ₽';
+      savingOut.textContent = nf.format(save) + ' ₽';
+      savingYear.textContent = nf.format(save * 12) + ' ₽';
+      paintTrack();
+    }
+    range.addEventListener('input', update);
+    document.addEventListener('tc-theme-change', update);
+    update();
+  })();
+
+  /* 9. FAQ */
   (function initFaq(){
     var items = Array.prototype.slice.call(document.querySelectorAll('.faq__item'));
+    if (!items.length) return;
     items.forEach(function(item){
       var btn = item.querySelector('.faq__q'), panel = item.querySelector('.faq__a');
       if (!btn || !panel) return;
@@ -986,7 +1036,7 @@ p{margin:0}
     });
   })();
 
-  /* 9. ПЛАВНЫЕ АНКОРЫ */
+  /* 10. ПЛАВНЫЕ АНКОРЫ */
   (function initAnchors(){
     document.querySelectorAll('a[href^="#"]').forEach(function(link){
       link.addEventListener('click', function(e){
