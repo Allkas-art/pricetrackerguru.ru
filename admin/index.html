@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Пульт управления — Трекер Цен</title>
+<title>Вход — Трекер Цен</title>
 <meta name="theme-color" content="#06080F">
 <meta name="robots" content="noindex,nofollow,noarchive">
 
@@ -26,12 +26,75 @@
 
 body{
   margin:0;
+  min-height:100vh;
   background:
     radial-gradient(circle at 10% 0%,rgba(0,91,255,.16),transparent 32%),
     radial-gradient(circle at 90% 20%,rgba(0,224,127,.08),transparent 28%),
     var(--bg);
   color:var(--text);
   font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+
+/* ЭКРАН ВХОДА ПО ПАРОЛЮ */
+.auth-screen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px
+}
+
+.auth-box{
+  width:min(420px,100%);
+  background:linear-gradient(180deg,rgba(20,26,46,.96),rgba(11,16,28,.96));
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:26px 22px;
+  box-shadow:var(--shadow);
+  text-align:center
+}
+
+.auth-box .logo{
+  margin:0 auto 14px;
+  width:52px;
+  height:52px;
+  font-size:24px;
+  border-radius:16px
+}
+
+.auth-box h1{
+  margin:0 0 6px;
+  font-size:20px
+}
+
+.auth-box p{
+  margin:0 0 18px;
+  color:var(--muted);
+  font-size:13px
+}
+
+.auth-err{
+  display:none;
+  margin-top:12px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:rgba(255,100,124,.1);
+  border:1px solid rgba(255,100,124,.25);
+  color:#ffb1be;
+  font-size:13px
+}
+
+.auth-err.show{
+  display:block
+}
+
+/* СКРЫТИЕ ПУЛЬТА ДО ВХОДА */
+.app-unlocked{
+  display:none
+}
+
+.app-unlocked.active{
+  display:block
 }
 
 .wrap{
@@ -128,7 +191,8 @@ body{
 }
 
 .field{
-  margin:13px 0
+  margin:13px 0;
+  text-align:left
 }
 
 .field label{
@@ -273,7 +337,8 @@ body{
   border-radius:13px;
   padding:13px 12px;
   font:700 14px inherit;
-  cursor:pointer
+  cursor:pointer;
+  width:100%
 }
 
 .btn:disabled{
@@ -405,6 +470,36 @@ body{
 
 <body>
 
+<!-- ЗАКРЫТЫЙ ЭКРАН ВХОДА -->
+<div id="authScreen" class="auth-screen">
+  <form id="authForm" class="auth-box">
+    <div class="logo">🔒</div>
+    <h1>Трекер Цен · Admin</h1>
+    <p>Доступ ограничен. Введите серверный ключ управления для входа в панель.</p>
+
+    <div class="field">
+      <input
+        id="loginTokenInput"
+        class="input"
+        type="password"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Введите ADMIN_TOKEN"
+        required
+      >
+    </div>
+
+    <button id="loginBtn" class="btn primary" type="submit">
+      Войти в панель
+    </button>
+
+    <div id="authError" class="auth-err"></div>
+  </form>
+</div>
+
+<!-- ОСНОВНОЙ ПУЛЬТ (СКРЫТ ДО АВТОРИЗАЦИИ) -->
+<div id="appUnlocked" class="app-unlocked">
 <div class="wrap">
 
   <header class="top">
@@ -426,11 +521,11 @@ body{
 
     <div class="head">
       <div>
-        <h2>🔐 Публикация</h2>
-        <p>Защищённая публикация config.json через Cloudflare Worker.</p>
+        <h2>🔐 Сессия администратора</h2>
+        <p>Ключ проверен через Cloudflare Worker и активен только до закрытия вкладки.</p>
       </div>
 
-      <span class="tag">Protected API</span>
+      <span class="tag">Авторизовано</span>
     </div>
 
     <div class="field">
@@ -443,14 +538,8 @@ body{
         autocomplete="off"
         autocapitalize="off"
         spellcheck="false"
-        placeholder="Введи ADMIN_TOKEN"
+        placeholder="ADMIN_TOKEN"
       >
-
-      <div class="hint">
-        Это ADMIN_TOKEN из Cloudflare Worker.
-        GitHub-токен сюда не вводится.
-        Ключ используется только во время текущей сессии и не сохраняется браузером.
-      </div>
     </div>
 
   </section>
@@ -754,10 +843,10 @@ body{
   </div>
 
   <div class="foot">
-    Remote Control v1.1 · Перед публикацией выполняется строгая проверка контракта Android + Worker.
-    ADMIN_TOKEN не сохраняется в браузере.
+    Remote Control v1.2 · Защищённый вход через Cloudflare Worker · ADMIN_TOKEN не сохраняется в браузере.
   </div>
 
+</div>
 </div>
 
 <!-- МОДАЛЬНОЕ ОКНО -->
@@ -1089,6 +1178,58 @@ async function load(){
   }
 }
 
+/*
+ * Серверная проверка ключа доступа через Cloudflare Worker.
+ * Если токен неверный — Worker возвращает 401 Unauthorized.
+ * Если токен верный — Worker доходит до валидации пустого тела и возвращает 400 (не трогая GitHub).
+ */
+async function verifyTokenAndUnlock(e){
+  e.preventDefault();
+
+  var token = $('loginTokenInput').value.trim();
+  var errBox = $('authError');
+  var btn = $('loginBtn');
+
+  errBox.className = 'auth-err';
+  if(!token){
+    errBox.textContent = 'Введите ключ доступа';
+    errBox.className = 'auth-err show';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Проверка ключа…';
+
+  try{
+    var resp = await fetch(API_BASE + '/publish', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      body: JSON.stringify({ auth_check: true })
+    });
+
+    if(resp.status === 401 || resp.status === 403){
+      throw new Error('Неверный ключ доступа (ADMIN_TOKEN)');
+    }
+
+    $('adminToken').value = token;
+    $('loginTokenInput').value = '';
+    $('authScreen').style.display = 'none';
+    $('appUnlocked').classList.add('active');
+    document.title = 'Пульт управления — Трекер Цен';
+
+    await load();
+  }catch(err){
+    errBox.textContent = err.message || 'Ошибка соединения с сервером проверки';
+    errBox.className = 'auth-err show';
+  }finally{
+    btn.disabled = false;
+    btn.textContent = 'Войти в панель';
+  }
+}
+
 async function publish(){
   if(!pendingCfg){
     setNotice('Нет конфигурации для публикации.', 'err');
@@ -1176,6 +1317,8 @@ async function publish(){
   }
 }
 
+$('authForm').addEventListener('submit', verifyTokenAndUnlock);
+
 Object.keys(fields).forEach(function(k){
   $(fields[k]).addEventListener('input', updatePreview);
 });
@@ -1208,10 +1351,4 @@ $('publishBtn').onclick = function(){
     setNotice(e.join(' '), 'err');
     return;
   }
-  showModal(c);
-};
-
-$('confirmPublish').onclick = publish;
-$('closeModal').onclick = closeModal;
-
-$('modal').addEventListener('
+  showModal
