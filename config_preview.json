@@ -24,9 +24,9 @@
     "terms_of_service_url": "https://glas.su/s/r7DiBx"
   },
   "announcement": {
-    "show": false,
+    "show": true,
     "id": "promo_1",
-    "text": "Горячие скидки Ozon в нашем Telegram-канале",
+    "text": "Скоро обновление 2.1.0",
     "button_text": "Открыть Telegram",
     "url": "https://t.me/priceradar_app"
   },
