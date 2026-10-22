@@ -27,8 +27,8 @@
     "show": true,
     "id": "promo_1",
     "text": "Скоро обновление 2.1.0",
-    "button_text": "Открыть Telegram",
-    "url": "https://t.me/priceradar_app"
+    "button_text": "Открыть сайт",
+    "url": "https://PriceTrackerguru.ru"
   },
   "site": {
     "seo": {
