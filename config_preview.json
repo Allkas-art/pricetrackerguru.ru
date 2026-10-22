@@ -1,0 +1,43 @@
+{
+  "version_control": {
+    "min_version_code": 3,
+    "current_version_name": "2.0.0",
+    "force_update": false,
+    "update_url": "https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app",
+    "update_message": "Вышла новая версия «Трекера Цен». Обновите приложение через RuStore, чтобы продолжить работу."
+  },
+  "app_limits": {
+    "max_products": 60,
+    "history_months": 3,
+    "widgets_count": 4
+  },
+  "community_links": {
+    "telegram_url": "https://t.me/priceradar_app",
+    "max_channel_url": "https://max.ru/priceradar",
+    "rustore_review_url": "https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app"
+  },
+  "monetization": {
+    "affiliate_subid": "priceradar_app"
+  },
+  "legal_links": {
+    "privacy_policy_url": "https://glas.su/s/1fFxbn",
+    "terms_of_service_url": "https://glas.su/s/r7DiBx"
+  },
+  "announcement": {
+    "show": false,
+    "id": "promo_1",
+    "text": "Горячие скидки Ozon в нашем Telegram-канале",
+    "button_text": "Открыть Telegram",
+    "url": "https://t.me/priceradar_app"
+  },
+  "site": {
+    "seo": {
+      "title": "Трекер Цен — бесплатный трекер цен Ozon",
+      "description": "Бесплатное Android-приложение для отслеживания цен Ozon, фоновых проверок, уведомлений и истории цен.",
+      "og_image": "logo-1024.png"
+    },
+    "footer": {
+      "copyright_year": "2026"
+    }
+  }
+}
