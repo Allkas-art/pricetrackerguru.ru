@@ -24,7 +24,7 @@
     "terms_of_service_url": "https://glas.su/s/r7DiBx"
   },
   "announcement": {
-    "show": true,
+    "show": false,
     "id": "promo_1",
     "text": "Скоро обновление 2.1.0",
     "button_text": "Открыть сайт",
