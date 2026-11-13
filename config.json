@@ -1,7 +1,7 @@
 {
   "version_control": {
     "min_version_code": 3,
-    "current_version_name": "2.0.0",
+    "current_version_name": "2.1.0",
     "force_update": false,
     "update_url": "https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app",
     "update_message": "Вышла новая версия «Трекера Цен». Обновите приложение через RuStore, чтобы продолжить работу."
@@ -32,8 +32,8 @@
   },
   "site": {
     "seo": {
-      "title": "Трекер Цен — бесплатный трекер цен Ozon",
-      "description": "Бесплатное Android-приложение для отслеживания цен Ozon, фоновых проверок, уведомлений и истории цен.",
+      "title": "Трекер Цен — бесплатный мониторинг цен Ozon и Wildberries",
+      "description": "Бесплатное Android-приложение для отслеживания цен и скидок на Ozon и Wildberries: фоновые проверки, режим LIVE, прогноз цен и уведомления.",
       "og_image": "logo-1024.png"
     },
     "footer": {
