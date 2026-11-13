@@ -7,8 +7,8 @@
 <link rel="canonical" href="https://pricetrackerguru.ru/"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#06080F" name="theme-color"/>
-<title>Трекер Цен Ozon — бесплатное приложение для отслеживания цен</title>
-<meta name="description" content="Бесплатное Android-приложение для отслеживания цен товаров Ozon. Задавайте желаемую цену, смотрите историю и получайте уведомления об изменениях."/>
+<title>Трекер Цен — бесплатный мониторинг цен Ozon и Wildberries</title>
+<meta name="description" content="Бесплатное Android-приложение для отслеживания цен и скидок на Ozon и Wildberries: фоновые проверки, режим LIVE, математический прогноз цен и умные уведомления."/>
 <link href="logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="logo-32.png" rel="icon" sizes="32x32" type="image/png"/>
 <link href="logo-192.png" rel="icon" sizes="192x192" type="image/png"/>
@@ -27,8 +27,8 @@
 </script>
 <meta content="website" property="og:type"/>
 <meta content="Трекер Цен" property="og:site_name"/>
-<meta property="og:title" content="Трекер Цен Ozon — бесплатное приложение для отслеживания цен"/>
-<meta property="og:description" content="Бесплатное Android-приложение для отслеживания цен товаров Ozon. Задавайте желаемую цену и получайте уведомления об изменениях."/>
+<meta property="og:title" content="Трекер Цен — бесплатный мониторинг цен Ozon и Wildberries"/>
+<meta property="og:description" content="Бесплатное Android-приложение для отслеживания цен и скидок на Ozon и Wildberries: фоновые проверки, режим LIVE, прогноз цен и уведомления."/>
 <meta content="https://pricetrackerguru.ru/" property="og:url"/>
 <meta content="https://pricetrackerguru.ru/logo-1024.png" property="og:image"/>
 <meta content="1024" property="og:image:width"/>
@@ -37,7 +37,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Трекер Цен","operatingSystem":"Android","applicationCategory":"ShoppingApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"},"downloadUrl":"https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app","softwareVersion":"2.0.0","inLanguage":"ru-RU","publisher":{"@type":"Organization","name":"Трекер Цен","url":"https://pricetrackerguru.ru"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Трекер Цен","operatingSystem":"Android","applicationCategory":"ShoppingApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"},"downloadUrl":"https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app","softwareVersion":"2.1.0","inLanguage":"ru-RU","publisher":{"@type":"Organization","name":"Трекер Цен","url":"https://pricetrackerguru.ru"}}</script>
 <style>
 :root{--bg:#06080F;--glass:rgba(14,18,30,.75);--elev:#141A2E;--primary:#005BFF;--ruby-solid:#FF1744;--emerald:#00E676;--emerald-brand:#00C46A;--gold-solid:#FFB300;--gold:linear-gradient(135deg,#FFB300 0%,#FF8F00 100%);--text:#F8FAFC;--muted:#8E9BAE;--stroke:rgba(255,255,255,.08);--stroke-strong:rgba(255,255,255,.14);--ease-spring:cubic-bezier(.22,1,.36,1);--shadow-card:0 30px 70px -34px rgba(0,0,0,.95)}
 *,*::before,*::after{box-sizing:border-box}
@@ -120,7 +120,7 @@ p{margin:0}
 .cta__label--short{display:none}
 .burger{display:none;width:42px;height:42px;border-radius:13px;background:rgba(255,255,255,.06);border:1px solid var(--stroke-strong);flex-direction:column;align-items:center;justify-content:center;gap:4px;flex:none;transition:background .25s ease,transform .18s var(--ease-spring)}
 .burger:active{transform:scale(.94)}
-.burger span{width:14px}
+.burger span{width:14px;height:2px;background:#DCE8FF;border-radius:2px}
 .drawer{position:fixed;inset:0;z-index:200;opacity:0;pointer-events:none;transition:opacity .3s ease}
 .drawer.open{opacity:1;pointer-events:auto}
 .drawer__backdrop{position:absolute;inset:0;background:rgba(2,4,10,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
@@ -147,8 +147,8 @@ p{margin:0}
 .hero__copy{min-width:0}
 .hero__badge{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:999px;background:linear-gradient(135deg,rgba(255,179,0,.16),rgba(255,143,0,.08));border:1px solid rgba(255,179,0,.42);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);font-size:11.5px;font-weight:800;letter-spacing:.08em;color:#FFD166;text-transform:uppercase;box-shadow:0 0 34px -10px rgba(255,179,0,.6)}
 .hero__badge svg{width:14px;height:14px;color:#FFB300}
-.hero h1{font-size:clamp(32px,5.4vw,62px);letter-spacing:-1.4px;line-height:1.05;margin:24px 0 20px}
-.hero__sub{color:var(--muted);font-size:clamp(15px,1.7vw,18px);max-width:560px;line-height:1.62}
+.hero h1{font-size:clamp(32px,5.2vw,60px);letter-spacing:-1.4px;line-height:1.06;margin:24px 0 20px}
+.hero__sub{color:var(--muted);font-size:clamp(15px,1.7vw,18px);max-width:570px;line-height:1.62}
 .hero__actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:34px 0 0;max-width:600px}
 .hero__actions .btn{min-height:52px;padding:0 14px;font-size:13.5px;gap:8px;border-radius:14px}
 .hero__actions .btn svg{width:17px;height:17px}
@@ -196,13 +196,13 @@ p{margin:0}
 .card--full{grid-column:span 12}
 .chart-host{position:relative;width:100%;height:266px;margin-top:24px;border-radius:18px;background:linear-gradient(180deg,rgba(6,8,15,.6),rgba(6,8,15,.15));border:1px solid rgba(255,255,255,.05);overflow:hidden}
 .chart-host canvas{display:block;width:100%;height:100%;touch-action:pan-y}
-.paycard{margin-top:22px;height:132px;border-radius:18px;position:relative;overflow:hidden;background:linear-gradient(135deg,#005BFF 0%,#003FC7 55%,#001E6E 100%);box-shadow:0 24px 50px -24px rgba(0,91,255,.95),inset 0 1px 0 rgba(255,255,255,.3)}
+.paycard{margin-top:22px;height:132px;border-radius:18px;position:relative;overflow:hidden;background:linear-gradient(135deg,#005BFF 0%,#5B21B6 55%,#9333EA 100%);box-shadow:0 24px 50px -24px rgba(0,91,255,.95),inset 0 1px 0 rgba(255,255,255,.3)}
 .paycard::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 82% 12%,rgba(255,255,255,.28),transparent 46%)}
 .paycard__chip{position:absolute;top:34px;left:22px;width:40px;height:30px;border-radius:7px;background:linear-gradient(135deg,#FFD87A,#C9962E);box-shadow:inset 0 0 0 1px rgba(0,0,0,.28)}
 .paycard__chip::before,.paycard__chip::after{content:'';position:absolute;left:0;right:0;height:1px;background:rgba(0,0,0,.3)}
 .paycard__chip::before{top:10px}
 .paycard__chip::after{top:19px}
-.paycard__label{position:absolute;left:22px;bottom:20px;font-size:13px;font-weight:800;letter-spacing:.14em;color:rgba(255,255,255,.92)}
+.paycard__label{position:absolute;left:22px;bottom:20px;font-size:12.5px;font-weight:800;letter-spacing:.12em;color:rgba(255,255,255,.94)}
 .paycard__pulse{position:absolute;right:20px;top:22px;display:flex;align-items:center;gap:7px;font-size:11px;font-weight:800;color:#B9FFD9;letter-spacing:.08em}
 .dot-live{width:8px;height:8px;border-radius:50%;background:var(--emerald);box-shadow:0 0 0 0 rgba(0,230,118,.7);animation:livePulse 2s infinite}
 @keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(0,230,118,.7)}70%{box-shadow:0 0 0 12px rgba(0,230,118,0)}100%{box-shadow:0 0 0 0 rgba(0,230,118,0)}}
@@ -272,8 +272,8 @@ p{margin:0}
 .calc{position:relative;overflow:hidden;border-radius:34px;padding:clamp(28px,4.4vw,56px);background:radial-gradient(circle at 88% 6%,rgba(0,230,118,.16),transparent 52%),radial-gradient(circle at 4% 96%,rgba(0,91,255,.24),transparent 56%),linear-gradient(180deg,rgba(20,26,46,.94),rgba(10,14,26,.86));border:1px solid var(--stroke-strong);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);box-shadow:0 50px 100px -50px rgba(0,91,255,.9)}
 .calc__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
 .calc h2{font-size:clamp(26px,3.8vw,42px);margin-bottom:16px}
-.calc__desc{color:var(--muted);font-size:15.5px;max-width:460px}
-.range-wrap{margin-top:38px}
+.calc__desc{color:var(--muted);font-size:15.5px;max-width:480px}
+.range-wrap{margin-top:32px}
 .range-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:16px}
 .range-head span{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.04em}
 .range-head b{font-size:clamp(22px,2.8vw,30px);font-weight:800;letter-spacing:-1px;background:linear-gradient(180deg,#fff,#A9C0E4);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -299,7 +299,7 @@ p{margin:0}
 .footer__brand .logo{width:46px;height:46px;border-radius:14px;overflow:hidden;flex:none;background:#0A0E1A;border:1px solid var(--stroke-strong);box-shadow:0 10px 24px -14px rgba(0,196,106,.55), 0 0 0 1px rgba(11,18,36,.06)}
 .footer__brand .logo svg{width:100%;height:100%;display:block}
 .footer__brand b{display:block;font-size:16px;font-weight:800;letter-spacing:-.4px}
-.footer p.legal{color:var(--muted);font-size:13.5px;line-height:1.7;max-width:420px}
+.footer p.legal{color:var(--muted);font-size:13.5px;line-height:1.7;max-width:440px}
 .footer h4{font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#7E8CA3;margin-bottom:20px}
 .footer__links{display:flex;flex-direction:column;gap:13px}
 .footer__links a{display:inline-flex;align-items:center;gap:10px;font-size:14.5px;font-weight:600;color:var(--muted);transition:color .25s ease,transform .25s ease}
@@ -403,7 +403,7 @@ p{margin:0}
 <path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6 6.1 20.7l1.2-6.6L2.5 9.5l6.6-.9L12 2.5z"></path>
 </svg>
 </span>
-<span class="announce__text" data-config="announcement.text" data-config-text="announcement.text">Горячие ночные скидки Ozon в нашем Telegram-канале</span>
+<span class="announce__text" data-config="announcement.text" data-config-text="announcement.text">Горячие скидки Ozon и Wildberries в нашем Telegram-канале</span>
 <a class="announce__cta" data-config-href="announcement.url" href="#" rel="noopener" target="_blank">
       <span data-config="announcement.button_text">Подробнее</span>
       <svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="14">
@@ -436,13 +436,14 @@ p{margin:0}
 </span>
 <span class="brand__text">
 <span class="brand__name">Трекер Цен</span>
+<span class="brand__badge">OZON · WILDBERRIES</span>
 </span>
 </a>
 <nav aria-label="Основная навигация" class="nav">
 <a href="#features">Возможности</a>
 <a href="#tech">Технологии</a>
+<a href="#comparison">Режимы</a>
 <a href="#gallery">Интерфейс</a>
-<a href="#calc">Калькулятор</a>
 <a href="#faq">FAQ</a>
 </nav>
 <button aria-label="Переключить тему" class="theme-toggle" data-theme-toggle="" title="Переключить тему" type="button">
@@ -471,10 +472,10 @@ p{margin:0}
 </div>
 <a data-drawer-close="" href="#features">Возможности</a>
 <a data-drawer-close="" href="#tech">Технологии</a>
-<a data-drawer-close="" href="#comparison">Сравнение</a>
+<a data-drawer-close="" href="#comparison">Режимы проверки</a>
 <a data-drawer-close="" href="#gallery">Интерфейс</a>
-<a data-drawer-close="" href="#calc">Калькулятор</a>
-<a data-drawer-close="" href="#faq">FAQ</a>
+<a data-drawer-close="" href="#calc">Гостевой и Личный режим</a>
+<a data-drawer-close="" href="#faq">Частые вопросы (FAQ)</a>
 <div class="drawer__divider"></div>
 <div class="drawer__theme">
 <div>
@@ -503,16 +504,15 @@ p{margin:0}
 <div class="hero__copy">
 <div class="hero__badge" data-reveal="">
 <svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.6 6.1 20.7l1.2-6.6L2.5 9.5l6.6-.9L12 2.5z"></path></svg>
-<span>Все функции доступны без подписки</span>
+<span>Ozon + Wildberries · Режим LIVE · Без подписок</span>
 </div>
 <h1 data-reveal="">
 <span class="grad-text">Трекер Цен</span><br/>
-    для контроля<br/>
-<span class="grad-text">цен на Ozon</span>
+    радар скидок для<br/>
+<span class="grad-text">Ozon и Wildberries</span>
 </h1>
 <p class="hero__sub" data-reveal="">
-    Отслеживайте товары Ozon, задавайте желаемую цену и получайте уведомления об изменениях.
-    Приложение поддерживает ручные и фоновые проверки, проверку по выбранному времени и историю цен.
+    Отслеживайте товары на Ozon и Wildberries, задавайте желаемую цену и перехватывайте горячие скидки в режиме «🔴 LIVE / Снайпер цен». Работает сразу после установки без обязательного входа в аккаунт, строит математический прогноз цен на 7 дней и хранит все данные локально на вашем смартфоне.
    </p>
 <div class="hero__actions" data-reveal="">
 <a aria-label="Скачать Трекер Цен в RuStore" class="btn btn--primary" data-config-href="community_links.rustore_review_url" href="https://www.rustore.ru/catalog/app/ru.pricetrackerguru.app" rel="noopener" target="_blank">
@@ -521,60 +521,63 @@ p{margin:0}
 </a>
 </div>
 <div class="metrics" data-reveal="">
-<div class="metric"><b data-config="app_limits.max_products">60</b><span>товаров доступно к отслеживанию в стандартной настройке</span></div>
-<div class="metric"><b>В фоне</b><span>автоматические проверки при включённом режиме</span></div>
-<div class="metric"><b>0 ₽</b><span>без подписки и платного тарифа</span></div>
+<div class="metric"><b data-config="app_limits.max_products">60</b><span>товаров Ozon и WB одновременно на контроле</span></div>
+<div class="metric"><b>5–10 мин</b><span>интервал снайперского режима 🔴 LIVE у цели</span></div>
+<div class="metric"><b>0 ₽</b><span>полностью бесплатно, без рекламы и подписок</span></div>
 </div>
 </div>
 <div class="hero__visual" data-reveal="">
 <div class="phone"><div aria-hidden="true" class="phone__glow"></div><div class="phone__frame"><div class="phone__screen"><img alt="Главный экран приложения Трекер Цен" decoding="async" fetchpriority="high" height="1792" src="screen-grid.png" width="828"/></div></div>
-<div class="float-badge float-badge--a"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M3 16.5 9 10l4 3.5 7.5-8"></path><path d="M20.5 5.5v6M20.5 5.5h-6"></path></svg><span>Изменения цен</span></div>
-<div class="float-badge float-badge--b"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 8v4l2.8 1.8"></path></svg><span>Фоновая проверка</span></div>
+<div class="float-badge float-badge--a"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M3 16.5 9 10l4 3.5 7.5-8"></path><path d="M20.5 5.5v6M20.5 5.5h-6"></path></svg><span>Прогноз цен · 7 дней</span></div>
+<div class="float-badge float-badge--b"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 8v4l2.8 1.8"></path></svg><span>🔴 LIVE · Снайпер цен</span></div>
 </div>
 </div>
 </div>
 </section>
-<section class="section" id="how"><div class="container"><div class="section-head" data-reveal=""><span class="tag">Как это работает</span><h2>От добавления товара до <span class="grad-text">контроля цены</span></h2><p>Несколько простых шагов — без постоянного открытия Ozon и ручной проверки каждого товара.</p></div><div class="steps">
-<article class="step" data-reveal=""><div class="step__num">01</div><div><h3>Добавляем товар</h3><p>Передайте ссылку на товар Ozon в приложение или добавьте товар через предусмотренный сценарий.</p></div></article>
-<article class="step" data-reveal=""><div class="step__num">02</div><div><h3>Задаём желаемую цену</h3><p>При необходимости укажите цену, которую хотите получить. Приложение сохранит её для отслеживания.</p></div></article>
-<article class="step" data-reveal=""><div class="step__num">03</div><div><h3>Включаем автоматические проверки</h3><p>Выберите период фоновой проверки или задайте конкретное время. Режимы можно переключать в настройках.</p></div></article>
-<article class="step" data-reveal=""><div class="step__num">04</div><div><h3>Получаем уведомления</h3><p>После проверки приложение показывает актуальную цену и уведомляет об изменениях и достижении заданной цены.</p></div></article>
+<section class="section" id="how"><div class="container"><div class="section-head" data-reveal=""><span class="tag">Как это работает</span><h2>От добавления товара до <span class="grad-text">выгодной покупки</span></h2><p>Четыре простых шага — без постоянного мониторинга корзины вручную.</p></div><div class="steps">
+<article class="step" data-reveal=""><div class="step__num">01</div><div><h3>Добавляем товар Ozon или WB</h3><p>Нажмите «Поделиться ➔ Трекер Цен» прямо в приложении маркетплейса либо вставьте ссылку или артикул WB.</p></div></article>
+<article class="step" data-reveal=""><div class="step__num">02</div><div><h3>Указываем желаемую цель</h3><p>Задайте цену, за которую готовы купить товар. Спидометр на карточке покажет, сколько процентов осталось до цели.</p></div></article>
+<article class="step" data-reveal=""><div class="step__num">03</div><div><h3>Фоновый радар и 🔴 LIVE</h3><p>Трекер проверяет цены по расписанию, а при приближении к вашей цели автоматически включает ускоренный режим LIVE каждые 5–10 минут.</p></div></article>
+<article class="step" data-reveal=""><div class="step__num">04</div><div><h3>Мгновенный сигнал о скидке</h3><p>Как только цена пробьёт вашу цель или товар вернётся в наличие, вы получите пуш-уведомление (или сигнал «Сирена»).</p></div></article>
 </div></div></section>
-<section class="section section--tight" id="features"><div class="container"><div class="section-head" data-reveal=""><span class="tag">Возможности</span><h2>Всё необходимое для <span class="grad-text">отслеживания цен</span></h2><p>Функции приложения доступны без отдельного платного тарифа.</p></div><div class="bento">
-<article class="card card--wide" data-reveal="" id="chart"><div class="card__icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 19V5M4 19h16"></path><path d="M7 15.5 10.5 11l3.5 3 4.5-7"></path></svg></div><h3>История изменения цены</h3><p>Смотрите динамику цены товара за доступный период (<span data-config="app_limits.history_months">3</span> мес.) и сравнивайте текущую стоимость с историческими значениями.</p><div class="chart-host"><canvas aria-label="График изменения цены" id="priceChart" role="img"></canvas></div></article>
-<article class="card card--half" data-reveal=""><div class="card__icon card__icon--emerald"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="13" rx="3" width="19" x="2.5" y="5.5"></rect><path d="M2.5 10h19M6.5 14.5h3"></path></svg></div><h3>Актуальная цена Ozon</h3><p>После подключения Ozon приложение использует доступную в вашей сессии информацию о товаре для проверки цены.</p><div aria-hidden="true" class="paycard"><div class="paycard__chip"></div><div class="paycard__pulse"><span class="dot-live"></span> OZON</div><div class="paycard__label">АКТУАЛЬНАЯ ЦЕНА</div></div></article>
-<article class="card card--third" data-reveal=""><div class="card__icon card__icon--ruby"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M6 15V9.5a6 6 0 0 1 12 0V15l1.5 3H4.5L6 15z"></path><path d="M10 21h4"></path></svg></div><h3>Уведомления</h3><p>Получайте уведомления о результатах проверки, изменениях цены и достижении заданной цены.</p><div aria-hidden="true" class="waves"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
-<article class="card card--third" data-reveal=""><div class="card__icon card__icon--emerald"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="4"></circle><path d="M12 12 18.5 6.5"></path></svg></div><h3>Товары без наличия</h3><p>Товары, которые временно недоступны, учитываются отдельно. Проверки могут продолжаться по заданному сценарию.</p></article>
-<article class="card card--third" data-reveal=""><div class="card__icon card__icon--gold"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="9" rx="3" width="16" x="2.5" y="7.5"></rect><path d="M21 10.5v3M6 10.5v3M9.5 10.5v3"></path></svg></div><h3>Фоновая проверка</h3><p>Автоматические проверки работают в фоне через Android. Период проверки можно настроить в приложении.</p></article>
-<article class="card card--full" data-reveal=""><div class="card__icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="8" rx="2" width="8" x="3" y="3"></rect><rect height="5" rx="2" width="8" x="13" y="3"></rect><rect height="8" rx="2" width="8" x="3" y="13"></rect><rect height="11" rx="2" width="8" x="13" y="10"></rect></svg></div><h3>Виджеты и быстрый доступ</h3><p>Используйте поддерживаемые виджеты для быстрого просмотра отслеживаемых товаров и их состояния прямо с рабочего стола.</p><div class="widgets"><div class="widget"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2.5"></circle><path d="M12 12l6-4"></path></svg><b>Контроль цены</b><span>2 × 2</span></div><div class="widget"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"></path></svg><b>Список товаров</b><span>4 × 3</span></div><div class="widget"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 14.5 9 9l3.5 3L20 5"></path></svg><b>Информер</b><span>4 × 1</span></div><div class="widget"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg><b>Быстрый доступ</b><span>2 × 1</span></div></div></article>
+<section class="section section--tight" id="features"><div class="container"><div class="section-head" data-reveal=""><span class="tag">Возможности 2.1</span><h2>Всё необходимое для <span class="grad-text">охоты за скидками</span></h2><p>Все аналитические инструменты и режимы мониторинга доступны бесплатно.</p></div><div class="bento">
+<article class="card card--wide" data-reveal="" id="chart"><div class="card__icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 19V5M4 19h16"></path><path d="M7 15.5 10.5 11l3.5 3 4.5-7"></path></svg></div><h3>График за <span data-config="app_limits.history_months">3</span> месяца и предсказатель цен Apache Commons Math</h3><p>Изучайте реальную историю цены с отметками минимума и максимума. Встроенный математический модуль на базе Apache Commons Math рассчитывает локальный тренд, волатильность и прогнозный диапазон цены на 7 дней вперёд с проверкой точности на прошлых данных (Backtesting).</p><div class="chart-host"><canvas aria-label="График изменения цены" id="priceChart" role="img"></canvas></div></article>
+<article class="card card--half" data-reveal=""><div class="card__icon card__icon--emerald"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="13" rx="3" width="19" x="2.5" y="5.5"></rect><path d="M2.5 10h19M6.5 14.5h3"></path></svg></div><h3>Ozon Карта и WB Кошелёк</h3><p>Проверяйте базовые цены сразу без входа в аккаунт. А при подключении Ozon ID или WB ID учитываются ваша личная скидка (СПП), зелёная цена Ozon Карты и фиолетовая цена WB Кошелька.</p><div aria-hidden="true" class="paycard"><div class="paycard__chip"></div><div class="paycard__pulse"><span class="dot-live"></span> OZON · WB</div><div class="paycard__label"> КАРТА И КОШЕЛЁК</div></div></article>
+<article class="card card--third" data-reveal=""><div class="card__icon card__icon--ruby"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M6 15V9.5a6 6 0 0 1 12 0V15l1.5 3H4.5L6 15z"></path><path d="M10 21h4"></path></svg></div><h3>Режим «🔴 LIVE» и «Сирена»</h3><p>Скоростной снайперский мониторинг каждые 5–10 минут для горячих товаров у цели и непрерывный звуковой сигнал при пробитии желаемой цены.</p><div aria-hidden="true" class="waves"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+<article class="card card--third" data-reveal=""><div class="card__icon card__icon--emerald"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="4"></circle><path d="M12 12 18.5 6.5"></path></svg></div><h3>Радарный спидометр цели</h3><p>Наглядный прибор на карточке товара показывает точный процент до вашей цели и меняет цвет по мере приближения скидки: бирюзовый ➔ розовый ➔ алый ➔ золотой «ЦЕЛЬ!».</p></article>
+<article class="card card--third" data-reveal=""><div class="card__icon card__icon--gold"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="9" rx="3" width="16" x="2.5" y="7.5"></rect><path d="M21 10.5v3M6 10.5v3M9.5 10.5v3"></path></svg></div><h3>Контроль наличия и 5-сек проверка</h3><p>Обновляйте цену любого отдельного товара за 5 секунд через меню «⋮». Если товар закончился, трекер сам сообщит, когда он снова появится на складе.</p></article>
+<article class="card card--full" data-reveal=""><div class="card__icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="8" rx="2" width="8" x="3" y="3"></rect><rect height="5" rx="2" width="8" x="13" y="3"></rect><rect height="8" rx="2" width="8" x="3" y="13"></rect><rect height="11" rx="2" width="8" x="13" y="10"></rect></svg></div><h3>4 виджета для рабочего стола</h3><p>Следите за лучшими скидками, списком отслеживания и выбранными товарами прямо на домашнем экране смартфона.</p><div class="widgets"><div class="widget"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2.5"></circle><path d="M12 12l6-4"></path></svg><b>Снайпер скидок</b><span>2 × 2</span></div><div class="widget"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"></path></svg><b>Лента товаров</b><span>4 × 3</span></div><div class="widget"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 14.5 9 9l3.5 3L20 5"></path></svg><b>Мини-информер</b><span>4 × 1</span></div><div class="widget"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg><b>Пин товара</b><span>2 × 1</span></div></div></article>
 </div></div></section>
-<section class="section" id="tech"><div class="container"><div class="section-head" data-reveal=""><span class="tag">Как устроена проверка</span><h2>Контроль цен <span class="grad-text">внутри приложения</span></h2><p>Приложение использует Android-компоненты для ручных и фоновых проверок и хранит отслеживаемые товары на устройстве.</p></div><div class="tech-grid">
-<article class="tech-card" data-reveal=""><div class="tech-card__top"><div class="tech-card__icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 12h4l2-6 3 12 2-6h5"></path></svg></div><code class="tech-card__code">PRICE</code></div><h3>Ручная проверка</h3><p>Запускайте обновление из приложения, чтобы получить актуальные значения по отслеживаемым товарам.</p></article>
-<article class="tech-card" data-reveal=""><div class="tech-card__top"><div class="tech-card__icon tech-card__icon--emerald"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M12 3.5 4.5 7v5.2c0 4.3 3.1 7.6 7.5 9.3 4.4-1.7 7.5-5 7.5-9.3V7L12 3.5z"></path><path d="M9 12l2 2 4-4"></path></svg></div><code class="tech-card__code">OZON</code></div><h3>Подключение Ozon</h3><p>Для обновления цен приложение использует подключённую сессию Ozon. Если сессия завершилась, её нужно подключить снова.</p></article>
-<article class="tech-card" data-reveal=""><div class="tech-card__top"><div class="tech-card__icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3 2"></path></svg></div><code class="tech-card__code">WORK</code></div><h3>Фоновый планировщик</h3><p>Автоматические проверки выполняются в фоне с помощью Android-планировщика. Можно выбрать период или заданное время проверки.</p></article>
-<article class="tech-card" data-reveal=""><div class="tech-card__top"><div class="tech-card__icon tech-card__icon--emerald"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></div><code class="tech-card__code">DATA</code></div><h3>Локальные данные</h3><p>Список отслеживаемых товаров и история цен используются приложением на устройстве. Доступен экспорт и импорт резервной копии.</p></article>
+<section class="section" id="tech"><div class="container"><div class="section-head" data-reveal=""><span class="tag">Архитектура 2.1</span><h2>Умные технологии <span class="grad-text">внутри приложения</span></h2><p>Стабильная работа в фоне, математическое прогнозирование и 100% локальная приватность данных.</p></div><div class="tech-grid">
+<article class="tech-card" data-reveal=""><div class="tech-card__top"><div class="tech-card__icon tech-card__icon--emerald"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M12 3.5 4.5 7v5.2c0 4.3 3.1 7.6 7.5 9.3 4.4-1.7 7.5-5 7.5-9.3V7L12 3.5z"></path><path d="M9 12l2 2 4-4"></path></svg></div><code class="tech-card__code">OZON + WB</code></div><h3>Гостевой режим и Личные кабинеты</h3><p>Проверяйте общедоступные цены сразу после установки без авторизации. А для учёта личной скидки, Ozon Карты и WB Кошелька подключите Ozon ID или WB ID напрямую без ввода паролей.</p></article>
+<article class="tech-card" data-reveal=""><div class="tech-card__top"><div class="tech-card__icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 12h4l2-6 3 12 2-6h5"></path></svg></div><code class="tech-card__code">APACHE MATH</code></div><h3>Математический прогноз цен</h3><p>Аналитический модуль на базе Apache Commons Math вычисляет экспоненциально взвешенный тренд и волатильность товара, формируя 7-дневный прогноз и оценивая его точность методом ретроспективного бэктестинга.</p></article>
+<article class="tech-card" data-reveal=""><div class="tech-card__top"><div class="tech-card__icon tech-card__icon--ruby"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3 2"></path></svg></div><code class="tech-card__code">LIVE 5–10M</code></div><h3>VIP-контур «🔴 LIVE / Снайпер»</h3><p>Товары в розовой и красной зонах (близкие к цели) или с подтверждённой аномальной ценой автоматически переводятся на быстрый опрос каждые 5–10 минут, не пропускающий кратковременные акции.</p></article>
+<article class="tech-card" data-reveal=""><div class="tech-card__top"><div class="tech-card__icon tech-card__icon--gold"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></div><code class="tech-card__code">LOCAL DATA</code></div><h3>Защита от сна и Авто-бэкап</h3><p>Двухслотовый планировщик с аппаратным будильником стабильно будит проверки на Xiaomi HyperOS, Samsung One UI и других оболочках. База товаров ежедневно сохраняется в резервную JSON-копию на устройстве.</p></article>
 </div></div></section>
-<section class="section section--tight" id="comparison"><div class="container"><div class="section-head" data-reveal=""><span class="tag">Режимы проверки</span><h2>Выберите удобный <span class="grad-text">сценарий</span></h2><p>В приложении можно сочетать ручную проверку и автоматические сценарии фонового обновления.</p></div><div class="table-wrap" data-reveal=""><table class="comparison"><thead><tr><th>Режим</th><th>Когда используется</th><th>Что делает</th><th class="comparison__highlight">Результат</th></tr></thead><tbody>
-<tr><td>Ручная проверка</td><td>Когда нужно проверить цены сразу</td><td>Запускает обновление выбранных товаров</td><td class="comparison__highlight"><span class="comparison__cell comparison__cell--yes">Актуальные значения</span></td></tr>
-<tr><td>Периодическая</td><td>Для регулярного контроля</td><td>Запускает фоновые проверки с выбранным периодом</td><td class="comparison__highlight"><span class="comparison__cell comparison__cell--yes">Автоматически</span></td></tr>
-<tr><td>По заданному времени</td><td>Когда проверка нужна в конкретный момент</td><td>Выполняет разовую или ежедневную проверку по выбранному времени</td><td class="comparison__highlight"><span class="comparison__cell comparison__cell--yes">По расписанию</span></td></tr>
-<tr><td>Товары без наличия</td><td>Когда товар временно недоступен</td><td>Учитывает статус отсутствия при последующих проверках</td><td class="comparison__highlight"><span class="comparison__cell comparison__cell--yes">Отдельный статус</span></td></tr>
+<section class="section section--tight" id="comparison"><div class="container"><div class="section-head" data-reveal=""><span class="tag">Режимы проверки</span><h2>Гибкие сценарии <span class="grad-text">мониторинга</span></h2><p>Комбинируйте плановые фоновые обходы, снайперский режим 🔴 LIVE и мгновенную проверку одной карточки.</p></div><div class="table-wrap" data-reveal=""><table class="comparison"><thead><tr><th>Режим</th><th>Когда используется</th><th>Что делает</th><th class="comparison__highlight">Результат</th></tr></thead><tbody>
+<tr><td>🔴 LIVE / Снайпер цен</td><td>Когда цена близка к цели или резко упала</td><td>Проверяет до 5 горячих товаров каждые 5–10 минут (включается сам или вручную)</td><td class="comparison__highlight"><span class="comparison__cell comparison__cell--yes">Мгновенный перехват скидки</span></td></tr>
+<tr><td>Точечная проверка (1 товар)</td><td>Когда нужно узнать цену прямо сейчас</td><td>Обновляет выбранную карточку через меню «⋮» всего за 5 секунд</td><td class="comparison__highlight"><span class="comparison__cell comparison__cell--yes">Свежая цена за 5 сек</span></td></tr>
+<tr><td>Периодическая в фоне</td><td>Для регулярного контроля всего каталога</td><td>Автоматически обходит все товары каждые 1, 2, 4, 6, 12 или 24 часа</td><td class="comparison__highlight"><span class="comparison__cell comparison__cell--yes">Автоматически 24/7</span></td></tr>
+<tr><td>По заданному времени</td><td>Для проверки в точный час</td><td>Запускает ежедневный или разовый обход в выбранное вами время</td><td class="comparison__highlight"><span class="comparison__cell comparison__cell--yes">Точно по расписанию</span></td></tr>
+<tr><td>Контроль наличия</td><td>Когда товар временно раскупили</td><td>Переносит товар во вкладку «Закончились» и следит за его возвратом на склад</td><td class="comparison__highlight"><span class="comparison__cell comparison__cell--yes">Пуш о появлении в продаже</span></td></tr>
 </tbody></table></div></div></section>
-<section class="section section--tight" id="gallery"><div class="container"><div class="section-head" data-reveal=""><span class="tag">Интерфейс</span><h2>Реальные экраны <span class="grad-text">приложения</span></h2><p>Основные сценарии: добавление товара, отслеживание, история цены и настройка фоновых проверок.</p></div><div class="gallery__strip" id="galleryStrip">
-<figure class="gallery__item" data-reveal="" style="margin:0"><div class="gallery__shot"><div class="screen"><img alt="Главный экран Трекер Цен" decoding="async" loading="lazy" src="screen-grid.png"/></div></div><figcaption class="gallery__caption"><b>Главный экран</b><span>Отслеживаемые товары, текущие цены и изменения стоимости в одном списке.</span></figcaption></figure>
-<figure class="gallery__item" data-reveal="" style="margin:0"><div class="gallery__shot"><div class="screen"><img alt="Добавление товара в Трекер Цен" decoding="async" loading="lazy" src="screen-add.png"/></div></div><figcaption class="gallery__caption"><b>Добавление товара</b><span>Добавьте товар Ozon и укажите желаемую цену для отслеживания.</span></figcaption></figure>
-<figure class="gallery__item" data-reveal="" style="margin:0"><div class="gallery__shot"><div class="screen"><img alt="История изменения цены" decoding="async" loading="lazy" src="screen-chart.png"/></div></div><figcaption class="gallery__caption"><b>История цены</b><span>График изменения стоимости и сравнение с заданной целью.</span></figcaption></figure>
-<figure class="gallery__item" data-reveal="" style="margin:0"><div class="gallery__shot"><div class="screen"><img alt="Настройки фоновой проверки" decoding="async" loading="lazy" src="screen-settings-1.png"/></div></div><figcaption class="gallery__caption"><b>Фоновая проверка</b><span>Периодические проверки, заданное время, ежедневный или разовый сценарий.</span></figcaption></figure>
-<figure class="gallery__item" data-reveal="" style="margin:0"><div class="gallery__shot"><div class="screen"><img alt="Первый запуск Трекер Цен" decoding="async" loading="lazy" src="screen-welcome.png"/></div></div><figcaption class="gallery__caption"><b>Первый запуск</b><span>Короткое знакомство с основным сценарием работы приложения.</span></figcaption></figure>
+<section class="section section--tight" id="gallery"><div class="container"><div class="section-head" data-reveal=""><span class="tag">Интерфейс</span><h2>Удобный и наглядный <span class="grad-text">дизайн</span></h2><p>Фильтр по площадкам («Все | Ozon | WB»), спидометр цели, шторка инфо-монитора и 3 темы оформления.</p></div><div class="gallery__strip" id="galleryStrip">
+<figure class="gallery__item" data-reveal="" style="margin:0"><div class="gallery__shot"><div class="screen"><img alt="Главный экран Трекер Цен" decoding="async" loading="lazy" src="screen-grid.png"/></div></div><figcaption class="gallery__caption"><b>Главный экран</b><span>Карточки Ozon и Wildberries, спидометр цели, значки 🔴 LIVE и бейджи падения цены.</span></figcaption></figure>
+<figure class="gallery__item" data-reveal="" style="margin:0"><div class="gallery__shot"><div class="screen"><img alt="Добавление товара в Трекер Цен" decoding="async" loading="lazy" src="screen-add.png"/></div></div><figcaption class="gallery__caption"><b>Быстрое добавление</b><span>Добавляйте товары по ссылке из Ozon / Wildberries или просто по цифровому артикулу WB.</span></figcaption></figure>
+<figure class="gallery__item" data-reveal="" style="margin:0"><div class="gallery__shot"><div class="screen"><img alt="История изменения цены и прогноз" decoding="async" loading="lazy" src="screen-chart.png"/></div></div><figcaption class="gallery__caption"><b>График и Прогноз</b><span>Динамика за 3 месяца, минимум/максимум и математический прогноз на 7 дней.</span></figcaption></figure>
+<figure class="gallery__item" data-reveal="" style="margin:0"><div class="gallery__shot"><div class="screen"><img alt="Настройки фоновой проверки" decoding="async" loading="lazy" src="screen-settings-1.png"/></div></div><figcaption class="gallery__caption"><b>Гибкое расписание</b><span>Интервальная проверка, точное время и настройка работы в фоне в 2 нажатия.</span></figcaption></figure>
+<figure class="gallery__item" data-reveal="" style="margin:0"><div class="gallery__shot"><div class="screen"><img alt="Старт без обязательной регистрации" decoding="async" loading="lazy" src="screen-welcome.png"/></div></div><figcaption class="gallery__caption"><b>Старт в одно касание</b><span>Начните отслеживать товары сразу после установки без обязательной регистрации.</span></figcaption></figure>
 </div></div></section>
-<section class="section" id="calc"><div class="container"><div class="calc" data-reveal=""><div class="calc__grid"><div><span class="tag">Важно перед проверкой</span><h2 style="margin-top:18px">Подключите Ozon и настройте проверки</h2><p class="calc__desc">Для ручного и фонового обновления цен приложению нужна активная подключённая сессия Ozon. В настройках можно включить автоматические проверки, выбрать период или задать конкретное время.</p><div class="range-wrap" style="padding-top:8px"><div class="range-head"><span>Сценарии фоновой проверки</span><b>3 режима</b></div><div style="display:grid;gap:10px;margin-top:16px"><div>✓ Периодическая проверка</div><div>✓ Ежедневная проверка по времени</div><div>✓ Разовая проверка по времени</div></div></div></div><div class="calc__result"><small>Доступно в приложении</small><div class="calc__sum" style="font-size:clamp(36px,6vw,64px)">Без подписки</div><p class="calc__sub">Все основные функции отслеживания доступны без отдельного платного тарифа.</p><div class="calc__year">Нужна только <b>подключённая сессия Ozon</b> для обновления цен.</div></div></div></div></div></section>
-<section class="section" id="faq"><div class="container"><div class="section-head" data-reveal="" style="margin:0 auto 44px;text-align:center"><span class="tag">Частые вопросы</span><h2>Коротко о главном</h2></div><div class="faq">
-<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Как добавить товар в отслеживание?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Передайте ссылку на товар Ozon в приложение. После распознавания товара можно указать желаемую цену и добавить его в отслеживание.</div></div></div>
-<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Нужна ли авторизация в Ozon?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Да. Для обновления цен приложение использует подключённую сессию Ozon. Если сессия завершилась, её нужно подключить снова. Без активной сессии ручные и фоновые проверки цен не выполняются.</div></div></div>
-<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Как работает фоновая проверка?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">В настройках можно включить автоматическую периодическую проверку и выбрать период. Отдельно доступна проверка по заданному времени — ежедневная или разовая.</div></div></div>
-<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Что происходит, если товар отсутствует?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Приложение фиксирует отсутствие товара и отображает его отдельным статусом. Настройка периода хранения таких товаров доступна в разделе фоновой проверки.</div></div></div>
-<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Можно ли перенести список товаров?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Да. В приложении предусмотрен экспорт и импорт резервной копии списка отслеживаемых товаров.</div></div></div>
-<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Есть ли подписка или PRO-версия?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Нет. В актуальной версии нет отдельного платного тарифа или PRO-режима. Основные функции доступны пользователю после подключения Ozon.</div></div></div>
+<section class="section" id="calc"><div class="container"><div class="calc" data-reveal=""><div class="calc__grid"><div><span class="tag">Свобода выбора</span><h2 style="margin-top:18px">Работает сразу — со входом или без него</h2><p class="calc__desc">Вы сами выбираете, как использовать «Трекер Цен»: отслеживайте базовые цены Ozon и Wildberries сразу после установки в гостевом режиме либо подключите Ozon ID / WB ID, чтобы видеть цены со своей персональной скидкой, Ozon Картой и WB Кошельком.</p><div class="range-wrap" style="padding-top:8px"><div class="range-head"><span>Контуры мониторинга цен</span><b>4 режима</b></div><div style="display:grid;gap:10px;margin-top:16px"><div>✓ Гостевой режим (сразу после установки, без входа в аккаунт)</div><div>✓ Персональный режим (с учётом Ozon Карты, WB Кошелька и СПП)</div><div>✓ VIP-контур «🔴 LIVE / Снайпер цен» (каждые 5–10 минут у цели)</div><div>✓ Точечное обновление любого товара за 5 секунд</div></div></div></div><div class="calc__result"><small>Полный доступ ко всем функциям</small><div class="calc__sum" style="font-size:clamp(36px,6vw,64px)">Без подписки</div><p class="calc__sub">Никаких платных тарифов, встроенных покупок, рекламы или сбора личных данных.</p><div class="calc__year">Поддержка <b>Ozon + Wildberries</b> и локальный прогноз цен <b>Apache Commons Math</b>.</div></div></div></div></div></section>
+<section class="section" id="faq"><div class="container"><div class="section-head" data-reveal="" style="margin:0 auto 44px;text-align:center"><span class="tag">Частые вопросы</span><h2>Вопрос — Ответ</h2><p>Ответы на главные вопросы о безопасности, работе без входа и новых функциях 2.1.0.</p></div><div class="faq">
+<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Безопасно ли подключать аккаунт? Нужен ли пароль?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Абсолютно безопасно. Приложение НЕ запрашивает пароли и не имеет доступа к вашим банковским картам или оплате заказов. Вход выполняется напрямую на официальной странице Ozon или Wildberries по одноразовому коду, а сессия хранится исключительно локально на вашем смартфоне и никуда не передаётся.</div></div></div>
+<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Обязательно ли входить в аккаунт Ozon или Wildberries?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Нет! Начиная с версии 2.1.0 приложение полноценно работает в гостевом режиме сразу после установки и проверяет обычные цены товаров Ozon и Wildberries из браузера. Вход в Ozon ID или WB ID нужен только в том случае, если вы хотите видеть персональную цену с учётом вашей личной скидки (СПП), Ozon Карты, WB Кошелька и вашего пункта выдачи.</div></div></div>
+<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Как добавить товар из Ozon или Wildberries?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Откройте карточку товара в приложении Ozon или Wildberries, нажмите значок «Поделиться» и выберите «Трекер Цен». Либо нажмите кнопку «+ Добавить» внизу экрана трекера и вставьте ссылку на товар или цифровой артикул Wildberries.</div></div></div>
+<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Как работает режим «🔴 LIVE / Снайпер цен»?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Когда цена товара подходит близко к вашей цели (пройдено 70% пути и более) или обнаруживается резкое аномальное падение стоимости, трекер автоматически включает для него ускоренный режим проверки каждые 5–10 минут (до 5 товаров одновременно на 24 часа). Вы также можете включить или отключить кнопку 🔴 LIVE вручную прямо на фотографии любого товара.</div></div></div>
+<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Как рассчитывается прогноз цены на 7 дней (Apache Commons Math)?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Встроенный локальный предсказатель на базе математической библиотеки Apache Commons Math анализирует накопленную историю цены товара (от 5 наблюдений за 2 и более дня), вычисляет взвешенный дневной тренд и волатильность, строит доверительный диапазон стоимости на 7 дней вперёд и автоматически проверяет точность модели на прошлых данных (Backtesting).</div></div></div>
+<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Зачем настраивать работу в фоне в 2 шага?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Современные оболочки Android (Xiaomi HyperOS, Samsung One UI, Realme UI и др.) могут усыплять фоновые процессы ночью при выключенном экране. Встроенный наглядный мастер в 2 нажатия поможет выбрать режим батареи «Нет ограничений» и включить автозапуск, чтобы вы не пропустили ни одной ночной распродажи.</div></div></div>
+<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Что происходит, если товар закончился, и как перенести базу на другой телефон?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Раскупленные товары автоматически переходят во вкладку «Закончились» — приложение продолжает проверять их и пришлёт пуш «Товар снова в наличии!», как только они вернутся в продажу. А для сохранности данных трекер ежедневно делает авто-бэкап и позволяет экспортировать или импортировать все товары вместе с историей цен в один JSON-файл.</div></div></div>
+<div class="faq__item" data-reveal=""><button aria-expanded="false" class="faq__q" type="button"><span>Есть ли платные подписки, тарифы или реклама?</span><span aria-hidden="true" class="faq__sign"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span></button><div class="faq__a"><div class="faq__a-inner">Нет. Все возможности «Трекера Цен» — отслеживание Ozon и Wildberries, режим 🔴 LIVE, математический прогноз цен, режим «Сирена» и все 4 виджета — полностью бесплатны, без подписок и рекламных баннеров.</div></div></div>
 </div></div></section>
 </main>
 <footer class="footer">
@@ -596,7 +599,7 @@ p{margin:0}
 </span>
 <span><b>Трекер Цен</b></span>
 </div>
-<p class="legal">Приложение «Трекер Цен» является независимым аналитическим инструментом для покупателей и не аффилировано с маркетплейсом Ozon. Товарные знаки и наименования торговых площадок используются исключительно в информационных целях для идентификации совместимости сервиса. Цены и скидки могут отличаться в зависимости от региона доставки и действующих правил продавца.</p>
+<p class="legal">Приложение «Трекер Цен» является независимым аналитическим инструментом для покупателей и не аффилировано с маркетплейсами Ozon и Wildberries. Товарные знаки и наименования торговых площадок используются исключительно в информационных целях для идентификации совместимости сервиса. Переход по кнопке покупки может осуществляться по партнёрской ссылке без изменения стоимости товара для покупателя.</p>
 </div>
 <div>
 <h4>Сообщество</h4>
@@ -635,7 +638,7 @@ p{margin:0}
 </div>
 <div class="footer__bottom">
 <span>© <span data-config="site.footer.copyright_year">2026</span> Трекер Цен (pricetrackerguru.ru). Все права защищены.</span>
-<span class="footer__version">Версия <b data-config="version_control.current_version_name">2.0.0</b></span>
+<span class="footer__version">Версия <b data-config="version_control.current_version_name">2.1.0</b></span>
 </div>
 </div>
 </footer>
@@ -760,7 +763,6 @@ p{margin:0}
       currentAnnId = ann.id || 'promo_1';
       if (!ann.show || !ann.text) { bar.hidden = true; return; }
 
-      // В режиме ?preview=1 всегда показываем баннер, игнорируя кэш закрытия
       if (e.detail.isPreview) {
         bar.hidden = false;
         return;
@@ -1054,4 +1056,3 @@ p{margin:0}
 </script>
 </body>
 </html>
-<!-- КОНЕЦ ФАЙЛА САЙТА -->
